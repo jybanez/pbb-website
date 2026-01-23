@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Bantay Bayan — Practical tech for practical rescue</title>
+  <meta name="description" content="Offline-first disaster reporting and coordination for when networks fail. Practical tech for practical rescue." />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Project Bantay Bayan — Practical tech for practical rescue" />
+  <meta property="og:description" content="Offline-first disaster reporting and coordination for when networks fail." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/pbb-preview-graphic.png" />
+  <link rel="icon" type="image/png" href="assets/pbb-logo-eye-h42.png">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img class="brand-logo"
+     src="assets/pbb-logo-eye-h42.png"
+     srcset="assets/pbb-logo-eye-h84@2x.png 2x, assets/pbb-logo-eye-h126@3x.png 3x"
+     alt="Project Bantay Bayan logo" />
+        <div class="brand-text">
+          <div class="brand-name">Project Bantay Bayan</div>
+          <div class="brand-sub">Preview</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#overview">Overview</a>
+        <a href="#coming">What’s coming</a>
+        <a href="#trust">Safeguards</a>
+        <a class="btn btn-small" href="#contact">Request a briefing</a>
+      </nav>
+
+      <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <span class="menu-lines" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div id="mobileNav" class="mobile-nav" hidden>
+      <div class="container mobile-nav-inner">
+        <a href="#overview">Overview</a>
+        <a href="#coming">What’s coming</a>
+        <a href="#trust">Safeguards</a>
+        <a href="#contact">Request a briefing</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="overview">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="badge">Organizing team and legal structure (in progress)</p>
+          <h1>Practical tech for practical rescue.</h1>
+          <p class="lead">
+            Offline-first disaster reporting and coordination for when networks fail—designed for barangays, responders, and EOCs to share a common operational picture.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn" href="#contact">Request a briefing</a>
+            <a class="btn btn-ghost" href="#partners">Partner with us</a>
+          </div>
+
+          <dl class="stats" aria-label="Key points">
+            <div class="stat">
+              <dt>Offline-first</dt>
+              <dd>Capture locally, sync later</dd>
+            </div>
+            <div class="stat">
+              <dt>Rapid-deploy</dt>
+              <dd>Local node kit + workflows</dd>
+            </div>
+            <div class="stat">
+              <dt>Accountable</dt>
+              <dd>Status + handover tracking</dd>
+            </div>
+          </dl>
+        </div>
+
+        <figure class="hero-figure" aria-label="Concept preview graphic">
+          <img src="assets/pbb-preview-graphic.png" alt="Preview graphic showing field reporting to a local node, uplink synchronization, and EOC dashboards, with modules for offline reporting, local node kits, dashboards, and pilot contexts." />
+          <figcaption>Concept preview (illustrative).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="section" aria-labelledby="whyTitle">
+      <div class="container">
+        <h2 id="whyTitle">Why this matters</h2>
+        <div class="cards three">
+          <article class="card">
+            <h3>Comms fail during disasters</h3>
+            <p>Power loss, signal congestion, and damaged infrastructure can cut off reliable reporting right when decisions matter most.</p>
+          </article>
+          <article class="card">
+            <h3>Reports become fragmented</h3>
+            <p>Updates split across calls, chats, paper logs, and spreadsheets—making it hard to verify and consolidate.</p>
+          </article>
+          <article class="card">
+            <h3>Decisions slow down</h3>
+            <p>Without a shared operational picture, response teams lose time coordinating, validating, and prioritizing actions.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT'S COMING -->
+    <section class="section alt" id="coming" aria-labelledby="comingTitle">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="comingTitle">What’s coming</h2>
+          <p class="muted">A practical set of tools and workflows that operate locally first, then synchronize when backhaul is available.</p>
+        </div>
+
+        <div class="cards five">
+          <article class="card mini">
+            <h3>Offline reporting</h3>
+            <p>Structured forms, photos, status updates, and queues that keep working without internet.</p>
+          </article>
+          <article class="card mini">
+            <h3>Local node kits</h3>
+            <p>Barangay-level capture + coordination node for temporary operations and consolidation.</p>
+          </article>
+          <article class="card mini">
+            <h3>Uplink sync to EOC</h3>
+            <p>When LTE/Starlink returns, queued reports sync to the command post for consolidation and action.</p>
+          </article>
+          <article class="card mini">
+            <h3>Dashboards + SITREPs</h3>
+            <p>Data freshness, queues, summaries, and basic situation reporting for operators.</p>
+          </article>
+          <article class="card mini">
+            <h3>Missing & relief tracking</h3>
+            <p>Simple accountability flows: missing/found updates, dispatch → arrival → handover status.</p>
+          </article>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="two-col" id="pilots">
+          <div>
+            <h3>Pilot direction (high-level)</h3>
+            <ul class="bullets">
+              <li>Target environments: signal-poor and upland barangays, evacuation centers, and rapid relief handover points.</li>
+              <li>Primary outcomes: faster verified reporting, reduced duplication, clearer handovers, improved prioritization.</li>
+              <li>Evaluation: operational usability, reliability under low connectivity, and data quality.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>What success looks like</h3>
+            <ul class="bullets">
+              <li>Operators can consolidate field reports in minutes—not hours.</li>
+              <li>Queues visibly drain once backhaul returns; dashboards show “data freshness.”</li>
+              <li>Relief and response actions leave a clear audit trail (who, what, when, where).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS / GOVERNANCE -->
+    <section class="section" id="partners" aria-labelledby="partnersTitle">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="partnersTitle">Partners in formation</h2>
+          <p class="muted">We are assembling governance, pilot hosts, and evaluators. If your organization can contribute capacity, we want to hear from you.</p>
+        </div>
+
+        <div class="cards three">
+          <article class="card">
+            <h3>LGU pilot hosts</h3>
+            <p>Barangay/City/Province partners for pilot deployment, operator coordination, and field validation.</p>
+          </article>
+          <article class="card">
+            <h3>Agencies & responders</h3>
+            <p>Operational requirements, workflows, and interop guidance to ensure the system fits real response.</p>
+          </article>
+          <article class="card">
+            <h3>Donors & supporters</h3>
+            <p>Support for kits, training, evaluation, and maintaining readiness between disasters.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST & SAFEGUARDS -->
+    <section class="section alt" id="trust" aria-labelledby="trustTitle">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="trustTitle">Safeguards</h2>
+          <p class="muted">Designed to be useful in emergencies while minimizing risk and protecting people’s data.</p>
+        </div>
+
+        <div class="cards two">
+          <article class="card">
+            <h3>Privacy-by-design</h3>
+            <ul class="bullets">
+              <li>Collect only what is necessary for coordination and accountability.</li>
+              <li>Role-based access (operators, supervisors, auditors) with defined permissions.</li>
+              <li>Data retention and deletion policy (in development) aligned to operational needs.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Security posture (high-level)</h3>
+            <ul class="bullets">
+              <li>No public incident feeds by default.</li>
+              <li>Audit logs for critical actions (creation, edits, handovers).</li>
+              <li>Responsible disclosure channel for vulnerabilities.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact" aria-labelledby="contactTitle">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="contactTitle">Stay connected</h2>
+          <p class="muted">Use the form below to request a briefing, explore partnership, or receive pilot updates.</p>
+        </div>
+
+        <div class="contact-grid">
+          <form class="card form" id="interestForm" novalidate>
+            <div class="field">
+              <label for="role">I am a</label>
+              <select id="role" name="role" required>
+                <option value="" selected disabled>Select one</option>
+                <option>LGU</option>
+                <option>Agency / Responder</option>
+                <option>Donor / Supporter</option>
+                <option>NGO / CSO</option>
+                <option>Vendor / Technical Partner</option>
+                <option>Volunteer / Individual</option>
+                <option>Media</option>
+              </select>
+              <div class="error" data-for="role" aria-live="polite"></div>
+            </div>
+
+            <div class="two">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+                <div class="error" data-for="name" aria-live="polite"></div>
+              </div>
+              <div class="field">
+                <label for="org">Organization</label>
+                <input id="org" name="org" type="text" autocomplete="organization" />
+              </div>
+            </div>
+
+            <div class="two">
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+                <div class="error" data-for="email" aria-live="polite"></div>
+              </div>
+              <div class="field">
+                <label class="checkbox">
+                  <input id="updates" name="updates" type="checkbox" />
+                  <span>Send me pilot updates</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="What would you like to discuss? (Briefing request, pilot hosting, funding, technical partnership, evaluation, etc.)" required></textarea>
+              <div class="error" data-for="message" aria-live="polite"></div>
+            </div>
+
+            <div class="actions">
+              <button class="btn" type="submit">Send</button>
+            </div>
+          </form>
+
+          <aside class="card contact-card">
+            <h3>Direct contact</h3>
+            <ul class="bullets compact">
+              <li>Jonathan Anthony Ybanez</li>
+              <li>Mobile: <a href="tel://+639564671498">(+63 956) 467-1498</a></li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <h3>One-line explainer</h3>
+            <p class="muted">Offline-first reporting and coordination that keeps working locally and syncs to the EOC when connectivity returns.</p>
+
+            <div class="divider"></div>
+
+            <h3>Status</h3>
+            <p class="muted">Currently in organization and pilot preparation phase.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="small muted">© <span id="year"></span> Project Bantay Bayan. Preview page. Content subject to refinement during governance and pilot setup.</p>
+      <p class="small muted">Built for clarity first. No operational feeds are published from this site.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
