@@ -69,6 +69,157 @@
     });
   });
 
+  // ===== Preview modal (zoom/pan) =====
+  const previewTrigger = document.querySelector('[data-preview-modal]');
+  const imageModal = document.getElementById('imageModal');
+  const imageModalStage = document.getElementById('imageModalStage');
+  const imageModalImg = document.getElementById('imageModalImg');
+
+  if (previewTrigger && imageModal && imageModalStage && imageModalImg) {
+    const zoomInBtn = imageModal.querySelector('[data-zoom-in]');
+    const zoomOutBtn = imageModal.querySelector('[data-zoom-out]');
+    const zoomResetBtn = imageModal.querySelector('[data-zoom-reset]');
+    const closeBtns = imageModal.querySelectorAll('[data-close]');
+
+    let scale = 1;
+    let minScale = 1;
+    let translateX = 0;
+    let translateY = 0;
+    let isPanning = false;
+    let panStartX = 0;
+    let panStartY = 0;
+    let lastFocus = null;
+
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+    const setTransform = () => {
+      imageModalImg.style.transform =
+        `translate(-50%, -50%) translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    };
+
+    const resetView = () => {
+      scale = minScale;
+      translateX = 0;
+      translateY = 0;
+      setTransform();
+    };
+
+    const fitToStage = () => {
+      const stageRect = imageModalStage.getBoundingClientRect();
+      const imgW = imageModalImg.naturalWidth || 1;
+      const imgH = imageModalImg.naturalHeight || 1;
+      const scaleX = stageRect.width / imgW;
+      const scaleY = stageRect.height / imgH;
+      minScale = Math.min(scaleX, scaleY, 1);
+      resetView();
+    };
+
+    const openModal = () => {
+      const full = previewTrigger.getAttribute('data-full');
+      const full2x = previewTrigger.getAttribute('data-full-2x');
+      if (full) imageModalImg.src = full;
+      if (full && full2x) imageModalImg.srcset = `${full2x} 2x, ${full} 4x`;
+      imageModal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      if (imageModalImg.complete) {
+        fitToStage();
+      } else {
+        imageModalImg.onload = fitToStage;
+      }
+      lastFocus = document.activeElement;
+      (zoomResetBtn || imageModal).focus();
+    };
+
+    const closeModal = () => {
+      imageModal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    };
+
+    const zoomAt = (clientX, clientY, delta) => {
+      const stageRect = imageModalStage.getBoundingClientRect();
+      const prevScale = scale;
+      const nextScale = clamp(scale + delta, minScale, 6);
+      if (nextScale === prevScale) return;
+
+      const offsetX = clientX - (stageRect.left + stageRect.width / 2);
+      const offsetY = clientY - (stageRect.top + stageRect.height / 2);
+      const ratio = nextScale / prevScale;
+
+      translateX = translateX - offsetX * (ratio - 1);
+      translateY = translateY - offsetY * (ratio - 1);
+      scale = nextScale;
+      setTransform();
+    };
+
+    const zoomBy = (delta) => {
+      const stageRect = imageModalStage.getBoundingClientRect();
+      zoomAt(
+        stageRect.left + stageRect.width / 2,
+        stageRect.top + stageRect.height / 2,
+        delta
+      );
+    };
+
+    previewTrigger.addEventListener('click', openModal);
+
+    closeBtns.forEach((btn) => btn.addEventListener('click', closeModal));
+
+    imageModal.addEventListener('click', (e) => {
+      if (e.target === imageModal) closeModal();
+    });
+
+    imageModalStage.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      // Normalize wheel across mouse/trackpad and delta modes
+      const lineHeight = 16;
+      const pageHeight = window.innerHeight || 800;
+      let deltaY = e.deltaY;
+      if (e.deltaMode === 1) deltaY *= lineHeight;
+      if (e.deltaMode === 2) deltaY *= pageHeight;
+
+      const delta = Math.max(-0.08, Math.min(0.08, -deltaY / 900));
+      zoomAt(e.clientX, e.clientY, delta);
+    }, { passive: false });
+
+    imageModalStage.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
+      isPanning = true;
+      panStartX = e.clientX - translateX;
+      panStartY = e.clientY - translateY;
+      imageModalStage.setPointerCapture(e.pointerId);
+    });
+    imageModalStage.addEventListener('pointermove', (e) => {
+      if (!isPanning) return;
+      translateX = e.clientX - panStartX;
+      translateY = e.clientY - panStartY;
+      setTransform();
+    });
+    const stopPan = (e) => {
+      if (!isPanning) return;
+      isPanning = false;
+      imageModalStage.releasePointerCapture(e.pointerId);
+    };
+    imageModalStage.addEventListener('pointerup', stopPan);
+    imageModalStage.addEventListener('pointercancel', stopPan);
+
+    zoomInBtn?.addEventListener('click', () => zoomBy(0.05));
+    zoomOutBtn?.addEventListener('click', () => zoomBy(-0.05));
+    zoomResetBtn?.addEventListener('click', resetView);
+
+    document.addEventListener('keydown', (e) => {
+      if (imageModal.hidden) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === '+' || e.key === '=') zoomBy(0.2);
+      if (e.key === '-' || e.key === '_') zoomBy(-0.2);
+      if (e.key === '0') resetView();
+    });
+
+    window.addEventListener('resize', () => {
+      if (!imageModal.hidden) fitToStage();
+    });
+  }
+
   // ===== Form handling =====
   const form = document.getElementById('interestForm');
   if (!form) return;

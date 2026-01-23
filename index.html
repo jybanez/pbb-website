@@ -92,7 +92,21 @@
         </div>
 
         <figure class="hero-figure" aria-label="Concept preview graphic">
-          <img src="assets/pbb-preview-graphic.png" alt="Preview graphic showing field reporting to a local node, uplink synchronization, and EOC dashboards, with modules for offline reporting, local node kits, dashboards, and pilot contexts." />
+          <button
+            class="preview-trigger"
+            type="button"
+            data-preview-modal
+            data-full="assets/pbb-preview-graphic-4x.png"
+            data-full-2x="assets/pbb-preview-graphic-2x.png"
+            aria-label="Open high resolution concept preview"
+          >
+            <img
+              src="assets/pbb-preview-graphic.png"
+              srcset="assets/pbb-preview-graphic-2x.png 2x, assets/pbb-preview-graphic-4x.png 4x"
+              alt="Preview graphic showing field reporting to a local node, uplink synchronization, and EOC dashboards, with modules for offline reporting, local node kits, dashboards, and pilot contexts."
+            />
+            <span class="preview-zoom" aria-hidden="true">Click to zoom</span>
+          </button>
           <figcaption>Concept preview (illustrative).</figcaption>
         </figure>
       </div>
@@ -317,6 +331,27 @@
       <p class="small muted">Built for clarity first. No operational feeds are published from this site.</p>
     </div>
   </footer>
+
+  <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="High resolution preview" hidden>
+    <div class="image-modal-backdrop" data-close></div>
+    <div class="image-modal-panel" role="document">
+      <div class="image-modal-toolbar">
+        <div class="image-modal-title">High resolution preview</div>
+        <div class="image-modal-actions">
+          <button class="icon-btn" type="button" data-zoom-out aria-label="Zoom out">−</button>
+          <button class="icon-btn" type="button" data-zoom-in aria-label="Zoom in">+</button>
+          <button class="icon-btn" type="button" data-zoom-reset aria-label="Reset zoom">Reset</button>
+        </div>
+      </div>
+      <div class="image-modal-stage" id="imageModalStage">
+        <img id="imageModalImg" alt="High resolution concept preview" />
+      </div>
+      <div class="image-modal-footer">
+        <span class="muted small">Scroll or pinch to zoom. Drag to pan. Press Esc to close.</span>
+        <button class="icon-btn" type="button" data-close aria-label="Close preview">Close</button>
+      </div>
+    </div>
+  </div>
 
   <script src="main.js"></script>
 </body>
