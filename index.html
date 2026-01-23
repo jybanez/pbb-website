@@ -17,7 +17,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -115,7 +115,15 @@
     <!-- WHY -->
     <section class="section" aria-labelledby="whyTitle">
       <div class="container">
-        <h2 id="whyTitle">Why this matters</h2>
+        <h2 id="whyTitle" class="section-title">
+          <span class="title-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v5l3 3"></path>
+            </svg>
+          </span>
+          Why this matters
+        </h2>
         <div class="cards three">
           <article class="card">
             <h3>Comms fail during disasters</h3>
@@ -137,29 +145,74 @@
     <section class="section alt" id="coming" aria-labelledby="comingTitle">
       <div class="container">
         <div class="section-head">
-          <h2 id="comingTitle">What’s coming</h2>
+          <h2 id="comingTitle" class="section-title">
+            <span class="title-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v4"></path>
+                <path d="M12 17v4"></path>
+                <path d="M4 12h4"></path>
+                <path d="M16 12h4"></path>
+                <path d="M6.5 6.5l2.5 2.5"></path>
+                <path d="M15 15l2.5 2.5"></path>
+                <path d="M6.5 17.5l2.5-2.5"></path>
+                <path d="M15 9l2.5-2.5"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </span>
+            What’s coming
+          </h2>
           <p class="muted">A practical set of tools and workflows that operate locally first, then synchronize when backhaul is available.</p>
         </div>
 
         <div class="cards five">
           <article class="card mini">
-            <h3>Offline reporting</h3>
+            <h3><span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 3h6l3 3v12a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V6l3-3z"></path>
+                <path d="M9 7h6"></path>
+                <path d="M9 11h6"></path>
+              </svg>
+            </span>Offline reporting</h3>
             <p>Structured forms, photos, status updates, and queues that keep working without internet.</p>
           </article>
           <article class="card mini">
-            <h3>Local node kits</h3>
+            <h3><span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 10h16"></path>
+                <path d="M4 14h16"></path>
+                <rect x="6" y="4" width="12" height="16" rx="2"></rect>
+              </svg>
+            </span>Local node kits</h3>
             <p>Barangay-level capture + coordination node for temporary operations and consolidation.</p>
           </article>
           <article class="card mini">
-            <h3>Uplink sync to EOC</h3>
+            <h3><span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 15a8 8 0 0 1 16 0"></path>
+                <path d="M7 15a5 5 0 0 1 10 0"></path>
+                <circle cx="12" cy="15" r="1.5"></circle>
+              </svg>
+            </span>Uplink sync to EOC</h3>
             <p>When LTE/Starlink returns, queued reports sync to the command post for consolidation and action.</p>
           </article>
           <article class="card mini">
-            <h3>Dashboards + SITREPs</h3>
+            <h3><span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="3"></rect>
+                <path d="M8 16v-5"></path>
+                <path d="M12 16v-8"></path>
+                <path d="M16 16v-3"></path>
+              </svg>
+            </span>Dashboards + SITREPs</h3>
             <p>Data freshness, queues, summaries, and basic situation reporting for operators.</p>
           </article>
           <article class="card mini">
-            <h3>Missing & relief tracking</h3>
+            <h3><span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0-6 6c0 4.2 6 12 6 12s6-7.8 6-12a6 6 0 0 0-6-6z"></path>
+                <circle cx="12" cy="9" r="2.5"></circle>
+              </svg>
+            </span>Missing & relief tracking</h3>
             <p>Simple accountability flows: missing/found updates, dispatch → arrival → handover status.</p>
           </article>
         </div>
@@ -216,7 +269,15 @@
     <section class="section alt" id="trust" aria-labelledby="trustTitle">
       <div class="container">
         <div class="section-head">
-          <h2 id="trustTitle">Safeguards</h2>
+          <h2 id="trustTitle" class="section-title">
+            <span class="title-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z"></path>
+                <path d="M9 12l2 2 4-4"></path>
+              </svg>
+            </span>
+            Safeguards
+          </h2>
           <p class="muted">Designed to be useful in emergencies while minimizing risk and protecting people’s data.</p>
         </div>
 
