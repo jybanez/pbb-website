@@ -455,6 +455,29 @@ h3{margin:0 0 8px; font-size:17px; letter-spacing:.04em; text-transform:uppercas
   display:flex;
   align-items:center;
   gap:10px;
+  position:relative;
+  padding-left:14px;
+}
+.section-title::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:2px;
+  bottom:2px;
+  width:2px;
+  background: linear-gradient(180deg, rgba(82,224,255,.6), rgba(82,224,255,.1));
+  box-shadow: 0 0 10px rgba(82,224,255,.25);
+}
+.section-title::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:-6px;
+  bottom:-8px;
+  height:1px;
+  background:
+    linear-gradient(90deg, rgba(82,224,255,.5), rgba(82,224,255,.2), transparent 70%);
+  opacity:.7;
 }
 .title-icon,
 .card-icon{
