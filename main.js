@@ -88,6 +88,10 @@
     let isPanning = false;
     let panStartX = 0;
     let panStartY = 0;
+    const pointers = new Map();
+    let pinchStartDist = 0;
+    let pinchStartScale = 1;
+    let pinchCenter = { x: 0, y: 0 };
     let lastFocus = null;
     let raf = 0;
 
@@ -201,23 +205,63 @@
       zoomAt(e.clientX, e.clientY, delta);
     }, { passive: false });
 
+    const updatePinchCenter = () => {
+      const pts = Array.from(pointers.values());
+      pinchCenter = {
+        x: (pts[0].x + pts[1].x) / 2,
+        y: (pts[0].y + pts[1].y) / 2
+      };
+    };
+
     imageModalStage.addEventListener('pointerdown', (e) => {
-      if (e.button !== 0) return;
-      isPanning = true;
-      panStartX = e.clientX - translateX;
-      panStartY = e.clientY - translateY;
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
       imageModalStage.setPointerCapture(e.pointerId);
+
+      if (pointers.size === 1) {
+        isPanning = true;
+        panStartX = e.clientX - translateX;
+        panStartY = e.clientY - translateY;
+      }
+
+      if (pointers.size === 2) {
+        isPanning = false;
+        const pts = Array.from(pointers.values());
+        pinchStartDist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+        pinchStartScale = scale;
+        updatePinchCenter();
+      }
     });
+
     imageModalStage.addEventListener('pointermove', (e) => {
+      if (!pointers.has(e.pointerId)) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+      if (pointers.size === 2) {
+        const pts = Array.from(pointers.values());
+        const dist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+        const nextScale = clamp(pinchStartScale * (dist / Math.max(1, pinchStartDist)), minScale, 6);
+        const delta = nextScale - scale;
+        updatePinchCenter();
+        zoomAt(pinchCenter.x, pinchCenter.y, delta);
+        return;
+      }
+
       if (!isPanning) return;
       translateX = e.clientX - panStartX;
       translateY = e.clientY - panStartY;
       clampTranslate();
       setTransform();
     });
+
     const stopPan = (e) => {
-      if (!isPanning) return;
-      isPanning = false;
+      pointers.delete(e.pointerId);
+      if (pointers.size < 2) {
+        pinchStartDist = 0;
+      }
+      if (pointers.size === 0) {
+        isPanning = false;
+      }
       imageModalStage.releasePointerCapture(e.pointerId);
     };
     imageModalStage.addEventListener('pointerup', stopPan);
