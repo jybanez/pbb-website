@@ -34,6 +34,7 @@ body{
   line-height:1.55;
   position:relative;
   min-height:100%;
+  overflow-x:hidden;
 }
 body::before{
   content:"";
@@ -63,6 +64,37 @@ a:hover{text-decoration:underline}
 img{max-width:100%; height:auto; display:block}
 
 .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+.section .container,
+.hero .container{
+  position:relative;
+  z-index:1;
+}
+.section .container::before,
+.section .container::after,
+.hero .container::before,
+.hero .container::after{
+  content:"";
+  position:absolute;
+  width:22px;
+  height:22px;
+  border:2px solid rgba(82,224,255,.28);
+  pointer-events:none;
+  opacity:.7;
+}
+.section .container::before,
+.hero .container::before{
+  left:6px;
+  top:-6px;
+  border-right:0;
+  border-bottom:0;
+}
+.section .container::after,
+.hero .container::after{
+  right:6px;
+  bottom:-6px;
+  border-left:0;
+  border-top:0;
+}
 .skip-link{
   position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
 }
@@ -175,6 +207,34 @@ h3{
 }
 h1{font-size:44px; line-height:1.05; margin:0 0 14px; letter-spacing:.02em}
 .lead{font-size:18px; color:var(--muted); margin:0 0 18px}
+.alert-callout{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 18px;
+  padding:10px 12px;
+  border:1px solid rgba(246,196,83,.55);
+  border-radius:12px;
+  background: rgba(8,14,18,.85);
+  color:var(--text);
+  font-size:18px;
+  line-height:1.5;
+  box-shadow: inset 0 0 0 1px rgba(246,196,83,.12);
+}
+.alert-pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.7);
+  background: rgba(246,196,83,.12);
+  color:#ffe6a8;
+  font-size:18px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
 
 .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin:0 0 18px}
 
@@ -242,9 +302,23 @@ h1{font-size:44px; line-height:1.05; margin:0 0 14px; letter-spacing:.02em}
   border:1px solid rgba(82,224,255,.2);
   border-radius: var(--radius2);
   overflow:hidden;
-  background: rgba(6,16,24,.6);
+  background:
+    linear-gradient(180deg, rgba(8,20,30,.6), rgba(6,16,24,.65)),
+    linear-gradient(120deg, transparent 35%, rgba(82,224,255,.12) 50%, transparent 65%);
+  background-size: 100% 100%, 200% 200%;
+  background-position: 0 0, -140% 0;
   box-shadow: var(--shadow);
   position:relative;
+  animation: panelSweep 10s linear infinite;
+}
+.hero-figure::after{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:1px dashed rgba(82,224,255,.2);
+  border-radius:14px;
+  pointer-events:none;
+  opacity:.5;
 }
 .hero-figure::before{
   content:"";
@@ -257,6 +331,57 @@ h1{font-size:44px; line-height:1.05; margin:0 0 14px; letter-spacing:.02em}
   background-size: 70px 70px;
   opacity:.35;
   pointer-events:none;
+}
+.hero-figure .preview-trigger::before,
+.hero-figure .preview-trigger::after{
+  content:"";
+  position:absolute;
+  width:22px;
+  height:22px;
+  border:2px solid rgba(82,224,255,.35);
+  pointer-events:none;
+}
+.hero-figure .preview-trigger::before{
+  left:10px;
+  top:10px;
+  border-right:0;
+  border-bottom:0;
+}
+.hero-figure .preview-trigger::after{
+  right:10px;
+  bottom:10px;
+  border-left:0;
+  border-top:0;
+}
+.hero-figure .preview-trigger{
+  position:relative;
+}
+.hero-figure .preview-trigger .crosshair{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:44px;
+  height:44px;
+  margin:-22px 0 0 -22px;
+  border:1px solid rgba(82,224,255,.25);
+  border-radius:50%;
+  pointer-events:none;
+  opacity:.7;
+}
+.hero-figure .preview-trigger .crosshair::before,
+.hero-figure .preview-trigger .crosshair::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:26px;
+  height:1px;
+  background: rgba(82,224,255,.35);
+  transform: translate(-50%, -50%);
+}
+.hero-figure .preview-trigger .crosshair::after{
+  width:1px;
+  height:26px;
 }
 .hero-figure img{width:100%}
 .preview-trigger{
@@ -295,7 +420,25 @@ h1{font-size:44px; line-height:1.05; margin:0 0 14px; letter-spacing:.02em}
   text-transform:uppercase;
 }
 
-.section{padding:34px 0}
+.section{padding:34px 0; position:relative}
+.hero{position:relative; overflow:hidden}
+.section::after,
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(120deg, transparent 45%, rgba(82,224,255,.12) 50%, transparent 55%);
+  opacity:.25;
+  animation: sweep 8s linear infinite;
+  pointer-events:none;
+  z-index:0;
+}
+.section{overflow:hidden}
+.section.alt::after{
+  opacity:.18;
+  animation-duration:10s;
+}
 .section.alt{
   background:
     linear-gradient(180deg, rgba(6,18,26,.9), rgba(6,16,24,.5));
@@ -363,11 +506,25 @@ h3{margin:0 0 8px; font-size:17px; letter-spacing:.04em; text-transform:uppercas
   border-radius: var(--radius);
   padding:16px;
   background:
-    linear-gradient(180deg, rgba(8,20,30,.8), rgba(6,16,24,.65));
+    linear-gradient(180deg, rgba(8,20,30,.8), rgba(6,16,24,.65)),
+    linear-gradient(120deg, transparent 35%, rgba(82,224,255,.12) 50%, transparent 65%);
+  background-size: 100% 100%, 200% 200%;
+  background-position: 0 0, -140% 0;
   box-shadow: inset 0 0 0 1px rgba(82,224,255,.06);
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   position:relative;
   overflow:hidden;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  left:12px;
+  bottom:12px;
+  width:18px;
+  height:18px;
+  border-left:2px solid rgba(82,224,255,.3);
+  border-bottom:2px solid rgba(82,224,255,.3);
+  opacity:.6;
 }
 .card::after{
   content:"";
@@ -404,6 +561,14 @@ h3{margin:0 0 8px; font-size:17px; letter-spacing:.04em; text-transform:uppercas
 @keyframes fadeUp{
   from{opacity:0; transform: translateY(8px)}
   to{opacity:1; transform: translateY(0)}
+}
+@keyframes sweep{
+  0%{transform: translateX(-60%)}
+  100%{transform: translateX(60%)}
+}
+@keyframes panelSweep{
+  0%{background-position: 0 0, -140% 0}
+  100%{background-position: 0 0, 140% 0}
 }
 
 .two-col{
@@ -549,6 +714,14 @@ input:focus, select:focus, textarea:focus{
   }
   .btn::after{
     transition:none;
+  }
+  .section::after,
+  .hero::after{
+    animation:none;
+  }
+  .card,
+  .hero-figure{
+    animation:none;
   }
 }
 
