@@ -89,12 +89,29 @@
     let panStartX = 0;
     let panStartY = 0;
     let lastFocus = null;
+    let raf = 0;
 
     const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
-    const setTransform = () => {
+    const applyTransform = () => {
       imageModalImg.style.transform =
         `translate(-50%, -50%) translate(${translateX}px, ${translateY}px) scale(${scale})`;
+      raf = 0;
+    };
+
+    const setTransform = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(applyTransform);
+    };
+
+    const clampTranslate = () => {
+      const stageRect = imageModalStage.getBoundingClientRect();
+      const imgW = imageModalImg.naturalWidth || 1;
+      const imgH = imageModalImg.naturalHeight || 1;
+      const maxX = Math.max(0, (imgW * scale - stageRect.width) / 2);
+      const maxY = Math.max(0, (imgH * scale - stageRect.height) / 2);
+      translateX = clamp(translateX, -maxX, maxX);
+      translateY = clamp(translateY, -maxY, maxY);
     };
 
     const resetView = () => {
@@ -149,6 +166,7 @@
       translateX = translateX - offsetX * (ratio - 1);
       translateY = translateY - offsetY * (ratio - 1);
       scale = nextScale;
+      clampTranslate();
       setTransform();
     };
 
@@ -178,7 +196,8 @@
       if (e.deltaMode === 1) deltaY *= lineHeight;
       if (e.deltaMode === 2) deltaY *= pageHeight;
 
-      const delta = Math.max(-0.08, Math.min(0.08, -deltaY / 900));
+      const sensitivity = e.ctrlKey ? 1400 : 900;
+      const delta = Math.max(-0.05, Math.min(0.05, -deltaY / sensitivity));
       zoomAt(e.clientX, e.clientY, delta);
     }, { passive: false });
 
@@ -193,6 +212,7 @@
       if (!isPanning) return;
       translateX = e.clientX - panStartX;
       translateY = e.clientY - panStartY;
+      clampTranslate();
       setTransform();
     });
     const stopPan = (e) => {

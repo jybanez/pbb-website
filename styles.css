@@ -691,6 +691,7 @@ input:focus, select:focus, textarea:focus{
   overflow:hidden;
   cursor:grab;
   min-height:320px;
+  touch-action:none;
 }
 .image-modal-stage:active{cursor:grabbing}
 #imageModalImg{
