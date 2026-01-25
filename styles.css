@@ -40,6 +40,9 @@ body{
   min-height:100%;
   overflow-x:hidden;
 }
+main{
+  background-color:#061018;
+}
 body::before{
   content:"";
   position:fixed;
@@ -424,7 +427,7 @@ h1{font-size:44px; line-height:1.05; margin:0 0 14px; letter-spacing:.02em}
   text-transform:uppercase;
 }
 
-.section{padding:34px 0; position:relative; background-color: transparent}
+.section{padding:34px 0; position:relative; background-color: #061018}
 .hero{position:relative; overflow:hidden}
 .section::after,
 .hero::after{
