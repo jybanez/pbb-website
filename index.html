@@ -15,11 +15,21 @@
   <link rel="icon" type="image/png" href="assets/pbb-logo-eye-h42.png">
 
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="styles.css" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Project Bantay Bayan — Practical tech for practical rescue" />
+  <meta name="twitter:description" content="Offline-first reporting and coordination for when networks fail." />
+  <meta name="twitter:image" content="assets/pbb-preview-graphic.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Project Bantay Bayan",
+    "url": "https://pbb.ph",
+    "logo": "https://pbb.ph/assets/pbb-logo-eye-h42.png",
+    "sameAs": ["https://github.com/jybanez"]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -30,6 +40,8 @@
         <img class="brand-logo"
      src="assets/pbb-logo-eye-h42.png"
      srcset="assets/pbb-logo-eye-h84@2x.png 2x, assets/pbb-logo-eye-h126@3x.png 3x"
+     width="66"
+     height="42"
      alt="Project Bantay Bayan logo" />
         <div class="brand-text">
           <div class="brand-name">Project Bantay Bayan</div>
@@ -41,6 +53,7 @@
         <a href="#overview">Overview</a>
         <a href="#coming">What’s coming</a>
         <a href="#trust">Safeguards</a>
+        <a href="gallery.html">Gallery</a>
         <a class="btn btn-small" href="#contact">Request a briefing</a>
       </nav>
 
@@ -54,6 +67,7 @@
         <a href="#overview">Overview</a>
         <a href="#coming">What’s coming</a>
         <a href="#trust">Safeguards</a>
+        <a href="gallery.html">Gallery</a>
         <a href="#contact">Request a briefing</a>
       </div>
     </div>
@@ -100,15 +114,28 @@
             class="preview-trigger"
             type="button"
             data-preview-modal
-            data-full="assets/pbb-preview-graphic-4x.png"
+            data-full="assets/pbb-preview-graphic-2x.png"
             data-full-2x="assets/pbb-preview-graphic-2x.png"
+            data-thumb="assets/pbb-preview-graphic.png"
+            data-title="High resolution concept preview"
+            data-alt="Preview graphic showing field reporting to a local node, uplink synchronization, and EOC dashboards, with modules for offline reporting, local node kits, dashboards, and pilot contexts."
             aria-label="Open high resolution concept preview"
           >
-            <img
-              src="assets/pbb-preview-graphic.png"
-              srcset="assets/pbb-preview-graphic-2x.png 2x, assets/pbb-preview-graphic-4x.png 4x"
-              alt="Preview graphic showing field reporting to a local node, uplink synchronization, and EOC dashboards, with modules for offline reporting, local node kits, dashboards, and pilot contexts."
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/pbb-preview-graphic.webp 1x, assets/pbb-preview-graphic-2x.webp 2x, assets/pbb-preview-graphic-4x.webp 4x"
+              />
+              <img
+                src="assets/pbb-preview-graphic.png"
+                srcset="assets/pbb-preview-graphic-2x.png 2x, assets/pbb-preview-graphic-4x.png 4x"
+                width="1024"
+                height="1216"
+                fetchpriority="high"
+                decoding="async"
+                alt="Preview graphic showing field reporting to a local node, uplink synchronization, and EOC dashboards, with modules for offline reporting, local node kits, dashboards, and pilot contexts."
+              />
+            </picture>
             <span class="crosshair" aria-hidden="true"></span>
             <span class="preview-zoom" aria-hidden="true">Click to zoom</span>
           </button>
@@ -373,7 +400,7 @@
             <h3>Direct contact</h3>
             <ul class="bullets compact">
               <li>Jonathan Anthony Ybanez</li>
-              <li>Mobile: <a href="tel://+639564671498">(+63 956) 467-1498</a></li>
+              <li>Mobile: <a href="tel:+639564671498">(+63 956) 467-1498</a></li>
             </ul>
 
             <div class="divider"></div>
@@ -398,27 +425,18 @@
     </div>
   </footer>
 
-  <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="High resolution preview" hidden>
-    <div class="image-modal-backdrop" data-close></div>
-    <div class="image-modal-panel" role="document">
-      <div class="image-modal-toolbar">
-        <div class="image-modal-title">High resolution preview</div>
-        <div class="image-modal-actions">
-          <button class="icon-btn" type="button" data-zoom-out aria-label="Zoom out">−</button>
-          <button class="icon-btn" type="button" data-zoom-in aria-label="Zoom in">+</button>
-          <button class="icon-btn" type="button" data-zoom-reset aria-label="Reset zoom">Reset</button>
-        </div>
-      </div>
-      <div class="image-modal-stage" id="imageModalStage">
-        <img id="imageModalImg" alt="High resolution concept preview" />
-      </div>
-      <div class="image-modal-footer">
-        <span class="muted small">Scroll or pinch to zoom. Drag to pan. Press Esc to close.</span>
-        <button class="icon-btn" type="button" data-close aria-label="Close preview">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="main.js"></script>
+  <script type="module" src="vendor/helpers.pbb.ph/js/ui/ui.loader.js"></script>
+  <script type="module">
+    if (!window.uiLoader || typeof window.uiLoader.load !== 'function') {
+      throw new Error('PBB helpers are required: ui.loader must be initialized before other scripts.');
+    }
+    window.PBBHelpers = window.PBBHelpers || {};
+    window.PBBHelpers.ui = window.PBBHelpers.ui || { init: () => {} };
+    if (!window.PBBHelpers.ui || typeof window.PBBHelpers.ui.init !== 'function') {
+      throw new Error('PBBHelpers.ui.init is required by this page.');
+    }
+    window.PBBHelpers.ui.init();
+  </script>
+  <script defer src="main.js"></script>
 </body>
 </html>

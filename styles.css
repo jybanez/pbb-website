@@ -28,7 +28,7 @@ html{
 }
 body{
   margin:0;
-  font-family: "Rajdhani", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Bahnschrift, "Arial Narrow", "Trebuchet MS", system-ui, sans-serif;
   color:var(--text);
   background:
     radial-gradient(900px 650px at 12% 8%, rgba(82,224,255,.18), transparent 60%),
@@ -210,7 +210,7 @@ img{max-width:100%; height:auto; display:block}
 h1,
 h2,
 h3{
-  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-family: Consolas, "Lucida Console", "Courier New", monospace;
 }
 h1{font-size:44px; line-height:1.05; margin:0 0 14px; letter-spacing:.02em}
 .lead{font-size:18px; color:var(--muted); margin:0 0 18px}
@@ -577,6 +577,24 @@ h3{margin:0 0 8px; font-size:17px; letter-spacing:.04em; text-transform:uppercas
 .card.mini{padding:14px}
 .card.mini p{font-size:13px}
 
+.gallery-filter{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; margin-bottom:18px;}
+.gallery-filter .btn{font-size:12px; border-radius:999px; padding:8px 12px; text-transform:none; letter-spacing:0;}
+.gallery-filter .btn.active{background: rgba(82,224,255,.28); border-color: rgba(132,245,255,.5);}
+.gallery-grid{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:14px; margin-top:8px;}
+.gallery-card{display:flex; flex-direction:column; gap:8px; border:1px solid rgba(82,224,255,.1); border-radius:12px; padding:10px; background:rgba(6,10,18,.62);}
+.gallery-card-content{display:flex; flex-direction:column; gap:8px;}
+.gallery-card-body{font-size:0.94rem; color:var(--muted);}
+.gallery-thumb{width:100%; border-radius:10px; border:1px solid rgba(82,224,255,.2); display:block; object-fit:cover;}
+.gallery-video-wrap{border-radius:10px; overflow:hidden; border:1px solid rgba(82,224,255,.2); background:#000;}
+.gallery-video{width:100%; display:block; background:#000;}
+
+@media (max-width: 980px){
+  .gallery-grid{grid-template-columns: repeat(2, minmax(0,1fr));}
+}
+@media (max-width: 760px){
+  .gallery-grid{grid-template-columns: 1fr;}
+}
+
 .bullets{margin:10px 0 0; padding-left:18px; color:var(--muted)}
 .bullets li{margin:6px 0}
 .bullets.compact li{margin:4px 0}
@@ -655,54 +673,6 @@ input:focus, select:focus, textarea:focus{
 }
 .footer-inner{display:flex; flex-direction:column; gap:6px}
 
-/* Image modal */
-.image-modal{
-  position:fixed;
-  inset:0;
-  z-index:90;
-  display:grid;
-  place-items:center;
-}
-.image-modal[hidden]{display:none}
-.image-modal-backdrop{
-  position:absolute;
-  inset:0;
-  background: rgba(5,8,15,.82);
-  backdrop-filter: blur(6px);
-}
-.image-modal-panel{
-  position:relative;
-  width:min(1100px, 94vw);
-  height:min(90vh, 760px);
-  background: rgba(6,16,24,.96);
-  border:1px solid rgba(82,224,255,.2);
-  border-radius:18px;
-  box-shadow: var(--shadow);
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-}
-.image-modal-toolbar,
-.image-modal-footer{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:12px 14px;
-  border-bottom:1px solid var(--line);
-}
-.image-modal-footer{
-  border-top:1px solid var(--line);
-  border-bottom:0;
-}
-.image-modal-title{
-  font-weight:600;
-  font-size:14px;
-}
-.image-modal-actions{
-  display:flex;
-  gap:8px;
-}
 .icon-btn{
   border:1px solid rgba(82,224,255,.2);
   background: rgba(6,16,24,.7);
@@ -715,28 +685,6 @@ input:focus, select:focus, textarea:focus{
   cursor:pointer;
 }
 .icon-btn:hover{background: rgba(82,224,255,.12)}
-.image-modal-stage{
-  position:relative;
-  background: radial-gradient(circle at 20% 20%, rgba(82,224,255,.12), transparent 55%);
-  flex:1;
-  overflow:hidden;
-  cursor:grab;
-  min-height:320px;
-  touch-action:none;
-}
-.image-modal-stage:active{cursor:grabbing}
-#imageModalImg{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform: translate(-50%, -50%) scale(1);
-  transform-origin: center;
-  max-width:none;
-  max-height:none;
-  display:block;
-  user-select:none;
-  pointer-events:none;
-}
 
 @media (prefers-reduced-motion: reduce){
   .cards .card{

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>PBB Gallery — Project Bantay Bayan</title>
+  <meta name="description" content="Project Bantay Bayan gallery: field photos, UX/UI standard and team moments." />
+  <link rel="icon" type="image/png" href="assets/pbb-logo-eye-h42.png">
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PBB Gallery — Project Bantay Bayan" />
+  <meta name="twitter:description" content="Photos, screenshots, video demos, and team context for PBB pilots." />
+  <meta name="twitter:image" content="assets/pbb-preview-graphic.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Project Bantay Bayan Gallery",
+    "description": "Media gallery for pilot photos, screenshots, videos, and team highlights.",
+    "url": "https://pbb.ph/gallery.html"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img class="brand-logo" src="assets/pbb-logo-eye-h42.png" width="66" height="42" alt="Project Bantay Bayan logo" />
+        <div class="brand-text"><div class="brand-name">Project Bantay Bayan</div><div class="brand-sub">Preview</div></div>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html#overview">Overview</a>
+        <a href="index.html#coming">What’s coming</a>
+        <a href="gallery.html">Gallery</a>
+        <a class="btn btn-small" href="index.html#contact">Request a briefing</a>
+      </nav>
+      <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <span class="menu-lines" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div id="mobileNav" class="mobile-nav" hidden>
+      <div class="container mobile-nav-inner">
+        <a href="index.html#overview">Overview</a>
+        <a href="index.html#coming">What’s coming</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="index.html#contact">Request a briefing</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="galleryTitle">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="badge">Visual archive</p>
+          <h1 id="galleryTitle">Gallery: Pilot media, behind the scenes, and team highlights</h1>
+          <p class="lead">Browse photos, screenshots, and short demos from the Project Bantay Bayan pilot and product design process.</p>
+          <div class="cta-row">
+            <a class="btn" href="index.html#partners">Back to overview</a>
+            <a class="btn btn-ghost" href="index.html#contact">Contact team</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallerySection" aria-labelledby="browseTitle">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 id="browseTitle" class="section-title">Browse by section</h2>
+            <p class="muted">Filter the gallery by category for quick context.</p>
+          </div>
+        </div>
+
+        <div class="gallery-filter" role="toolbar" aria-label="Gallery filters">
+          <button class="btn btn-small active" data-gallery-filter="all">All</button>
+          <button class="btn btn-small" data-gallery-filter="field">Field photos</button>
+          <button class="btn btn-small" data-gallery-filter="screenshots">Screenshots</button>
+          <button class="btn btn-small" data-gallery-filter="behind">Behind the Scenes</button>
+          <button class="btn btn-small" data-gallery-filter="team">PBB Team</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="small muted">© <span id="year"></span> Project Bantay Bayan.</p>
+      <p class="small muted">Built for clarity and pilot readiness.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="vendor/helpers.pbb.ph/js/ui/ui.loader.js"></script>
+  <script type="module">
+    if (!window.uiLoader || typeof window.uiLoader.load !== 'function') {
+      throw new Error('PBB helpers are required: ui.loader must be initialized before other scripts.');
+    }
+    window.PBBHelpers = window.PBBHelpers || {};
+    window.PBBHelpers.ui = window.PBBHelpers.ui || { init: () => {} };
+    if (typeof window.PBBHelpers.createCard !== 'function') {
+      console.warn('PBBHelpers.createCard is not available yet; ensure helpers are initialized.');
+    }
+    if (!window.PBBHelpers.ui || typeof window.PBBHelpers.ui.init !== 'function') {
+      throw new Error('PBBHelpers.ui.init is required by this page.');
+    }
+    window.PBBHelpers.ui.init();
+  </script>
+  <script defer src="gallery-data.js"></script>
+  <script defer src="pbb-gallery.js"></script>
+  <script defer src="main.js"></script>
+</body>
+</html>

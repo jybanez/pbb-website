@@ -1,0 +1,91 @@
+.hh-incident-types-details-editor {
+  display: grid;
+  gap: var(--hh-space-2);
+}
+
+.hh-incident-types-details-editor .hh-type-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--hh-space-2);
+}
+
+.hh-incident-types-details-editor .hh-title {
+  margin-bottom: 0;
+}
+
+.hh-incident-types-details-editor .hh-type-title-wrap {
+  display: grid;
+  gap: 4px;
+}
+
+.hh-incident-types-details-editor .hh-remove {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid #7f2940;
+  color: #ffc3d1;
+  background: #41121e;
+  cursor: pointer;
+}
+
+.hh-incident-types-details-editor .hh-type-section {
+  display: grid;
+  gap: var(--hh-space-2);
+}
+
+.hh-incident-types-details-editor .hh-field-grid,
+.hh-incident-types-details-editor .hh-resource-grid {
+  display: grid;
+  gap: var(--hh-space-2);
+}
+
+.hh-incident-types-details-editor .hh-field-row,
+.hh-incident-types-details-editor .hh-resource-row {
+  display: grid;
+  gap: 6px;
+}
+
+.hh-incident-types-details-editor .hh-field-label-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--hh-space-1);
+}
+
+.hh-incident-types-details-editor .hh-field-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.hh-incident-types-details-editor .hh-required {
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--hh-border);
+  color: var(--hh-text-soft);
+}
+
+.hh-incident-types-details-editor .hh-input[multiple] {
+  min-height: 108px;
+}
+
+.hh-incident-types-details-editor .hh-multiselect {
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--hh-border);
+  border-radius: 7px;
+  padding: 8px 10px;
+  background: var(--hh-bg);
+}
+
+.hh-incident-types-details-editor .hh-multiselect-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--hh-text);
+}
+
+.hh-incident-types-details-editor .hh-multiselect-checkbox {
+  margin: 0;
+}

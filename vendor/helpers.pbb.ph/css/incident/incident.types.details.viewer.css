@@ -1,0 +1,29 @@
+.hh-incident-types-details-viewer {
+  display: grid;
+  gap: var(--hh-space-2);
+}
+
+.hh-incident-types-details-viewer .hh-type-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.hh-incident-types-details-viewer .hh-title {
+  margin-bottom: 0;
+}
+
+.hh-incident-types-details-viewer .hh-type-title-wrap {
+  display: grid;
+  gap: 4px;
+}
+
+.hh-incident-types-details-viewer .hh-type-section {
+  display: grid;
+  gap: var(--hh-space-2);
+}
+
+.hh-incident-types-details-viewer .hh-content {
+  display: grid;
+  gap: 4px;
+}
