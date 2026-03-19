@@ -388,6 +388,86 @@ const galleryItems = [
     alt: 'Incident details page screenshot',
   },
   {
+    id: 'screenshots-3',
+    type: 'image',
+    category: ['screenshots'],
+    title: 'PBB HQ Managing Regional Deployments',
+    caption: 'HQ interface for monitoring and managing deployment activity at the regional level.',
+    thumb: galleryThumbPath('screenshots', 'PBB  HQ - Managing Regional Deployments.png'),
+    full: galleryAssetPath('screenshots', 'PBB  HQ - Managing Regional Deployments.png'),
+    alt: 'PBB HQ interface for managing regional deployments',
+  },
+  {
+    id: 'screenshots-4',
+    type: 'image',
+    category: ['screenshots'],
+    title: 'PBB HQ Managing Barangay Deployments',
+    caption: 'HQ deployment-management screen focused on barangay-level rollout visibility.',
+    thumb: galleryThumbPath('screenshots', 'PBB HQ - Managing Barangay Deployments.png'),
+    full: galleryAssetPath('screenshots', 'PBB HQ - Managing Barangay Deployments.png'),
+    alt: 'PBB HQ interface for managing barangay deployments',
+  },
+  {
+    id: 'screenshots-5',
+    type: 'image',
+    category: ['screenshots'],
+    title: 'PBB HQ Managing Provincial Deployments',
+    caption: 'HQ deployment-management screen focused on province-level rollout planning and tracking.',
+    thumb: galleryThumbPath('screenshots', 'PBB HQ - Managing Provincial Deployments.png'),
+    full: galleryAssetPath('screenshots', 'PBB HQ - Managing Provincial Deployments.png'),
+    alt: 'PBB HQ interface for managing provincial deployments',
+  },
+  {
+    id: 'hardware-1',
+    type: 'image',
+    category: ['hardware'],
+    title: 'Mini Server Test',
+    caption: 'Hardware validation view for a compact local server setup used in the node kit.',
+    thumb: galleryThumbPath('hardware', 'Mini Server Test.png'),
+    full: galleryAssetPath('hardware', 'Mini Server Test.png'),
+    alt: 'Mini server hardware test',
+  },
+  {
+    id: 'hardware-2',
+    type: 'image',
+    category: ['hardware'],
+    title: 'Node Kit Case',
+    caption: 'Protective carry case prepared for PBB node-kit deployment.',
+    thumb: galleryThumbPath('hardware', 'Node Kit Case.png'),
+    full: galleryAssetPath('hardware', 'Node Kit Case.png'),
+    alt: 'Node kit case',
+  },
+  {
+    id: 'hardware-3',
+    type: 'image',
+    category: ['hardware'],
+    title: 'Node Kit Package Test Run',
+    caption: 'Test run of the packed node kit before field deployment.',
+    thumb: galleryThumbPath('hardware', 'Node Kit Package Test Run.png'),
+    full: galleryAssetPath('hardware', 'Node Kit Package Test Run.png'),
+    alt: 'Node kit package test run',
+  },
+  {
+    id: 'hardware-4',
+    type: 'image',
+    category: ['hardware'],
+    title: 'Node Kit Package with Mini Display',
+    caption: 'Packed node kit including a compact display for quick setup and monitoring.',
+    thumb: galleryThumbPath('hardware', 'Node Kit package with Mini Display.png'),
+    full: galleryAssetPath('hardware', 'Node Kit package with Mini Display.png'),
+    alt: 'Node kit package with mini display',
+  },
+  {
+    id: 'hardware-5',
+    type: 'image',
+    category: ['hardware'],
+    title: 'Node Kit Case with Server Components',
+    caption: 'Packed deployment case showing the core server components of the node kit.',
+    thumb: galleryThumbPath('hardware', 'Node Kit with Case with Server Components .png'),
+    full: galleryAssetPath('hardware', 'Node Kit with Case with Server Components .png'),
+    alt: 'Node kit case with server components',
+  },
+  {
     id: 'behind-1',
     type: 'image',
     category: ['behind'],
@@ -488,4 +568,47 @@ const galleryItems = [
     alt: 'Signing of commitment to jump-start the PBB Consortium',
   },
 ];
+
+const curatedGalleryOrder = [
+  'field-5',
+  'field-2',
+  'screenshots-1',
+  'hardware-4',
+  'field-33',
+  'behind-4',
+  'field-8',
+  'screenshots-4',
+  'hardware-5',
+  'field-34',
+  'team-3',
+  'field-10',
+  'behind-6',
+  'screenshots-5',
+  'field-11',
+  'hardware-1',
+  'field-26',
+  'behind-2',
+  'team-1',
+  'field-1',
+  'screenshots-3',
+  'hardware-2',
+  'field-14',
+  'behind-5',
+  'team-2',
+];
+
+const curatedOrderIndex = new Map(
+  curatedGalleryOrder.map((id, index) => [id, index])
+);
+
+galleryItems.sort((a, b) => {
+  const aIndex = curatedOrderIndex.has(a.id) ? curatedOrderIndex.get(a.id) : Number.MAX_SAFE_INTEGER;
+  const bIndex = curatedOrderIndex.has(b.id) ? curatedOrderIndex.get(b.id) : Number.MAX_SAFE_INTEGER;
+
+  if (aIndex !== bIndex) {
+    return aIndex - bIndex;
+  }
+
+  return a.id.localeCompare(b.id);
+});
 
