@@ -10,9 +10,13 @@ const PBBGallery = (() => {
   };
 
   const createImageCard = (item) => {
+    const previewSrc = item.fullWebp || item.full;
+    const fallbackSrc = item.fullFallback || item.full;
+    const thumbSrc = item.thumb || '';
+
     return createCardElement(item, `
-      <button class="preview-trigger" type="button" data-preview-modal data-full="${item.full}" data-full-2x="${item.full2x || item.full}" data-thumb="${item.thumb || ''}" data-title="${item.title || 'Preview'}" data-alt="${item.alt}" aria-label="Open ${item.title || 'image'} preview">
-        <img src="${item.thumb}" alt="${item.alt}" loading="lazy" class="gallery-thumb" />
+      <button class="preview-trigger" type="button" data-preview-modal data-full="${previewSrc}" data-full-fallback="${fallbackSrc}" data-full-2x="${item.full2x || previewSrc}" data-thumb="${thumbSrc}" data-title="${item.title || 'Preview'}" data-alt="${item.alt}" aria-label="Open ${item.title || 'image'} preview">
+        <img src="${thumbSrc}" alt="${item.alt}" loading="lazy" class="gallery-thumb" />
       </button>
       <h3>${item.title}</h3>
       <p class="muted">${item.caption}</p>
@@ -41,6 +45,20 @@ const PBBGallery = (() => {
 
   let mediaViewer = null;
   let mediaViewerHost = null;
+  let activeFallbackSrc = '';
+
+  const resolveMediaUrl = (src) => {
+    if (!src) return '';
+    try {
+      return new URL(src, `${mediaBaseUrl}/`).href;
+    } catch (error) {
+      return src;
+    }
+  };
+
+  const setActiveFallback = (item) => {
+    activeFallbackSrc = resolveMediaUrl(item?.raw?.fallbackSrc || '');
+  };
 
   const ensureMediaViewer = async () => {
     if (!window.uiLoader || typeof window.uiLoader.load !== 'function') {
@@ -54,6 +72,11 @@ const PBBGallery = (() => {
 
     if (!mediaViewerHost) {
       mediaViewerHost = document.createElement('div');
+      mediaViewerHost.addEventListener('error', (event) => {
+        const image = event.target instanceof HTMLImageElement ? event.target : null;
+        if (!image || !activeFallbackSrc || image.src === activeFallbackSrc) return;
+        image.src = activeFallbackSrc;
+      }, true);
       document.body.appendChild(mediaViewerHost);
     }
     if (!mediaViewer) {
@@ -71,6 +94,8 @@ const PBBGallery = (() => {
         open: false,
         baseUrl: mediaBaseUrl,
         ariaLabel: 'Project Bantay Bayan gallery viewer',
+        onOpen: setActiveFallback,
+        onChange: setActiveFallback,
       });
     }
 
@@ -84,10 +109,12 @@ const PBBGallery = (() => {
 
     const items = triggers.map((node) => {
       const full = node.getAttribute('data-full') || node.getAttribute('data-full-2x') || '';
+      const fallback = node.getAttribute('data-full-fallback') || full;
       const alt = node.getAttribute('data-alt') || 'Image preview';
       return {
         type: node.getAttribute('data-video') ? 'video' : 'image',
         src: node.getAttribute('data-video') || full,
+        fallbackSrc: fallback,
         thumb: node.getAttribute('data-thumb') || '',
         poster: node.getAttribute('data-thumb') || '',
         alt,

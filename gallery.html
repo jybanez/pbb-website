@@ -25,14 +25,26 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <div class="brand">
-        <img class="brand-logo" src="assets/pbb-logo-eye-h42.png" width="66" height="42" alt="Project Bantay Bayan logo" />
-        <div class="brand-text"><div class="brand-name">Project Bantay Bayan</div><div class="brand-sub">Preview</div></div>
-      </div>
+      <a class="brand" href="index.html#main" aria-label="Project Bantay Bayan home">
+        <img class="brand-logo"
+          src="assets/pbb-logo-eye-h42.png"
+          srcset="assets/pbb-logo-eye-h84@2x.png 2x, assets/pbb-logo-eye-h126@3x.png 3x"
+          width="66"
+          height="42"
+          alt="Project Bantay Bayan logo" />
+        <span class="brand-text">
+          <span class="brand-name">Project Bantay Bayan</span>
+          <span class="brand-sub">Community resilience infrastructure</span>
+        </span>
+      </a>
+
       <nav class="nav" aria-label="Primary">
-        <a href="index.html#overview">Overview</a>
-        <a href="index.html#coming">What’s coming</a>
-        <a href="gallery.html">Gallery</a>
+        <a href="index.html#benefits">Benefits</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#model">Service model</a>
+        <a href="index.html#status">Status</a>
+        <a href="index.html#wizaya">Wizaya</a>
+        <a href="gallery.html" aria-current="page">Gallery</a>
         <a class="btn btn-small" href="index.html#contact">Request a briefing</a>
       </nav>
       <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
@@ -41,23 +53,26 @@
     </div>
     <div id="mobileNav" class="mobile-nav" hidden>
       <div class="container mobile-nav-inner">
-        <a href="index.html#overview">Overview</a>
-        <a href="index.html#coming">What’s coming</a>
-        <a href="gallery.html">Gallery</a>
+        <a href="index.html#benefits">Benefits</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#model">Service model</a>
+        <a href="index.html#status">Status</a>
+        <a href="index.html#wizaya">Wizaya</a>
+        <a href="gallery.html" aria-current="page">Gallery</a>
         <a href="index.html#contact">Request a briefing</a>
       </div>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero" aria-labelledby="galleryTitle">
+    <section class="hero gallery-hero" aria-labelledby="galleryTitle">
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="badge">Visual archive</p>
           <h1 id="galleryTitle">Gallery: Pilot media, behind the scenes, and team highlights</h1>
           <p class="lead">Browse photos, screenshots, and short demos from the Project Bantay Bayan pilot and product design process.</p>
           <div class="cta-row">
-            <a class="btn" href="index.html#partners">Back to overview</a>
+            <a class="btn" href="index.html#overview">Back to overview</a>
             <a class="btn btn-ghost" href="index.html#contact">Contact team</a>
           </div>
         </div>
@@ -74,12 +89,12 @@
         </div>
 
         <div class="gallery-filter" role="toolbar" aria-label="Gallery filters">
-          <button class="btn btn-small active" data-gallery-filter="all">All</button>
-          <button class="btn btn-small" data-gallery-filter="field">Field photos</button>
-          <button class="btn btn-small" data-gallery-filter="hardware">Hardware</button>
-          <button class="btn btn-small" data-gallery-filter="screenshots">Screenshots</button>
-          <button class="btn btn-small" data-gallery-filter="behind">Behind the Scenes</button>
-          <button class="btn btn-small" data-gallery-filter="team">PBB Team</button>
+          <button class="gallery-filter-btn active" data-gallery-filter="all">All</button>
+          <button class="gallery-filter-btn" data-gallery-filter="field">Field photos</button>
+          <button class="gallery-filter-btn" data-gallery-filter="hardware">Hardware</button>
+          <button class="gallery-filter-btn" data-gallery-filter="screenshots">Screenshots</button>
+          <button class="gallery-filter-btn" data-gallery-filter="behind">Behind the Scenes</button>
+          <button class="gallery-filter-btn" data-gallery-filter="team">PBB Team</button>
         </div>
 
         <div class="gallery-grid" id="galleryGrid"></div>

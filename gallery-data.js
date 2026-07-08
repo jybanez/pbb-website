@@ -1,6 +1,9 @@
 const galleryAssetPath = (category, fileName) =>
   encodeURI(`assets/gallery/${category}/${fileName}`);
 
+const galleryWebpAssetPath = (assetPath) =>
+  assetPath.replace(/\.(png|jpe?g)$/i, '.webp');
+
 const galleryThumbPath = (category, fileName) => {
   const baseName = fileName.replace(/\.[^.]+$/, '');
   return encodeURI(`assets/gallery/thumbs/${category}/${baseName}-thumb.webp`);
@@ -568,6 +571,12 @@ const galleryItems = [
     alt: 'Signing of commitment to jump-start the PBB Consortium',
   },
 ];
+
+galleryItems.forEach((item) => {
+  if (item.type !== 'image' || !item.full) return;
+  item.fullFallback = item.full;
+  item.fullWebp = galleryWebpAssetPath(item.full);
+});
 
 const curatedGalleryOrder = [
   'field-5',

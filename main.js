@@ -176,6 +176,30 @@
     el.textContent = msg;
   };
 
+  const showSuccessModal = async () => {
+    const message = 'Thank you for reaching out.';
+    const description = 'We received your briefing request and will get back to you at the soonest possible time.';
+
+    try {
+      await window.uiLoader.load('ui.dialog.alert');
+      const uiAlert = await window.uiLoader.get('ui.dialog.alert');
+      if (typeof uiAlert === 'function') {
+        await uiAlert(message, {
+          title: 'Request sent',
+          description,
+          variant: 'success',
+          okText: 'Close',
+          allowEscClose: true,
+        });
+        return;
+      }
+    } catch (_error) {
+      // Fall back to the native modal dialog if helper loading fails.
+    }
+
+    window.alert(`${message}\n\n${description}`);
+  };
+
   // Honeypot field (anti-bot) created dynamically so it doesn't appear in HTML source
   const hp = document.createElement('input');
   hp.type = 'text';
@@ -231,8 +255,9 @@
         });
 
         if (res.ok) {
-          showInlineStatus('Sent. Thank you — we will get back to you.');
           form.reset();
+          showInlineStatus('Sent. Thank you - we will get back to you.');
+          await showSuccessModal();
           return;
         }
 

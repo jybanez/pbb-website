@@ -4,31 +4,42 @@ Static public-facing website for Project Bantay Bayan. This repo currently conta
 
 - a landing page in `index.html`
 - a gallery page in `gallery.html`
+- a deployment model clarification page in `deployment-model.html`
 - site behavior in `main.js` and `pbb-gallery.js`
 - shared styling in `styles.css`
 - static image assets in `assets/`
+- homepage-specific generated/curated visuals in `assets/website/`
 - a vendored `helpers.pbb.ph` copy in `vendor/helpers.pbb.ph`
 - a local helper reference repo copy in `helper_repo`
 
 ## Current Purpose
 
-This site is a static preview/marketing surface for PBB. It presents:
+This site is a static public-facing surface for PBB. It presents:
 
-- the public project overview
-- pilot direction and partner information
-- safeguards and contact/briefing intake
-- a gallery for screenshots, field visuals, and team context
+- PBB as offline-first community resilience infrastructure
+- community benefits and local-service continuity
+- stakeholder outcomes for citizens, barangays, LGUs, operators, health centers, utilities, schools, donors, and partners
+- the software-first managed local-node resilience service model, including hardware and support boundaries
+- pilot-readiness status, safeguards, and contact/briefing intake
+- a gallery for screenshots, field visuals, hardware, and team context
 
 The site is designed to run as a static deployment such as GitHub Pages or any basic web host.
+
+## Service Boundary
+
+PBB is presented as a software-first managed digital resilience platform. The website should not imply that physical node hardware is automatically included in the monthly managed service fee. PBB provides the software ecosystem and managed support layer; hardware, connectivity, power backup, installation logistics, training, travel, and field equipment are deployment-specific unless explicitly included in a sponsored or bundled deployment package.
 
 ## Repo Structure
 
 ```text
 assets/                  Static site images
+assets/website/          Homepage visuals mapped to refactor-brief placeholders, with WebP files plus PNG fallbacks
+assets/gallery/          Gallery originals retained with same-name WebP preview variants and WebP thumbnails
 helper_repo/             Local reference copy of helpers.pbb.ph
 vendor/helpers.pbb.ph/   Vendored helper assets used by the site
 gallery-data.js          Gallery content data
 gallery.html             Public gallery page
+deployment-model.html    Software, hardware, support, and deployment boundary page
 index.html               Public landing page
 main.js                  Shared site behavior and contact form logic
 pbb-gallery.js           Gallery rendering and filtering logic
@@ -60,7 +71,7 @@ Current pattern in this repo:
 - runtime helper assets are served from `vendor/helpers.pbb.ph`
 - a local reference/source copy is kept in `helper_repo`
 - helper vendoring metadata is recorded in `vendor/helpers.pbb.ph/VENDORED.md`
-- critical preview imagery now has local `.webp` variants in `assets/` for lighter page delivery
+- critical public imagery has local `.webp` variants for lighter page delivery while retaining `.png` originals as fallbacks
 
 When refreshing helpers:
 
@@ -95,7 +106,7 @@ If this endpoint changes, update it in `main.js`.
 
 ## Gallery Content
 
-Gallery items are defined in `gallery-data.js` as `galleryItems`.
+Gallery items are defined in `gallery-data.js` as `galleryItems`. Image entries keep their original JPG/PNG `full` path and are automatically enriched with a same-name WebP preview path plus the original fallback path.
 
 Supported item types:
 
@@ -139,5 +150,5 @@ Before deployment, verify:
 ## Known Production Considerations
 
 - The contact form depends on an external Formspree endpoint for successful hosted submissions.
-- PNG originals are still kept alongside lighter WebP variants in `assets/` for compatibility and source retention.
-- Social metadata still points to PNG preview assets for broad crawler compatibility.
+- Original PNG/JPG assets are still kept alongside lighter WebP variants in `assets/` for compatibility and source retention.
+- Social metadata still points to PNG assets for broad crawler compatibility.
