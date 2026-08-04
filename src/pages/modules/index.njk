@@ -1,0 +1,32 @@
+---
+permalink: /modules/index.html
+layout: layouts/base.njk
+title: PBB Modules | One integrated local resilience platform
+description: Explore Project Bantay Bayan modules by public-service role, from emergency and health continuity to communication, learning, utilities, and local-node infrastructure.
+canonicalPath: /modules/
+structuredData:
+  "@context": "https://schema.org"
+  "@type": "CollectionPage"
+  name: PBB Modules
+  url: https://pbb.ph/modules/
+breadcrumbItems:
+  - label: Home
+    url: /
+  - label: Modules
+---
+{% from "components/ui.njk" import pageHero, moduleCard, infrastructureCard, ctaSection with context %}
+{{ pageHero("One platform · Coordinated service layers", "PBB modules", "Explore the services communities can use locally for emergencies, health, communication, engagement, learning, utilities, and node operations.", null, "modulesOverviewHero") }}
+<div class="container overview-sections">
+  {% for category in categories %}
+  <section class="category-section" id="{{ category.id }}" aria-labelledby="category-{{ category.id }}">
+    <div class="category-heading"><span>0{{ loop.index }}</span><h2 id="category-{{ category.id }}">{{ category.label }}</h2></div>
+    {% if category.id == "local-node-infrastructure" %}
+    <p class="category-intro">These shared Wizaya services make the public modules operate as one local-node platform. They are infrastructure, not citizen apps.</p>
+    <div class="card-grid infrastructure-grid">{% for item in productCatalog.infrastructure %}{{ infrastructureCard(item) }}{% endfor %}</div>
+    {% else %}
+    <div class="card-grid">{% for item in productCatalog.modules %}{% if item.category == category.id %}{{ moduleCard(item) }}{% endif %}{% endfor %}</div>
+    {% endif %}
+  </section>
+  {% endfor %}
+  {{ ctaSection("Find the right PBB service mix", "A pilot discussion can identify which baseline, optional, and specialized services fit a community's actual continuity needs.") }}
+</div>

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0", "type": "infrastructure-component", "slug": "account", "name": "PBB Account", "suite": "Wizaya Server Suite", "heroImageKey": "infrastructureAccountHero",
+  "shortDescription": "Local canonical identity and OAuth-style sign-in for participating PBB applications on a deployed node.",
+  "longDescription": ["PBB Account provides a local identity authority and shared sign-in surface for participating applications. It keeps identity available inside the node boundary when an upstream route is unavailable.", "Its current contracts are OAuth-like integration contracts for the PBB stack, not a claim of complete OpenID Connect conformance or compatibility with every third-party relying party."],
+  "readiness": { "status": "integrated", "qualifier": "production-hardening", "note": "Canonical local identity and application sign-in integrations are implemented across participating services.", "remainingWork": ["Complete production credential and key rotation procedures.", "Harden role and claim contracts for every deployed relying application.", "Do not advertise full OpenID Connect conformance without a separate verification effort."] },
+  "nodeRole": "Acts as the local identity authority so participating applications can recognize one governed user identity without depending on a public cloud login route.",
+  "supportedModules": ["hotline", "support", "salus", "natalium", "chat", "library", "learning", "utility"],
+  "localBehavior": ["Sign-in and local identity lookup continue while Account and its database are healthy.", "Identity records remain within the configured node data boundary."],
+  "connectivityBehavior": ["Cross-node identity exchange is not implied by local sign-in.", "External identity federation requires an explicit, separately reviewed integration."],
+  "deployment": { "classification": "baseline", "placements": ["barangay-node", "local-command-node", "daily-apps-node"] },
+  "operationalConsiderations": ["Back up identity data and signing material under a documented recovery procedure.", "Coordinate client identifiers, redirect routes, and role mappings for each application."],
+  "securityBoundary": ["Keep administrative access and secrets inside the managed node boundary.", "OAuth-style support must not be presented as certified full OIDC support."],
+  "diagramsOrScreenshots": [{ "id": "account-evidence-pending", "type": "placeholder", "title": "Validated Account diagram pending", "caption": "No public Account interface or topology image has been approved; no implementation view is fabricated." }],
+  "faqs": [
+    { "id": "oidc", "question": "Is PBB Account a complete OpenID Connect provider?", "answer": "No. PBB Account provides a shared local identity and sign-in service for participating PBB apps, but it is not presented as a complete OpenID Connect service." },
+    { "id": "offline", "question": "Can users sign in without internet access?", "answer": "Yes, as long as PBB Account, its stored data, and the app are working on the local PBB network." },
+    { "id": "federation", "question": "Does one account automatically work on every PBB node?", "answer": "No. Accounts work across nodes only when the deployment owner deliberately connects them and sets rules for how identities are managed." },
+    { "id": "roles", "question": "Who defines application roles and permissions?", "answer": "The deployment owner decides which roles people receive. Each app must then check those roles before allowing access to protected features." },
+    { "id": "recovery", "question": "What must operators protect during recovery?", "answer": "Operators must protect account records, security keys, app connection settings, and the documented steps used to restore access safely." }
+  ],
+  "relatedComponents": ["landing", "relay", "kit-setup"], "relatedModules": ["hotline", "chat", "natalium"],
+  "seo": { "title": "PBB Account | Local identity infrastructure", "description": "Learn how PBB Account provides canonical local identity and OAuth-style application sign-in while preserving explicit federation and security boundaries." }
+}

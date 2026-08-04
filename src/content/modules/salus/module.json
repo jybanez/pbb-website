@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "type": "module",
+  "slug": "salus",
+  "name": "PBB Salus",
+  "productName": "Salus",
+  "productFamily": "Auxilus Mos",
+  "category": "emergency-operations",
+  "heroImageKey": "moduleSalusHero",
+  "shortDescription": "Local evacuation-center registration, occupancy, relief-batch receipt, and citizen QR workflows in active development.",
+  "longDescription": [
+    "PBB Salus is an in-progress local evacuation-center and relief-distribution module. Its implemented Laravel foundation covers multiple centers, express and regular registration, validation, opaque tags and QR codes, movement or aggregate occupancy tracking, relief batches, receipts, and correction workflows.",
+    "Person-level records remain local. Hotline may pull a bearer-protected, privacy-safe aggregate summary for SITREP use, while release packaging, Kit Setup installation, and full relief inventory remain outside the confirmed V1 implementation."
+  ],
+  "primaryUsers": ["Evacuation-center operators", "Registration and relief workers", "Command staff", "Evacuees and families"],
+  "deployment": { "classification": "special", "placements": ["evacuation-node", "barangay-node"] },
+  "readiness": {
+    "status": "in-development",
+    "qualifier": "prototype",
+    "note": "Operational routes and data models are implemented through the current milestones, but release packaging and field installation are not complete.",
+    "remainingWork": ["Build release metadata, installer, Data Prep, and Kit Setup integration.", "Complete privacy, retention, backup, purge, and access-control tests.", "Keep full relief inventory deferred unless a reviewed scope change is approved."]
+  },
+  "problemSolved": "Evacuation operations need one local record of active centers, registrations, current occupancy, relief schedules, and receipts even when internet access is unavailable and person-level data must remain within the node.",
+  "workflowSteps": [
+    { "id": "activate", "title": "Activate local centers", "description": "Operators open one or more evacuation-center activations and configure capacity, zones, and tracking mode." },
+    { "id": "register", "title": "Register and validate", "description": "Workers use express or regular lanes for individuals and families, then validate records and issue opaque tags or QR codes." },
+    { "id": "track", "title": "Track occupancy", "description": "The operation records individual entry and exit or approved aggregate gate counts, with reconciliation when needed." },
+    { "id": "release", "title": "Record relief receipt", "description": "Workers manage scheduled relief batches, confirm receipts, and route corrections through controlled approval." },
+    { "id": "summarize", "title": "Share safe aggregates", "description": "Hotline can request aggregate counts and freshness metadata without receiving person-level records." }
+  ],
+  "offlineBehavior": {
+    "localCapabilities": ["Center activation, registration, validation, tags, movement, occupancy, relief receipts, and citizen QR status are local-node workflows.", "Printer, scanner, and camera failures have documented local fallback paths, subject to validation requirements."],
+    "requiresLocalServices": ["Salus requires its Laravel application, local database, protected storage, and configured local HTTPS.", "Account supports new sign-in; Realtime provides optional change notices but the database and REST API remain authoritative."],
+    "syncsWhenConnected": ["Account can support sign-in and app-admin provisioning when reachable.", "Realtime can publish privacy-safe change notifications, and Hotline can pull an aggregate summary over the node network."],
+    "connectivityRequired": ["New Account SSO sessions wait for the local Account service when it is unavailable.", "No internet route is required for the core center workflow after a complete local installation."],
+    "notSynchronized": ["Person-level evacuee, photo, movement, and relief-receipt records are not synchronized across nodes in V1.", "Direct Relay, Support, MapServer, Maestro, and full inventory integrations are not confirmed for V1."]
+  },
+  "screenshots": [{ "id": "screenshot-pending", "type": "placeholder", "title": "Validated Salus interface pending", "caption": "The runtime is in active development and no public interface image has been approved for this page." }],
+  "faqs": [
+    { "id": "internet", "question": "Can Salus operate without internet access?", "answer": "Yes. Core evacuation-center work can continue on the local PBB network as long as the Salus node and its database are running." },
+    { "id": "privacy", "question": "Are evacuee records sent to Hotline?", "answer": "No individual evacuee records are sent under the confirmed design. Hotline receives only approved totals and basic information showing how recent and complete those totals are." },
+    { "id": "inventory", "question": "Does Salus manage a complete relief warehouse inventory?", "answer": "No. V1 records planned relief batches, what people receive, and corrections. Full warehouse work such as receiving stock, storage, transfers, damaged or lost goods, purchasing, and accounting is not included yet." },
+    { "id": "qr", "question": "What information is stored in the citizen QR code?", "answer": "The QR code contains a random, hard-to-guess identifier instead of personal information. Scanning it provides only a limited local view." },
+    { "id": "release", "question": "Is Salus ready for field installation?", "answer": "Not yet. Much of the application is built, but its release package, installer, data-preparation tools, and connection to Kit Setup are still incomplete." },
+    { "id": "maps", "question": "Does Salus include geofencing or map tracking?", "answer": "No. V1 does not include map display, location-based boundaries, a native mobile app, or continuous tracking of people's locations." }
+  ],
+  "relatedModules": ["hotline", "support", "natalium"],
+  "relatedInfrastructure": ["account", "realtime", "landing", "kit-setup"],
+  "seo": { "title": "PBB Salus | Local evacuation and relief operations", "description": "See the current PBB Salus foundation for local evacuation centers, registration, occupancy, relief receipts, citizen QR access, and privacy-safe Hotline summaries." }
+}

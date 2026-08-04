@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0", "type": "infrastructure-component", "slug": "landing", "name": "PBB Landing", "suite": "Wizaya Server Suite", "heroImageKey": "infrastructureLandingHero",
+  "shortDescription": "A local application launcher and safe projection of approved node metadata for people connected to a PBB node.",
+  "longDescription": ["PBB Landing is the local entry surface for a deployed node. It can show available applications, node identity, and carefully selected status information without exposing internal configuration.", "It is distinct from this public marketing and documentation website. Any gateway or route behavior belongs to the local deployment and must be configured with a narrow public-data boundary."],
+  "readiness": { "status": "integrated", "qualifier": "production-hardening", "note": "Local application discovery and a safe node-metadata projection are implemented in the confirmed stack.", "remainingWork": ["Finalize the approved public metadata contract for each deployment.", "Harden gateway routes and failure states before field release.", "Validate launcher content, branding, and application availability on pilot hardware."] },
+  "nodeRole": "Provides a clear local starting point for available PBB services while projecting only metadata that deployment owners have approved for that audience.",
+  "supportedModules": ["hotline", "natalium", "chat", "games", "library", "learning"],
+  "localBehavior": ["The launcher can list locally available applications and approved node information.", "Users on the node network can reach local routes without relying on the public website."],
+  "connectivityBehavior": ["External routes remain deployment-specific and can be unavailable.", "The local launcher does not make every module or administrative endpoint public."],
+  "deployment": { "classification": "baseline", "placements": ["barangay-node", "local-command-node", "daily-apps-node"] },
+  "operationalConsiderations": ["Keep launcher availability aligned with actual application health and policy.", "Define useful disconnected, degraded, and maintenance messages."],
+  "securityBoundary": ["Project only approved non-sensitive node metadata.", "Keep administrative routes and internal configuration out of the public launcher contract."],
+  "diagramsOrScreenshots": [{ "id": "landing-evidence-pending", "type": "placeholder", "title": "Validated local launcher pending", "caption": "No current Landing capture is approved for publication; no application availability is fabricated." }],
+  "faqs": [
+    { "id": "website", "question": "Is PBB Landing this public website?", "answer": "No. PBB Landing is the start page people use on a deployed local node. This public website explains the wider PBB platform." },
+    { "id": "offline", "question": "Can the launcher work without internet access?", "answer": "Yes, as long as the local node network, launcher service, and linked apps are working." },
+    { "id": "metadata", "question": "What node information may it display?", "answer": "It should show only basic node information that has been approved for the people who will use the launcher. Private or administrative details should stay hidden." },
+    { "id": "gateway", "question": "Does it expose every local route through a gateway?", "answer": "No. Only specifically approved routes should be available, and protected routes must require the right sign-in and security review." },
+    { "id": "availability", "question": "How should unavailable applications appear?", "answer": "The launcher should clearly say when an app is unavailable, partly working, or under maintenance instead of making it look ready to use." }
+  ],
+  "relatedComponents": ["account", "maestro", "kit-setup"], "relatedModules": ["chat", "games", "library"],
+  "seo": { "title": "PBB Landing | Local node launcher and safe metadata", "description": "Explore PBB Landing as a local application launcher and safe node-metadata projection, distinct from the public website and protected by narrow routes." }
+}

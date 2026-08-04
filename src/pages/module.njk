@@ -1,0 +1,18 @@
+---
+pagination:
+  data: modules
+  size: 1
+  alias: module
+permalink: "/modules/{{ module.slug }}/index.html"
+layout: layouts/module.njk
+eleventyComputed:
+  title: "{{ module.seo.title }}"
+  description: "{{ module.seo.description }}"
+  canonicalPath: "/modules/{{ module.slug }}/"
+  structuredData:
+    "@context": "https://schema.org"
+    "@type": "WebPage"
+    name: "{{ module.seo.title }}"
+    description: "{{ module.seo.description }}"
+    url: "https://pbb.ph/modules/{{ module.slug }}/"
+---

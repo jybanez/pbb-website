@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}" />
+  {% if noindex %}<meta name="robots" content="noindex,follow" />{% endif %}
+  <meta name="theme-color" content="#f7fafc" />
+  <link rel="canonical" href="{{ site.url }}{{ canonicalPath }}" />
+  <link rel="icon" type="image/png" href="/assets/pbb-logo-eye-h42.png" />
+  <link rel="stylesheet" href="/assets/site.css" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:description" content="{{ description }}" />
+  <meta property="og:url" content="{{ site.url }}{{ canonicalPath }}" />
+  <meta property="og:image" content="{{ site.url }}{{ site.socialImage }}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Project Bantay Bayan local-node community resilience platform" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ title }}" />
+  <meta name="twitter:description" content="{{ description }}" />
+  <meta name="twitter:image" content="{{ site.url }}{{ site.socialImage }}" />
+  {% if structuredData %}<script type="application/ld+json">{{ structuredData | json | safe }}</script>{% endif %}
+  {% if module %}<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},{"@type":"ListItem","position":2,"name":"Modules","item":"{{ site.url }}/modules/"},{"@type":"ListItem","position":3,"name":{{ module.productName | json | safe }},"item":"{{ site.url }}/modules/{{ module.slug }}/"}]}</script>{% endif %}
+  {% if component %}<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},{"@type":"ListItem","position":2,"name":"Infrastructure","item":"{{ site.url }}/infrastructure/"},{"@type":"ListItem","position":3,"name":{{ component.name | json | safe }},"item":"{{ site.url }}/infrastructure/{{ component.slug }}/"}]}</script>{% endif %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include "components/site-header.njk" %}
+  <main id="main" tabindex="-1">{{ content | safe }}</main>
+  {% include "components/site-footer.njk" %}
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>

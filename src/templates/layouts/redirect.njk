@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}" />
+  <meta name="robots" content="noindex,follow" />
+  <meta http-equiv="refresh" content="0; url={{ redirectPath }}" />
+  <link rel="canonical" href="{{ site.url }}{{ redirectPath }}" />
+  <link rel="icon" type="image/png" href="/assets/pbb-logo-eye-h42.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:description" content="{{ description }}" />
+  <meta property="og:url" content="{{ site.url }}{{ redirectPath }}" />
+  <meta property="og:image" content="{{ site.url }}{{ site.socialImage }}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ title }}" />
+  <meta name="twitter:description" content="{{ description }}" />
+  <meta name="twitter:image" content="{{ site.url }}{{ site.socialImage }}" />
+  <script>window.location.replace({{ redirectPath | json | safe }} + window.location.search + window.location.hash);</script>
+</head>
+<body>
+  <main><h1>{{ heading }}</h1><p>This address has moved to <a href="{{ redirectPath }}">{{ redirectPath }}</a>.</p></main>
+</body>
+</html>

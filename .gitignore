@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.cache/
+.playwright-cli/
+output/playwright/
+src/assets/generated/
+pbb-chat-token.local.json

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0",
+  "type": "module",
+  "slug": "hotline",
+  "name": "PBB Hotline",
+  "productName": "Vox",
+  "productFamily": "Auxilus Mos",
+  "category": "emergency-operations",
+  "heroImageKey": "moduleHotlineHero",
+  "shortDescription": "Local emergency intake, incident handling, command reporting, and support coordination for barangay and command nodes.",
+  "longDescription": [
+    "PBB Hotline / Vox is the local emergency operations surface for citizens, operators, command users, and administrators. It supports emergency intake, incident work, team assignment, command alerts, SITREP preparation, and support requests from a PBB node.",
+    "The module uses local node services for live communication and maps. Its confirmed upstream paths are selective: completed SITREP and support-request workflows can be handed to Relay, while editable incident records are not broadly replicated between nodes."
+  ],
+  "primaryUsers": ["Citizens", "Barangay emergency operators", "Command staff", "Local administrators"],
+  "deployment": {
+    "classification": "baseline",
+    "placements": ["barangay-node", "local-command-node"]
+  },
+  "readiness": {
+    "status": "integrated",
+    "qualifier": "pilot-ready-foundation",
+    "note": "Core citizen, operator, command, SITREP, support-request, Realtime, and MapServer workflows are implemented and integrated.",
+    "remainingWork": [
+      "Define production retention and media-handling policy.",
+      "Complete deployment runbooks and security hardening.",
+      "Document browser behavior during complete local network loss."
+    ]
+  },
+  "problemSolved": "During an emergency, reports can arrive through fragmented calls and messages while operators lack a shared local view. Vox provides one node-local workflow for intake, incident handling, command reporting, and requests for outside support.",
+  "workflowSteps": [
+    { "id": "report", "title": "Report locally", "description": "A citizen reaches the local Hotline surface and starts an emergency report while connected to the node network." },
+    { "id": "triage", "title": "Triage and coordinate", "description": "Operators review incident details, location, resources, team assignments, messages, and media in the local workbench." },
+    { "id": "command", "title": "Build command context", "description": "Command staff issue alerts and prepare structured situation reports from local operational information." },
+    { "id": "handoff", "title": "Send selected updates", "description": "SITREPs and support requests can enter Relay-backed delivery and retry workflows when the route upstream is available." }
+  ],
+  "offlineBehavior": {
+    "localCapabilities": [
+      "Citizen intake, operator incident work, command reporting, messages, and local media storage can continue over the node LAN while the app and database are available.",
+      "SITREP and support-request delivery records can persist locally for server-side retry."
+    ],
+    "requiresLocalServices": [
+      "PBB Realtime is required for supported live presence, call, message, and media events.",
+      "PBB MapServer must be prepared and available for offline tiles and boundaries."
+    ],
+    "syncsWhenConnected": [
+      "The latest SITREP can be handed to PBB Relay through a persisted delivery path.",
+      "Support requests and their confirmed lifecycle updates can move through Relay and PBB Support System."
+    ],
+    "connectivityRequired": [
+      "Delivery to an upstream or peer node waits for a reachable Relay route.",
+      "Map cache misses may require an upstream tile provider if the requested area was not prepared."
+    ],
+    "notSynchronized": [
+      "No durable browser-side citizen report outbox is confirmed.",
+      "Editable incident records are not broadly synchronized between nodes."
+    ]
+  },
+  "screenshots": [
+    {
+      "id": "operator-dashboard",
+      "type": "image",
+      "imageKey": "hotline-dashboard",
+      "src": "assets/gallery/screenshots/Emergency Hotline Operator Dashboard.png",
+      "title": "Operator dashboard",
+      "caption": "A validated application screenshot of the operator-facing local emergency workbench.",
+      "alt": "Emergency Hotline operator dashboard showing local incident operations",
+      "width": 1917,
+      "height": 932
+    }
+  ],
+  "faqs": [
+    { "id": "internet-down", "question": "Can Hotline keep working when the internet is down?", "answer": "Yes, local work can continue while Hotline and its supporting services are running on the local PBB network. Messages meant for another node will wait until a connection becomes available." },
+    { "id": "browser-outbox", "question": "Can a citizen submit a report after leaving the local network?", "answer": "Not reliably. The current design does not confirm that a browser can save a report while disconnected and send it later. Hotline's offline support applies within the local PBB network." },
+    { "id": "incident-sync", "question": "Are live incident records copied to every PBB node?", "answer": "No. Full editable incident records are not copied everywhere. Nodes send only selected situation reports and support-request updates through Relay." },
+    { "id": "realtime", "question": "What does PBB Realtime provide to Vox?", "answer": "PBB Realtime supports live updates for who is connected, calls, messages, media, and other app activity. One shared Realtime service is expected to run on each node." },
+    { "id": "maps", "question": "Will maps always be available offline?", "answer": "No. Only map areas and boundaries prepared in advance will work reliably offline. Looking outside those prepared areas may require internet access." },
+    { "id": "support-requests", "question": "How does Vox ask another operations team for support?", "answer": "Vox saves the request locally, then Relay can send the approved request details to a designated PBB Support node. That node can return updates as the request is handled." }
+  ],
+  "relatedModules": ["support", "salus", "utility"],
+  "relatedInfrastructure": ["relay", "realtime", "mapserver", "account"],
+  "seo": {
+    "title": "PBB Hotline / Vox | Local emergency operations",
+    "description": "See how PBB Hotline / Vox supports local emergency intake, incident handling, SITREPs, support requests, Realtime, and prepared offline maps."
+  }
+}

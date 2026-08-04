@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0",
+  "type": "module",
+  "slug": "chat",
+  "name": "PBB Chat",
+  "productName": "Civitas",
+  "productFamily": "Citizen-facing services",
+  "category": "community-communication",
+  "heroImageKey": "moduleChatHero",
+  "shortDescription": "LAN-local community rooms, direct messages, requests, moderation, and a clear emergency handoff to Hotline.",
+  "longDescription": [
+    "PBB Chat / Civitas is a Laravel community communication service for a local barangay network. It supports rooms, direct conversations, message requests, read state, badges, reports, blocks, moderation, and PBB Realtime-powered live updates.",
+    "Civitas is intentionally LAN-local and its public gateway is disabled. Emergency escalation is a handoff that returns the configured Hotline URL and context; direct incident creation, Relay synchronization, and a durable browser-offline compose queue are not confirmed."
+  ],
+  "primaryUsers": ["Community members", "Local moderators", "Barangay administrators"],
+  "deployment": { "classification": "baseline", "placements": ["daily-apps-node", "barangay-node"] },
+  "readiness": {
+    "status": "integrated",
+    "qualifier": "production-hardening",
+    "note": "Local room, direct-message, safety, moderation, Realtime, Hotline handoff, and Account integration paths are implemented.",
+    "remainingWork": ["Approve local message retention, moderation, backup, and purge policy.", "Keep public gateway exposure disabled unless a separate security model is reviewed.", "Decide whether any future selective upstream synchronization is appropriate."]
+  },
+  "problemSolved": "Communities need a dependable local communication space that does not disappear with internet access, while emergency reporting remains clearly routed to the dedicated Hotline workflow.",
+  "workflowSteps": [
+    { "id": "enter", "title": "Enter the local community space", "description": "A local user opens Civitas through the node LAN and joins rooms or an approved direct conversation." },
+    { "id": "communicate", "title": "Communicate locally", "description": "Messages persist in the local Chat database and supported live updates move through the local Realtime gateway." },
+    { "id": "moderate", "title": "Use safety controls", "description": "Users and moderators can report, block, mute, review, hide, or resolve supported community-safety issues." },
+    { "id": "handoff", "title": "Hand off emergencies", "description": "The escalation action points the user to Hotline with limited context instead of claiming direct incident creation." }
+  ],
+  "offlineBehavior": {
+    "localCapabilities": ["Rooms, direct messages, requests, safety actions, badges, and moderation are backed by the local Chat database.", "The application is intended for local/LAN access with public gateway exposure disabled."],
+    "requiresLocalServices": ["Civitas requires its Laravel app and MySQL database.", "PBB Realtime is required for confirmed live room and direct-message events; persisted records remain app-owned."],
+    "syncsWhenConnected": ["Account can support sign-in and app-admin provisioning when configured.", "Realtime resumes supported live delivery when the local gateway is reachable."],
+    "connectivityRequired": ["Users need a route to the local Chat node; internet access is not a confirmed requirement.", "The Hotline handoff needs the configured local Hotline URL to be reachable."],
+    "notSynchronized": ["No Relay synchronization of community messages or moderation data is confirmed.", "No durable browser-side offline compose queue or direct Hotline incident creation is confirmed."]
+  },
+  "screenshots": [{ "id": "screenshot-pending", "type": "placeholder", "title": "Validated Civitas interface pending", "caption": "No current Civitas screenshot has been approved for public use; the page documents confirmed behavior only." }],
+  "faqs": [
+    { "id": "internet", "question": "Does Civitas need the public internet?", "answer": "No. Civitas is designed to work on the local PBB network using its local database and live-update service." },
+    { "id": "public", "question": "Can Civitas be exposed through the public gateway?", "answer": "Not in the current release. Civitas should remain available only on the local network unless a separate security plan is reviewed and approved." },
+    { "id": "hotline", "question": "Does an escalation automatically create a Hotline incident?", "answer": "No. Civitas can send the user to Hotline with a small amount of helpful context, but it does not automatically create an incident." },
+    { "id": "offline-queue", "question": "Can users compose messages while disconnected from the node?", "answer": "This is not confirmed. Users should assume their browser must still be connected to the local Chat node to write and send messages." },
+    { "id": "sync", "question": "Are community messages copied to other nodes?", "answer": "No. Messages, reports, blocked-user lists, and moderation records currently stay on their local node." },
+    { "id": "privacy", "question": "What must be approved before a live community rollout?", "answer": "The deployment owner must approve how long records are kept, who may moderate content, how backups and deletions work, how device sessions are handled, and what operators must do." }
+  ],
+  "relatedModules": ["hotline", "games"],
+  "relatedInfrastructure": ["realtime", "account", "landing"],
+  "seo": { "title": "PBB Chat / Civitas | LAN-local community communication", "description": "Explore PBB Chat / Civitas for local rooms, direct messages, moderation, Realtime updates, and a clearly bounded emergency handoff to PBB Hotline." }
+}

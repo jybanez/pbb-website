@@ -1,0 +1,21 @@
+---
+permalink: /gallery/index.html
+layout: layouts/base.njk
+title: PBB Gallery | Pilot media, product views, and team work
+description: Browse preserved Project Bantay Bayan field photos, hardware, screenshots, behind-the-scenes material, and team highlights through an accessible filterable gallery.
+canonicalPath: /gallery/
+structuredData: { "@context": "https://schema.org", "@type": "CollectionPage", "name": "PBB Gallery", "url": "https://pbb.ph/gallery/" }
+breadcrumbItems:
+  - label: Home
+    url: /
+  - label: Gallery
+---
+{% from "components/ui.njk" import pageHero, ctaSection with context %}
+{{ pageHero("Visual archive · Preserved project media", "PBB gallery", "Browse field photos, hardware, screenshots, behind-the-scenes work, and team highlights from the existing Project Bantay Bayan gallery.", null, "galleryHero") }}
+<section class="section" aria-labelledby="browse-gallery"><div class="container"><div class="section-heading"><div><p class="section-kicker">Browse by section</p><h2 id="browse-gallery">Project media and product evidence</h2></div><p>The media set and viewer behavior are preserved while the gallery now uses the shared public-site shell.</p></div>
+<div class="gallery-filter" role="toolbar" aria-label="Gallery filters"><button class="gallery-filter-btn active" type="button" data-gallery-filter="all">All</button><button class="gallery-filter-btn" type="button" data-gallery-filter="field">Field photos</button><button class="gallery-filter-btn" type="button" data-gallery-filter="hardware">Hardware</button><button class="gallery-filter-btn" type="button" data-gallery-filter="screenshots">Screenshots</button><button class="gallery-filter-btn" type="button" data-gallery-filter="behind">Behind the scenes</button><button class="gallery-filter-btn" type="button" data-gallery-filter="team">PBB team</button></div>
+<div class="gallery-grid" id="galleryGrid"></div></div></section>
+<div class="container">{{ ctaSection("Discuss the work behind PBB") }}</div>
+<script type="module" src="/vendor/helpers.pbb.ph/js/ui/ui.loader.js"></script>
+<script type="module">if (!window.uiLoader || typeof window.uiLoader.load !== 'function') throw new Error('PBB helpers are required for the gallery viewer.'); window.PBBHelpers = window.PBBHelpers || {}; window.PBBHelpers.ui = window.PBBHelpers.ui || { init: () => {} }; window.PBBHelpers.ui.init();</script>
+<script defer src="/gallery-data.js"></script><script defer src="/assets/generated/gallery-dimensions.js"></script><script defer src="/assets/gallery-route.js"></script><script defer src="/pbb-gallery.js"></script>

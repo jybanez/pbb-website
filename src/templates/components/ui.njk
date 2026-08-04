@@ -1,0 +1,216 @@
+{% macro responsiveImage(image, className="", loading="lazy", sizes="100vw", fetchPriority=null) %}
+<img{% if className %} class="{{ className }}"{% endif %}
+  src="{{ image | imagePath(image.largestWidth) }}"
+  srcset="{% for width in image.widths %}{{ image | imagePath(width) }} {{ width }}w{% if not loop.last %}, {% endif %}{% endfor %}"
+  sizes="{{ sizes }}"
+  width="{{ image.width }}"
+  height="{{ image.height }}"
+  alt="{{ image.alt }}"
+  loading="{{ loading }}"
+  decoding="async"{% if fetchPriority %}
+  fetchpriority="{{ fetchPriority }}"{% endif %} />
+{% endmacro %}
+
+{% macro statusBadge(status, qualifier=null) %}
+<span class="status-badge status-{{ status }}">
+  <span class="status-dot" aria-hidden="true"></span>
+  {{ status | statusLabel(readinessStatuses) }}{% if qualifier %} · {{ qualifier | statusLabel(readinessStatuses) }}{% endif %}
+</span>
+{% endmacro %}
+
+{% macro deploymentBadge(classification) %}
+{% set classificationItem = deployments.classifications | selectattr("id", "equalto", classification) | first %}
+<span class="deployment-badge">{{ classificationItem.label }}</span>
+{% endmacro %}
+
+{% macro breadcrumbs(items) %}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    {% for item in items %}
+    <li>{% if item.url %}<a href="{{ item.url }}">{{ item.label }}</a>{% else %}<span aria-current="page">{{ item.label }}</span>{% endif %}</li>
+    {% endfor %}
+  </ol>
+</nav>
+{% endmacro %}
+
+{% macro pageHero(eyebrow, title, description, module=null, heroImageKey=null, moduleIconKey=null) %}
+{% if heroImageKey %}{% set heroImage = images[heroImageKey] %}{% endif %}
+{% if moduleIconKey %}{% set moduleIcon = images[moduleIconKey] %}{% endif %}
+{% if heroImage %}{% set heroFocalPosition = heroImage.heroFocalPosition or "center" %}{% endif %}
+<section class="page-hero{% if module %} module-hero{% endif %}{% if heroImage %} page-hero-with-image page-hero-focal-{{ heroFocalPosition }}{% endif %}" aria-labelledby="page-title">
+  {% if heroImage %}<div class="page-hero-media" aria-hidden="true">{{ responsiveImage(heroImage, "page-hero-image", "eager", "100vw", "high") }}</div>{% endif %}
+  <div class="container page-hero-inner">
+    {% if moduleIcon %}
+    <div class="module-hero-identity">
+      <div class="module-hero-icon" aria-hidden="true">{{ responsiveImage(moduleIcon, "module-icon-image", "eager", "(max-width: 640px) 72px, (max-width: 1024px) 96px, 120px") }}</div>
+      <div class="module-hero-copy">
+    {% endif %}
+    <p class="eyebrow">{{ eyebrow }}</p>
+    <h1 id="page-title">{{ title }}</h1>
+    <p class="lead">{{ description }}</p>
+    {% if module %}
+    <div class="badge-row">
+      {{ statusBadge(module.readiness.status, module.readiness.qualifier) }}
+      {{ deploymentBadge(module.deployment.classification) }}
+    </div>
+    {% endif %}
+    {% if moduleIcon %}
+      </div>
+    </div>
+    {% endif %}
+    {% if module %}
+    <dl class="hero-facts">
+      <div><dt>Primary placement</dt><dd>{% for placement in module.deployment.placements %}{{ placement | deploymentLabel(deployments) }}{% if not loop.last %}; {% endif %}{% endfor %}</dd></div>
+      <div><dt>Primary users</dt><dd>{{ module.primaryUsers | join(", ") }}</dd></div>
+    </dl>
+    {% endif %}
+  </div>
+</section>
+{% endmacro %}
+
+{% macro moduleCard(item) %}
+{% set moduleIcon = images[item.iconImageKey] %}
+<article class="module-card" id="module-{{ item.slug }}">
+  <div class="card-meta">
+    <span>{{ item.category | categoryLabel(categories) }}</span>
+    {{ statusBadge(item.status) }}
+  </div>
+  <div class="module-card-identity">
+    <div class="module-card-icon" aria-hidden="true">{{ responsiveImage(moduleIcon, "module-icon-image", "lazy", "(max-width: 640px) 56px, 64px") }}</div>
+    <h3>{{ item.name }} <span>/ {{ item.productName }}</span></h3>
+  </div>
+  <p>{{ item.description }}</p>
+  {% if item.detailAvailable %}
+  <a class="text-link" href="/modules/{{ item.slug }}/">Explore {{ item.productName }} <span aria-hidden="true">→</span></a>
+  {% else %}
+  <span class="phase-note">Detail page follows after Gate 1 approval</span>
+  {% endif %}
+</article>
+{% endmacro %}
+
+{% macro infrastructureCard(item) %}
+<article class="infrastructure-card" id="infrastructure-{{ item.slug }}">
+  <p class="card-kicker">Wizaya Server Suite</p>
+  <h3>{{ item.name }}</h3>
+  <p>{{ item.description }}</p>
+  <a class="text-link" href="/infrastructure/{{ item.slug }}/">Explore {{ item.name }} <span aria-hidden="true">→</span></a>
+</article>
+{% endmacro %}
+
+{% macro workflowSteps(steps) %}
+<ol class="workflow-steps">
+  {% for step in steps %}
+  <li>
+    <span class="step-number" aria-hidden="true">{{ loop.index }}</span>
+    <div><h3>{{ step.title }}</h3><p>{{ step.description }}</p></div>
+  </li>
+  {% endfor %}
+</ol>
+{% endmacro %}
+
+{% macro screenshotGallery(screenshots) %}
+{% set approvedEvidence = screenshots | approvedScreenshots(images) %}
+{% if approvedEvidence | length > 0 %}
+<div class="screenshot-gallery">
+  {% for screenshot in approvedEvidence %}
+  {% set image = images[screenshot.imageKey] %}
+  <figure class="screenshot-card">
+    {{ responsiveImage(image, "screenshot-image", "lazy", "(min-width: 900px) 900px, 100vw") }}
+    <figcaption><strong>{{ screenshot.title }}</strong><span>{{ screenshot.caption }}</span></figcaption>
+  </figure>
+  {% endfor %}
+</div>
+{% endif %}
+{% endmacro %}
+
+{% macro faqSection(faqs) %}
+<div class="faq-list">
+  {% for faq in faqs %}
+  <details>
+    <summary>{{ faq.question }}</summary>
+    <div><p>{{ faq.answer }}</p></div>
+  </details>
+  {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro relatedModules(slugs) %}
+<div class="related-grid">
+  {% for slug in slugs %}
+    {% set item = slug | catalogItem(productCatalog) %}
+    {% set moduleIcon = images[item.iconImageKey] %}
+    <a class="related-card related-module-card" href="{% if item.detailAvailable %}/modules/{{ slug }}/{% else %}/modules/#module-{{ slug }}{% endif %}">
+      <div class="related-module-icon" aria-hidden="true">{{ responsiveImage(moduleIcon, "module-icon-image", "lazy", "(max-width: 640px) 48px, 56px") }}</div>
+      <div class="related-module-content">
+        <span>{{ item.category | categoryLabel(categories) }}</span>
+        <strong>{{ item.name }} / {{ item.productName }}</strong>
+        <small>{{ item.description }}</small>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro relatedComponents(slugs) %}
+<div class="related-grid">
+  {% for slug in slugs %}
+    {% set item = slug | infrastructureItem(productCatalog) %}
+    <a class="related-card" href="/infrastructure/{{ slug }}/">
+      <span>Local-node infrastructure</span>
+      <strong>{{ item.name }}</strong>
+      <small>{{ item.description }}</small>
+    </a>
+  {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro engagementForm(config={}) %}
+{% set selectedInquiryType = config.inquiryType | inquiryType %}
+{% set submitLabel = config.submitLabel or "Request briefing" %}
+<div class="engagement-form-stack">
+  <aside class="form-safety-notice" aria-labelledby="engagement-safety-title">
+    <h3 id="engagement-safety-title">Keep sensitive and operational information out of this form</h3>
+    <p>Do not submit emergency reports, patient or health records, operational feeds, credentials, sensitive case material, or other protected or confidential information. This form is not an emergency-response channel.</p>
+    <p>Hardware, power, connectivity, travel, installation, training, and field logistics are deployment-specific. Public readiness does not replace security, privacy, governance, field acceptance, or owner approval.</p>
+  </aside>
+  <form class="briefing-form" id="interestForm" novalidate data-interest-form data-inquiry-type="{{ selectedInquiryType }}" data-endpoint="{{ site.formEndpoint }}" data-email="{{ site.contactEmailBase64 }}">
+    <div class="field"><label for="role">I am a</label><select id="role" name="role" required aria-describedby="role-error"><option value="" selected disabled>Select one</option><option value="LGU / Government">LGU / Government</option><option value="Barangay">Barangay</option><option value="Health / Education">Health / Education</option><option value="NGO / Donor">NGO / Donor</option><option value="Utility / Business">Utility / Business</option><option value="Technology / Research">Technology / Research</option><option value="Media">Media</option><option value="Other">Other</option></select><p class="field-error" id="role-error" data-error-for="role" aria-live="polite"></p></div>
+    <div class="field-row"><div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-error" /><p class="field-error" id="name-error" data-error-for="name" aria-live="polite"></p></div><div class="field"><label for="org">Organization</label><input id="org" name="org" type="text" autocomplete="organization" /></div></div>
+    <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-error" /><p class="field-error" id="email-error" data-error-for="email" aria-live="polite"></p></div>
+    <div class="engagement-fields">
+    {% for field in config.fields %}
+      {% if field.type == "checkbox-group" %}
+      <fieldset class="field checkbox-group{% if field.layout == "half" %} field-half{% endif %}" data-summary-field data-summary-label="{{ field.summaryLabel }}" data-field-type="{{ field.type }}" data-field-name="{{ field.name }}"{% if field.required %} data-required="true"{% endif %} aria-describedby="{{ field.id }}-error">
+        <legend>{{ field.label }}</legend>
+        <div class="checkbox-options">
+          {% for option in field.options %}<label class="checkbox-option" for="{{ field.id }}-{{ loop.index }}"><input id="{{ field.id }}-{{ loop.index }}" name="{{ field.name }}" type="checkbox" value="{{ option }}" /><span>{{ option }}</span></label>{% endfor %}
+        </div>
+        <p class="field-error" id="{{ field.id }}-error" data-error-for="{{ field.name }}" aria-live="polite"></p>
+      </fieldset>
+      {% else %}
+      <div class="field{% if field.layout == "half" %} field-half{% endif %}" data-summary-field data-summary-label="{{ field.summaryLabel }}" data-field-type="{{ field.type }}" data-field-name="{{ field.name }}"{% if field.required %} data-required="true"{% endif %}>
+        <label for="{{ field.id }}">{{ field.label }}</label>
+        {% if field.type == "select" %}
+        <select id="{{ field.id }}" name="{{ field.name }}"{% if field.required %} required{% endif %} aria-describedby="{{ field.id }}-error"><option value="" selected>{{ field.placeholder or "Select one" }}</option>{% for option in field.options %}<option value="{{ option }}">{{ option }}</option>{% endfor %}</select>
+        {% elif field.type == "textarea" %}
+        <textarea id="{{ field.id }}" name="{{ field.name }}" rows="5"{% if field.required %} required{% endif %}{% if field.maxlength %} maxlength="{{ field.maxlength }}"{% endif %} aria-describedby="{{ field.id }}-error"{% if field.placeholder %} placeholder="{{ field.placeholder }}"{% endif %}></textarea>
+        {% else %}
+        <input id="{{ field.id }}" name="{{ field.name }}" type="text"{% if field.required %} required{% endif %}{% if field.maxlength %} maxlength="{{ field.maxlength }}"{% endif %} aria-describedby="{{ field.id }}-error"{% if field.placeholder %} placeholder="{{ field.placeholder }}"{% endif %} />
+        {% endif %}
+        <p class="field-error" id="{{ field.id }}-error" data-error-for="{{ field.name }}" aria-live="polite"></p>
+      </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+    <label class="checkbox"><input id="updates" name="updates" type="checkbox" /><span>Send me Project Bantay Bayan updates</span></label>
+    <div class="form-actions"><button class="button" type="submit">{{ submitLabel }}</button><p class="form-status" data-form-status role="status" aria-live="polite"></p></div>
+  </form>
+</div>
+{% endmacro %}
+
+{% macro ctaSection(title="Discuss a PBB pilot", description="Explore how a local-node deployment could support practical service continuity in your community.", buttonLabel="Request a briefing", buttonUrl="/briefing/") %}
+<section class="cta-panel" aria-labelledby="cta-title">
+  <div><p class="eyebrow">Briefing and pilot discussion</p><h2 id="cta-title">{{ title }}</h2><p>{{ description }}</p></div>
+  <a class="button" href="{{ buttonUrl }}">{{ buttonLabel }}</a>
+</section>
+{% endmacro %}

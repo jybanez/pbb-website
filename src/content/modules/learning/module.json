@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0",
+  "type": "module",
+  "slug": "learning",
+  "name": "PBB Learning",
+  "productName": "Lumaria",
+  "productFamily": "Citizen-facing services",
+  "category": "learning-knowledge",
+  "heroImageKey": "moduleLearningHero",
+  "shortDescription": "An in-progress local learning gateway for providers, catalogs, instances, diagnostics, and emergency-safe access.",
+  "longDescription": [
+    "PBB Learning / Lumaria is a Laravel LMS-agnostic gateway that organizes local and external learning providers without merging institutional LMS databases. Its current implementation includes Account hooks, provider and platform registries, catalogs, learning instances, diagnostics, settings, health checks, and emergency-state APIs.",
+    "Lumaria remains V1-incomplete. Deep LMS adapters, full Library integration, some administrative editing workflows, Kit Setup and Data Prep, final security review, and production release approval are not yet confirmed."
+  ],
+  "primaryUsers": ["Learners", "Teachers and facilitators", "Barangay learning staff", "Institutional partners", "Learning administrators"],
+  "deployment": { "classification": "optional", "placements": ["learning-node", "daily-apps-node"] },
+  "readiness": {
+    "status": "in-development",
+    "qualifier": "prototype",
+    "note": "The Laravel gateway, Account hooks, provider/catalog/instance APIs, diagnostics, settings, emergency state, and local schema are implemented, but V1 is incomplete.",
+    "remainingWork": ["Finish provider and LMS adapter decisions and remaining admin workflows.", "Verify the direct Library reference-provider adapter and unavailable-state behavior.", "Complete Kit Setup, Data Prep, release packaging, privacy, and security review."]
+  },
+  "problemSolved": "Communities and institutions need one local doorway to learning opportunities without pretending that every LMS, course record, and external provider is stored or synchronized by PBB.",
+  "workflowSteps": [
+    { "id": "sign-in", "title": "Enter the local gateway", "description": "A learner or administrator opens Lumaria and uses the configured Account or local session flow." },
+    { "id": "discover", "title": "Discover available learning", "description": "The local catalog describes providers, collections, packages, instances, and their current availability." },
+    { "id": "launch", "title": "Launch the right provider", "description": "Lumaria routes the user to a local package, local LMS, or reachable external provider according to the configured adapter." },
+    { "id": "protect", "title": "Respect emergency state", "description": "Emergency-state controls and deployment choices keep heavy learning workloads subordinate to essential local services." }
+  ],
+  "offlineBehavior": {
+    "localCapabilities": ["The app shell, provider registry, catalog, settings, diagnostics, packages, and local availability context use the local Learning database.", "Local learning packages or reachable local LMS instances can remain available on the LAN."],
+    "requiresLocalServices": ["Lumaria requires its Laravel app, MySQL database, and the selected local provider or package for actual learning content.", "Account is the preferred identity service; Library is a separate optional reference provider."],
+    "syncsWhenConnected": ["Reachable provider adapters can refresh or launch their supported catalog and instance behavior once implemented and enabled.", "The local Library Node may serve reference searches and resources when the reviewed adapter is available."],
+    "connectivityRequired": ["Cloud-hosted or remote institutional LMS links require their own network connectivity.", "New Account SSO sessions require the configured Account service to be reachable."],
+    "notSynchronized": ["A complete deep LMS database synchronization contract is not confirmed.", "Lumaria does not participate in Library release distribution and the full Learning-to-Library adapter is not yet confirmed."]
+  },
+  "screenshots": [{ "id": "screenshot-pending", "type": "placeholder", "title": "Validated Lumaria interface pending", "caption": "Lumaria remains in active V1 development and has no approved public screenshot for this page." }],
+  "faqs": [
+    { "id": "lms", "question": "Does Lumaria replace a school or university LMS?", "answer": "No. Lumaria helps people reach and manage learning services, but each school or university system remains responsible for enrollment, grades, submissions, and official records." },
+    { "id": "offline", "question": "What learning can remain available locally?", "answer": "Learning packages and school systems installed on or connected to the local node may remain available. What works offline depends on how each learning provider has been set up." },
+    { "id": "external", "question": "Will an external LMS work without connectivity?", "answer": "Usually not. A school system hosted elsewhere needs a working connection unless a local copy or an offline learning package has been provided." },
+    { "id": "library", "question": "How does Lumaria use Libria?", "answer": "Libria can provide local search and reference materials. It does not manage courses, and Lumaria's complete connection to it has not yet been confirmed." },
+    { "id": "emergency", "question": "What happens during an emergency?", "answer": "Learning activity may be limited or redirected so that emergency response, communication, and health services receive priority." },
+    { "id": "readiness", "question": "Is Lumaria ready for production rollout?", "answer": "No. The foundation exists, but administration tools, connections to other learning systems, installation, privacy, security, and release work are still incomplete." }
+  ],
+  "relatedModules": ["library", "games", "chat"],
+  "relatedInfrastructure": ["account", "landing", "kit-setup"],
+  "seo": { "title": "PBB Learning / Lumaria | Local learning gateway", "description": "Review PBB Learning / Lumaria's in-progress local provider, catalog, instance, diagnostics, Account, Library, and emergency-safe learning foundation." }
+}

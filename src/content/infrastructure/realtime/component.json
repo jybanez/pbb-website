@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0", "type": "infrastructure-component", "slug": "realtime", "name": "PBB Realtime", "suite": "Wizaya Server Suite", "heroImageKey": "infrastructureRealtimeHero",
+  "shortDescription": "One shared local WebSocket gateway for live room events, presence, and approved application updates on a node.",
+  "longDescription": ["PBB Realtime gives participating local applications a shared WebSocket process instead of running an independent real-time server for every module. It carries authorized room events and presence within the node.", "Room membership and presence are held in process memory. Durable application truth remains in each owning service, so process restart and multi-node continuity require explicit handling outside this gateway."],
+  "readiness": { "status": "integrated", "qualifier": "pilot-ready-foundation", "note": "A shared local gateway and participating module event paths are implemented for node-level operation.", "remainingWork": ["Finalize capacity limits and restart behavior for pilot hardware.", "Document room authorization contracts for every publisher and subscriber.", "Define any future multi-process or multi-node scaling before claiming it."] },
+  "nodeRole": "Provides the local low-latency event path for participating applications while leaving durable records and workflow state with their authoritative services.",
+  "supportedModules": ["hotline", "support", "salus", "chat"],
+  "localBehavior": ["Live room events and presence work while the shared process and local network are healthy.", "Applications retain durable records outside the in-memory gateway."],
+  "connectivityBehavior": ["The confirmed foundation is one shared process per node, not a cross-node event fabric.", "Restart can clear in-memory rooms and presence even when durable application records remain intact."],
+  "deployment": { "classification": "baseline", "placements": ["barangay-node", "local-command-node", "daily-apps-node"] },
+  "operationalConsiderations": ["Supervise the process and verify application reconnect behavior after restart.", "Measure concurrent connections and event volume on representative pilot hardware."],
+  "securityBoundary": ["Authorize room joins and event publication at the application boundary.", "Do not place authoritative durable records only in process memory."],
+  "diagramsOrScreenshots": [{ "id": "realtime-evidence-pending", "type": "placeholder", "title": "Validated Realtime diagram pending", "caption": "No public gateway topology has been approved; no room or presence view is fabricated." }],
+  "faqs": [
+    { "id": "shared", "question": "Why use one shared gateway per node?", "answer": "One shared service avoids running separate copies for every app and gives local apps one managed way to send live updates." },
+    { "id": "durability", "question": "Are room events a durable system of record?", "answer": "No. Live room and online-status updates are temporary. Each app must save any important records in its own permanent storage." },
+    { "id": "restart", "question": "What happens when Realtime restarts?", "answer": "Users and apps must reconnect, and live room or online-status information may need to be rebuilt. Information already saved by each app remains available." },
+    { "id": "cross-node", "question": "Does it broadcast automatically between nodes?", "answer": "No. Realtime serves its own local node. It does not automatically send live updates to every other PBB node." },
+    { "id": "authorization", "question": "Who may publish or join a room?", "answer": "Each participating app must confirm who the user is and what they are allowed to do before letting them join a room or send updates." }
+  ],
+  "relatedComponents": ["account", "maestro", "relay"], "relatedModules": ["chat", "hotline", "support"],
+  "seo": { "title": "PBB Realtime | Shared local WebSocket gateway", "description": "Explore PBB Realtime as one shared local WebSocket gateway, including its in-memory room model, restart behavior, and node-level operating boundary." }
+}

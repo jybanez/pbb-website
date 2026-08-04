@@ -1,0 +1,8 @@
+[
+  { "id": "concept", "label": "Concept", "description": "A documented direction that is not presented as implemented." },
+  { "id": "in-development", "label": "In development", "description": "Implementation work is active, with confirmed gaps still inside the intended scope." },
+  { "id": "prototype", "label": "Prototype", "description": "A working proof or partial workflow that still requires integration and operational hardening." },
+  { "id": "integrated", "label": "Integrated", "description": "Confirmed application and service paths work together in the current engineering stack." },
+  { "id": "pilot-ready-foundation", "label": "Pilot-ready foundation", "description": "The foundation can enter a governed pilot process after deployment-specific acceptance work." },
+  { "id": "production-hardening", "label": "Production hardening", "description": "The implementation exists while security, operations, scale, recovery, and governance are being strengthened." }
+]

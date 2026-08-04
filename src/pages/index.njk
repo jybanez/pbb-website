@@ -1,0 +1,104 @@
+---
+permalink: /index.html
+layout: layouts/base.njk
+title: Project Bantay Bayan | Offline-first local resilience platform
+description: Project Bantay Bayan helps communities keep essential public services available through coordinated local digital nodes when internet access is weak or unavailable.
+canonicalPath: /
+structuredData:
+  "@context": "https://schema.org"
+  "@type": "Organization"
+  name: Project Bantay Bayan
+  url: https://pbb.ph
+  logo: https://pbb.ph/assets/pbb-logo-eye-h42.png
+  description: Offline-first local-node community resilience infrastructure.
+---
+{% from "components/ui.njk" import responsiveImage, moduleCard, engagementForm with context %}
+<section class="home-hero" id="overview" aria-labelledby="home-title">
+  <div class="hero-background" aria-hidden="true">{{ responsiveImage(images.hero, "", "eager", "100vw") }}</div>
+  <div class="container home-hero-inner">
+    <div class="home-hero-copy">
+      <p class="eyebrow">Offline-first · Local-node first · Public service</p>
+      <h1 id="home-title">Keeping communities connected, informed, served, and coordinated — online or offline.</h1>
+      <p class="lead">Project Bantay Bayan helps barangays, LGUs, health centers, responders, schools, NGOs, donors, and utilities keep essential local services available when connectivity is weak, intermittent, or unavailable.</p>
+      <p class="hero-promise">Local services should not stop just because the internet stops.</p>
+      <div class="button-row"><a class="button" href="/briefing/">Request a briefing</a><a class="button button-secondary" href="/modules/">Explore the platform</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="continuity-title">
+  <div class="container feature-split">
+    <div><p class="section-kicker">Core continuity promise</p><h2 id="continuity-title">Cloud where available. Local where necessary.</h2><p class="lead-small">PBB places useful digital services on a local node so the community network can continue serving people without a constant cloud connection.</p><ul class="check-list"><li>Essential services remain reachable on the local network.</li><li>Local records and prepared resources remain close to the teams using them.</li><li>Selected reports and updates can move upstream when a route returns.</li></ul></div>
+    <figure class="feature-image">{{ responsiveImage(images.continuity, "", "lazy", "(min-width: 900px) 50vw, 100vw") }}</figure>
+  </div>
+</section>
+
+<section class="section band" id="benefits" aria-labelledby="benefits-title">
+  <div class="container"><div class="section-heading"><div><p class="section-kicker">Who benefits</p><h2 id="benefits-title">Built for the people who keep communities moving</h2></div><p>PBB supports everyday public-service work and coordinated readiness across local institutions.</p></div>
+    <div class="stakeholder-grid">
+      <article class="stakeholder-card">{{ responsiveImage(images.stakeholderCitizens, "stakeholder-image", "lazy", "148px") }}<h3>Citizens</h3><p>Access help, announcements, communication, and essential services through the local PBB network.</p></article>
+      <article class="stakeholder-card">{{ responsiveImage(images.stakeholderBarangays, "stakeholder-image", "lazy", "148px") }}<h3>Barangays</h3><p>Operate a local digital front desk for reports, advisories, maps, and coordination.</p></article>
+      <article class="stakeholder-card">{{ responsiveImage(images.stakeholderBusinesses, "stakeholder-image", "lazy", "148px") }}<h3>Businesses and CSR partners</h3><p>Support local continuity efforts and contribute resources during disruptions.</p></article>
+      <article class="stakeholder-card">{{ responsiveImage(images.stakeholderLgus, "stakeholder-image", "lazy", "148px") }}<h3>LGUs</h3><p>See structured reports, support requests, and service status from the barangay level.</p></article>
+      <article class="stakeholder-card">{{ responsiveImage(images.stakeholderHealth, "stakeholder-image", "lazy", "148px") }}<h3>Health centers</h3><p>Keep basic health workflows and continuity-of-care support available locally.</p></article>
+      <article class="stakeholder-card">{{ responsiveImage(images.stakeholderUtilities, "stakeholder-image", "lazy", "148px") }}<h3>Utilities</h3><p>Receive clearer incident context when events may affect essential services.</p></article>
+      <article class="stakeholder-card">{{ responsiveImage(images.stakeholderSchools, "stakeholder-image", "lazy", "148px") }}<h3>Schools and youth</h3><p>Use local learning and preparedness content even when mobile data is unreliable.</p></article>
+      <article class="stakeholder-card">{{ responsiveImage(images.stakeholderDonors, "stakeholder-image", "lazy", "148px") }}<h3>Donors and NGOs</h3><p>Fund a living resilience capability that communities can use before and during emergencies.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="daily-use-title">
+  <div class="container feature-split reverse">
+    <figure class="feature-image portrait">{{ responsiveImage(images.dailyUse, "", "lazy", "(min-width: 900px) 44vw, 100vw") }}</figure>
+    <div><p class="section-kicker">Daily-use adoption</p><h2 id="daily-use-title">Useful before an emergency. Familiar when it matters.</h2><p>A citizen may use the local network for announcements, health schedules, learning content, and community messages. When disruption arrives, that familiar network becomes a reporting and coordination channel.</p><blockquote>Daily use creates habit. Habit creates adoption. Adoption creates readiness.</blockquote></div>
+  </div>
+</section>
+
+<section class="section dark" id="services" aria-labelledby="offline-title">
+  <div class="container feature-split">
+    <div><p class="section-kicker">How PBB works</p><h2 id="offline-title">Continue locally. Deliver selectively.</h2><p class="lead-small">“Offline-first” in PBB normally means local-server and LAN continuity. It does not mean every browser has a durable queue or every application database is synchronized.</p><ol class="simple-flow"><li><strong>Serve the community locally.</strong><span>Citizen and operational modules use the node network and local supporting services.</span></li><li><strong>Keep work close to its owner.</strong><span>Records stay with the responsible module unless a confirmed integration says otherwise.</span></li><li><strong>Move selected updates.</strong><span>Relay handles defined store-and-forward messages; large Library releases use their own signed distribution path.</span></li></ol></div>
+    <figure class="feature-image architecture-image">{{ responsiveImage(images.architecture, "", "lazy", "(min-width: 900px) 50vw, 100vw") }}</figure>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="featured-modules-title">
+  <div class="container"><div class="section-heading"><div><p class="section-kicker">Featured modules</p><h2 id="featured-modules-title">One platform, coordinated service layers</h2></div><a class="text-link" href="/modules/">View all modules →</a></div>
+    <div class="card-grid featured-grid">
+      {% set featuredSlugs = ["hotline", "natalium", "salus", "chat", "library", "learning", "utility", "support"] %}
+      {% for slug in featuredSlugs %}{% set item = slug | catalogItem(productCatalog) %}{{ moduleCard(item) }}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section band" id="model" aria-labelledby="deployment-title">
+  <div class="container section-heading"><div><p class="section-kicker">Deployment model</p><h2 id="deployment-title">A service mix shaped around the local node</h2></div><p>Baseline, optional, and specialized modules can be placed at barangay, command, health, learning, knowledge, field, support, or utility nodes according to real operating needs.</p></div>
+  <div class="container deployment-summary"><article><strong>Software-first</strong><p>PBB provides the coordinated software platform and managed support layer.</p></article><article><strong>Hardware deployment-specific</strong><p>Servers, networking, connectivity, power, travel, training, and field equipment are scoped separately unless explicitly bundled.</p></article><article><strong>Local where necessary</strong><p>Node placement follows service ownership, privacy boundaries, and the realities of the local environment.</p></article></div>
+  <div class="container"><a class="text-link" href="/deployment/">Review the deployment model →</a></div>
+</section>
+
+<section class="section" id="status" aria-labelledby="readiness-title">
+  <div class="container readiness-layout" id="readiness">
+    <div><p class="section-kicker">Readiness snapshot</p><h2 id="readiness-title">Pilot-ready foundation</h2><p>PBB has a strong integrated software foundation and is ready for structured pilot discussions. The next phase focuses on deployment hardening, security policy, data retention, field runbooks, and production-scale operations.</p>{{ responsiveImage(images.readiness, "readiness-image", "lazy", "(min-width: 900px) 44vw, 100vw") }}</div>
+    <div class="scorecard" aria-label="PBB readiness scores out of ten">
+      {% set scores = [{label:"Platform integration",value:9},{label:"Feature implementation",value:8},{label:"Deployment preparation",value:6},{label:"Security and governance",value:5},{label:"Pilot readiness",value:7}] %}
+      {% for score in scores %}<div class="score-row"><div><span>{{ score.label }}</span><strong>{{ score.value }}/10</strong></div><div class="score-track" aria-hidden="true"><span style="width: {{ score.value * 10 }}%"></span></div></div>{% endfor %}
+      <div class="overall-score"><span>Overall readiness</span><strong>7/10</strong><small>Pilot-ready foundation</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="section wizaya-section" id="wizaya" aria-labelledby="wizaya-title">
+  <div class="container feature-split reverse">
+    <figure class="feature-image">{{ responsiveImage(images.wizaya, "", "lazy", "(min-width: 900px) 48vw, 100vw") }}</figure>
+    <div><p class="section-kicker">Technology foundation</p><h2 id="wizaya-title">Powered by Wizaya</h2><p>The Wizaya Server Suite supplies local identity, selective relay delivery, live events, prepared maps, observer-only worker telemetry, a local launcher, and deployment tooling.</p><p>These components make PBB modules operate as one coordinated platform. They are not presented as separate citizen apps.</p><a class="text-link" href="/infrastructure/">See the infrastructure layer →</a></div>
+  </div>
+</section>
+
+<section class="section briefing-section" id="briefing" aria-labelledby="briefing-title">
+  <span id="contact" class="anchor-target" aria-hidden="true"></span>
+  <div class="container briefing-grid">
+    <div><p class="section-kicker">Briefing and pilot discussion</p><h2 id="briefing-title">Bring local digital resilience to your community.</h2><p>Request a briefing, explore a partnership, or discuss a structured pilot. Submitting uses the existing Formspree endpoint; if it is unavailable, your email application opens as a fallback.</p><ul class="briefing-points"><li>No operational feeds are submitted through this form.</li><li>Hardware and field logistics remain deployment-specific.</li><li>Pilot scope and safeguards are reviewed before live use.</li></ul></div>
+    {{ engagementForm(engagementForms.homepage) }}
+  </div>
+</section>

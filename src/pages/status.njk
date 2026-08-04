@@ -1,0 +1,20 @@
+---
+permalink: /status/index.html
+layout: layouts/base.njk
+title: PBB Status | Pilot-ready foundation and readiness boundaries
+description: Review Project Bantay Bayan readiness scores, controlled status terms, current engineering foundation, and the security, governance, deployment, and field work still required.
+canonicalPath: /status/
+structuredData: { "@context": "https://schema.org", "@type": "WebPage", "name": "PBB readiness status", "url": "https://pbb.ph/status/" }
+breadcrumbItems:
+  - label: Home
+    url: /
+  - label: Status
+---
+{% from "components/ui.njk" import pageHero, ctaSection with context %}
+{{ pageHero("Readiness snapshot · Evidence-based public claims", "Pilot-ready foundation", "The integrated foundation supports structured pilot planning. Production security, governance, deployment operations, and field runbooks remain explicit work—not implied completion.", null, "statusHero") }}
+<div class="container detail-sections">
+  <section class="detail-section readiness-layout" aria-labelledby="score-title"><div><p class="section-kicker">Current snapshot</p><h2 id="score-title">Overall readiness: 7/10</h2><p>These scores are a planning snapshot, not certification or a production authorization.</p></div><div class="scorecard" aria-label="PBB readiness scores out of ten">{% set scores = [{label:"Platform integration",value:9},{label:"Feature implementation",value:8},{label:"Deployment preparation",value:6},{label:"Security and governance",value:5},{label:"Pilot readiness",value:7}] %}{% for score in scores %}<div class="score-row"><div><span>{{ score.label }}</span><strong>{{ score.value }}/10</strong></div><div class="score-track" aria-hidden="true"><span style="width: {{ score.value * 10 }}%"></span></div></div>{% endfor %}<div class="overall-score"><span>Overall readiness</span><strong>7/10</strong><small>Pilot-ready foundation</small></div></div></section>
+  <section class="detail-section" aria-labelledby="status-vocabulary"><p class="section-kicker">Controlled vocabulary</p><h2 id="status-vocabulary">How readiness labels are used</h2><div class="card-grid">{% for item in readinessStatuses %}<article class="module-card"><h3>{{ item.label }}</h3><p>{{ item.description }}</p></article>{% endfor %}</div></section>
+  <section class="detail-section" aria-labelledby="remaining-work"><p class="section-kicker">Before production rollout</p><h2 id="remaining-work">Work that remains deployment-specific</h2><div class="behavior-grid"><article><h3>Engineering and operations</h3><ul><li>Production credentials, authorization, retention, backups, monitoring, and recovery.</li><li>Hardware sizing, power, network topology, service supervision, and upgrade rollback.</li><li>Disconnected, degraded, load, accessibility, security, and recovery testing.</li></ul></article><article><h3>Governance and field readiness</h3><ul><li>Data ownership, privacy, receiving authority, escalation, and records policy.</li><li>Training, support ownership, field logistics, acceptance criteria, and incident runbooks.</li><li>Owner approval for public screenshots, readiness claims, naming, and synchronization caveats.</li></ul></article></div></section>
+  {{ ctaSection("Review a structured PBB pilot") }}
+</div>

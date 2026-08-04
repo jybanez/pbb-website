@@ -1,0 +1,58 @@
+---
+layout: layouts/base.njk
+---
+{% from "components/ui.njk" import pageHero, workflowSteps, screenshotGallery, faqSection, relatedModules, relatedComponents, ctaSection with context %}
+{% set catalogModule = module.slug | catalogItem(productCatalog) %}
+{% set approvedEvidence = module.screenshots | approvedScreenshots(images) %}
+{{ pageHero(module.productFamily ~ " · " ~ (module.category | categoryLabel(categories)), module.name ~ " / " ~ module.productName, module.shortDescription, module, module.heroImageKey, catalogModule.iconImageKey) }}
+
+<div class="container detail-sections">
+  <section class="detail-section split-copy" aria-labelledby="what-it-is">
+    <div><p class="section-kicker">What it is</p><h2 id="what-it-is">A practical part of one local platform</h2></div>
+    <div>{% for paragraph in module.longDescription %}<p>{{ paragraph }}</p>{% endfor %}</div>
+  </section>
+
+  <section class="detail-section problem-panel" aria-labelledby="problem-solved">
+    <p class="section-kicker">Problem it solves</p><h2 id="problem-solved">The operational gap</h2><p>{{ module.problemSolved }}</p>
+  </section>
+
+  <section class="detail-section" aria-labelledby="core-workflow">
+    <p class="section-kicker">Core workflow</p><h2 id="core-workflow">How {{ module.productName }} supports local work</h2>{{ workflowSteps(module.workflowSteps) }}
+  </section>
+
+  <section class="detail-section" aria-labelledby="who-uses-it">
+    <p class="section-kicker">Who uses it</p><h2 id="who-uses-it">Designed around local service roles</h2><ul class="chip-list">{% for user in module.primaryUsers %}<li>{{ user }}</li>{% endfor %}</ul>
+  </section>
+
+  {% if approvedEvidence | length > 0 %}<section class="detail-section" aria-labelledby="screenshots">
+    <p class="section-kicker">Screenshots and prototypes</p><h2 id="screenshots">Validated product evidence</h2>{{ screenshotGallery(module.screenshots) }}
+  </section>{% endif %}
+
+  <section class="detail-section" aria-labelledby="offline-behavior">
+    <p class="section-kicker">Offline-first behavior</p><h2 id="offline-behavior">What continues locally—and what does not</h2>
+    <div class="behavior-grid">
+      <article><h3>Works on the local node</h3><ul>{% for item in module.offlineBehavior.localCapabilities %}<li>{{ item }}</li>{% endfor %}</ul></article>
+      <article><h3>Required local services</h3><ul>{% for item in module.offlineBehavior.requiresLocalServices %}<li>{{ item }}</li>{% endfor %}</ul></article>
+      <article><h3>When a route returns</h3><ul>{% for item in module.offlineBehavior.syncsWhenConnected %}<li>{{ item }}</li>{% endfor %}</ul></article>
+      <article><h3>Connectivity-dependent</h3><ul>{% for item in module.offlineBehavior.connectivityRequired %}<li>{{ item }}</li>{% endfor %}</ul></article>
+      <article class="caveat"><h3>Not currently synchronized</h3><ul>{% for item in module.offlineBehavior.notSynchronized %}<li>{{ item }}</li>{% endfor %}</ul></article>
+    </div>
+  </section>
+
+  <section class="detail-section" aria-labelledby="deployment-placement">
+    <p class="section-kicker">Deployment placement</p><h2 id="deployment-placement">Where it fits</h2>
+    <div class="placement-panel"><strong>{{ module.deployment.classification | capitalize }} deployment</strong><p>{% for placement in module.deployment.placements %}{{ placement | deploymentLabel(deployments) }}{% if not loop.last %}; {% endif %}{% endfor %}</p><small>Hardware, connectivity, power, training, travel, and field logistics remain deployment-specific.</small></div>
+  </section>
+
+  <section class="detail-section" aria-labelledby="frequent-questions">
+    <p class="section-kicker">Practical questions</p><h2 id="frequent-questions">Frequently asked questions</h2>{{ faqSection(module.faqs) }}
+  </section>
+
+  <section class="detail-section readiness-detail" aria-labelledby="module-readiness">
+    <p class="section-kicker">Status and readiness</p><h2 id="module-readiness">{{ module.readiness.status | statusLabel(readinessStatuses) }}</h2><p class="lead-small">{{ module.readiness.note }}</p><h3>Remaining hardening work</h3><ul>{% for item in module.readiness.remainingWork %}<li>{{ item }}</li>{% endfor %}</ul>
+  </section>
+
+  <section class="detail-section" aria-labelledby="related-modules"><p class="section-kicker">Connected platform</p><h2 id="related-modules">Related modules</h2>{{ relatedModules(module.relatedModules) }}</section>
+  <section class="detail-section" aria-labelledby="related-infrastructure"><p class="section-kicker">Local-node foundation</p><h2 id="related-infrastructure">Related infrastructure</h2>{{ relatedComponents(module.relatedInfrastructure) }}</section>
+  {{ ctaSection("Discuss " ~ module.productName ~ " in a local PBB deployment") }}
+</div>

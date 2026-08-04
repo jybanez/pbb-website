@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "type": "module",
+  "slug": "games",
+  "name": "PBB Games",
+  "productName": "Tabulus",
+  "productFamily": "Citizen-facing services",
+  "category": "community-engagement",
+  "heroImageKey": "moduleGamesHero",
+  "shortDescription": "Optional local games and preparedness-learning activities with safeguards for active incidents and emergencies.",
+  "longDescription": [
+    "PBB Games / Tabulus is a lightweight optional engagement service made from local PHP and static assets. It offers locally installed games and preparedness-learning activities without a database or confirmed operational API dependencies.",
+    "Tabulus stays subordinate to emergency work. Active-incident mode hides recreational categories while emergency mode disables all games and directs users toward emergency guidance. The current control is configuration-driven and needs an operator runbook."
+  ],
+  "primaryUsers": ["Community members", "Young people and families", "Preparedness facilitators", "Local node operators"],
+  "deployment": { "classification": "optional", "placements": ["daily-apps-node"] },
+  "readiness": {
+    "status": "integrated",
+    "qualifier": "pilot-ready-foundation",
+    "note": "The local registry, mode policy, health endpoint, static assets, and emergency-mode safeguards are implemented without operational data dependencies.",
+    "remainingWork": ["Publish an operator runbook for changing mode during incidents.", "Confirm whether future mode control remains manual or receives a reviewed local signal.", "Review licensing and provenance before adding any third-party game assets."]
+  },
+  "problemSolved": "A resilient local network should offer useful everyday engagement as well as emergency services, while ensuring recreational use never competes with active response priorities.",
+  "workflowSteps": [
+    { "id": "open", "title": "Open the local activity hub", "description": "A community member reaches Tabulus through the local PBB network after the optional package is installed." },
+    { "id": "choose", "title": "Choose an available activity", "description": "The local registry displays only the games or preparedness activities permitted by the current mode." },
+    { "id": "protect", "title": "Protect emergency capacity", "description": "Active-incident mode limits recreation, while emergency mode disables games and presents emergency guidance." }
+  ],
+  "offlineBehavior": {
+    "localCapabilities": ["Installed game and learning assets run locally without a database or public internet connection.", "The mode policy and health summary are read from local configuration and registry files."],
+    "requiresLocalServices": ["Tabulus requires a local PHP/static host and its installed assets.", "It uses vendored Helper UI assets but does not require operational PBB APIs in the confirmed V1."],
+    "syncsWhenConnected": ["No operational synchronization is required or confirmed for current game use.", "Future package updates would be installation activity rather than live application data sync."],
+    "connectivityRequired": ["Users must be able to reach the local Games host over the node LAN.", "The configured Hotline link must be reachable for emergency guidance navigation."],
+    "notSynchronized": ["No Hotline, Relay, Support, Realtime, Hub, Maestro, MapServer, or Kit Setup API calls are confirmed in V1.", "Tabulus does not store or synchronize scores as operational PBB records in the reviewed implementation."]
+  },
+  "screenshots": [{ "id": "screenshot-pending", "type": "placeholder", "title": "Validated Tabulus interface pending", "caption": "No current Tabulus interface image has been approved for this public page." }],
+  "faqs": [
+    { "id": "purpose", "question": "Why are games part of a resilience platform?", "answer": "Useful everyday activities give people a reason to know and use the local network before an emergency. Approved preparedness games can also support community learning." },
+    { "id": "emergency", "question": "What happens during an emergency?", "answer": "Emergency mode turns off all games and shows emergency guidance. During an active incident, recreational games are hidden, while approved learning activities may remain available." },
+    { "id": "internet", "question": "Do installed games need internet access?", "answer": "No. Once installed, the current games and their files are stored on the local node and do not depend on a cloud service." },
+    { "id": "operations", "question": "Does Tabulus call Hotline or Relay APIs?", "answer": "No. The reviewed V1 does not show Tabulus exchanging operational information with Hotline, Relay, or the other PBB services." },
+    { "id": "data", "question": "Does Tabulus keep a community member database?", "answer": "No. The reviewed version does not use a community member database. It works as a simple local game catalog with settings for operating modes." },
+    { "id": "control", "question": "Who changes the emergency mode?", "answer": "The mode is currently changed through system settings. The exact person or automatic process responsible for changing it still needs to be documented and approved." }
+  ],
+  "relatedModules": ["chat", "library", "learning"],
+  "relatedInfrastructure": ["landing", "kit-setup"],
+  "seo": { "title": "PBB Games / Tabulus | Local community engagement", "description": "See how PBB Games / Tabulus provides optional local activities and preparedness learning while disabling recreation during active emergency conditions." }
+}

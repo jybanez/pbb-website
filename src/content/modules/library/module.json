@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0",
+  "type": "module",
+  "slug": "library",
+  "name": "PBB Library",
+  "productName": "Libria",
+  "productFamily": "Citizen-facing services",
+  "category": "learning-knowledge",
+  "heroImageKey": "moduleLibraryHero",
+  "shortDescription": "Governed reference releases from Library Cloud with local offline search, reading, citations, and resource delivery.",
+  "longDescription": [
+    "PBB Library / Libria combines a governed Library Cloud control plane with a local Library Node. Cloud handles source review, ingestion, normalization, licensing, release construction, signing, node assignment, and fleet reports.",
+    "The local node verifies and activates approved releases, then serves public catalog, search, collections, resources, citations, content, and approved SDK or embed access without requiring Cloud for routine reading. Large releases use Library-specific transfer paths rather than Relay messages."
+  ],
+  "primaryUsers": ["Citizens and families", "Students and teachers", "Health and response workers", "Library content administrators", "PBB Learning"],
+  "deployment": { "classification": "special", "placements": ["library-node", "learning-node"] },
+  "readiness": {
+    "status": "integrated",
+    "qualifier": "production-hardening",
+    "note": "Library Cloud and Library Node are implemented with governance, signed release, local catalog, public resource, storage, trust, rollback, SDK, and Account hooks.",
+    "remainingWork": ["Publish field transfer, signing, verification, rollback, and recovery runbooks.", "Complete Kit Setup packaging, Data Prep, storage commissioning, and smoke checks.", "Verify the minimum Learning-to-Library adapter and citizen search privacy policy."]
+  },
+  "problemSolved": "Communities need dependable access to governed reference material without depending on continuous internet access or transferring multi-gigabyte content through emergency messaging infrastructure.",
+  "workflowSteps": [
+    { "id": "govern", "title": "Review and govern sources", "description": "Library Cloud ingests approved sources and records provenance, licensing, normalization, review, and content decisions." },
+    { "id": "release", "title": "Build a signed release", "description": "Cloud constructs a release with manifests, objects, signatures, node assignment, and controlled offers." },
+    { "id": "activate", "title": "Verify and activate locally", "description": "Library Node downloads or imports approved objects, verifies trust, stages content, and atomically activates the release." },
+    { "id": "use", "title": "Search and read offline", "description": "Local users browse, search, view resources, and use citations or collections from the active node release." }
+  ],
+  "offlineBehavior": {
+    "localCapabilities": ["The active local catalog, search index, collections, resource payloads, citations, and content remain available after commissioning.", "Public reading should not require mandatory login, Cloud, Realtime, or Learning availability."],
+    "requiresLocalServices": ["Libria requires its local Laravel Node, MySQL catalog, content volumes, object storage, and verified active release.", "Administration can use Account hooks, but public reading remains a separate local boundary."],
+    "syncsWhenConnected": ["The node can check Library Cloud for governed offers, download release objects, and report deployment or inventory state.", "New releases use authenticated Library-specific object and reporting APIs."],
+    "connectivityRequired": ["New Cloud ingestion, review, release construction, and remote offers require a route to Library Cloud.", "External source acquisition and new large-object downloads require their configured transfer path."],
+    "notSynchronized": ["Routine large Library releases do not travel as PBB Relay messages.", "Raw citizen search queries should not be uploaded to Cloud without an approved privacy and consent model."]
+  },
+  "screenshots": [{ "id": "screenshot-pending", "type": "placeholder", "title": "Validated Libria interface pending", "caption": "The Cloud and Node applications are implemented, but no public screenshot has been approved for this page." }],
+  "faqs": [
+    { "id": "offline", "question": "Can people search and read when the internet is down?", "answer": "Yes. Once an approved collection has been installed and activated on the local Library Node, people can search and open those local resources without internet access." },
+    { "id": "login", "question": "Is an Account login required to read public resources?", "answer": "No. People should be able to read public resources without signing in. An account is mainly needed for administration and optional personal features." },
+    { "id": "relay", "question": "Are large Library packages sent through PBB Relay?", "answer": "No. Large Library collections use their own download or physical-import process, along with records that report what was deployed." },
+    { "id": "trust", "question": "How does a node know a release is approved?", "answer": "A node checks information and digital signatures included with the collection before making it available. It also supports withdrawing a release or returning to an earlier approved version." },
+    { "id": "learning", "question": "Is Libria an LMS for PBB Learning?", "answer": "No. Libria is a source of local references and learning materials. Lumaria may connect to it for search, citations, collections, and related resources." },
+    { "id": "deployment", "question": "Is field release installation fully operationalized?", "answer": "Not yet. Installation, preparing large collections, checking storage, transferring files, returning to an earlier version, and recovery procedures still need more testing and documentation." }
+  ],
+  "relatedModules": ["learning", "games", "natalium"],
+  "relatedInfrastructure": ["account", "landing", "kit-setup"],
+  "seo": { "title": "PBB Library / Libria | Governed offline knowledge", "description": "Explore PBB Library / Libria, combining governed signed Cloud releases with local offline catalog, search, resource delivery, citations, and collections." }
+}

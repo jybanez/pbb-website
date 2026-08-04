@@ -1,0 +1,16 @@
+---
+permalink: /briefing/index.html
+layout: layouts/base.njk
+title: Request a PBB briefing | Project Bantay Bayan
+description: Request a Project Bantay Bayan introduction, orientation, or demonstration covering platform scope, local-node services, readiness boundaries, and deployment considerations.
+canonicalPath: /briefing/
+structuredData: { "@context": "https://schema.org", "@type": "ContactPage", "name": "Request a PBB briefing", "url": "https://pbb.ph/briefing/" }
+breadcrumbItems:
+  - label: Home
+    url: /
+  - label: Request a briefing
+---
+{% from "components/ui.njk" import pageHero, engagementForm with context %}
+{{ pageHero("Briefing · Orientation · Demonstration", "Request a PBB briefing", "An introductory session can orient your organization to the platform, its modules, the local-node model, readiness boundaries, and practical deployment considerations.", null, "briefingHero") }}
+<section class="section band" aria-labelledby="briefing-overview-title"><div class="container"><div class="section-heading"><div><p class="section-kicker">A grounded introduction</p><h2 id="briefing-overview-title">Understand the platform before choosing a next step</h2></div><p>A briefing is for organizations evaluating whether PBB is relevant to their public-service, continuity, or community-resilience work.</p></div><div class="engagement-detail-grid"><article><h3>Who it is for</h3><p>LGUs, barangays, health and education teams, NGOs, donors, utilities, researchers, and other organizations seeking an initial orientation.</p></article><article><h3>What it covers</h3><p>The coordinated module and infrastructure layers, local/LAN continuity, selective upstream delivery, public readiness labels, safeguards, and deployment-specific responsibilities.</p></article><article><h3>Helpful context</h3><p>Share your organization, intended audience, topics of interest, and questions. A demonstration can focus on relevant workflows without implying live deployment approval.</p></article></div></div></section>
+<section class="section briefing-section" aria-labelledby="briefing-form-title"><div class="container briefing-grid"><div><p class="section-kicker">Request an orientation</p><h2 id="briefing-form-title">Tell us what your audience needs to understand</h2><p>Submitting starts a conversation and helps shape an appropriate briefing or demonstration. It does not authorize a deployment, confirm availability, establish commercial terms, or replace owner review.</p><ul class="briefing-points"><li>Platform scope and module relevance can be discussed.</li><li>Readiness qualifications and deployment boundaries remain explicit.</li><li>Possible next steps are considered only after the organization’s context is understood.</li></ul></div>{{ engagementForm(engagementForms.briefing) }}</div></section>

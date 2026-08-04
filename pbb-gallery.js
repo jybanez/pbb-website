@@ -13,10 +13,13 @@ const PBBGallery = (() => {
     const previewSrc = item.fullWebp || item.full;
     const fallbackSrc = item.fullFallback || item.full;
     const thumbSrc = item.thumb || '';
+    const sizeAttributes = Number.isInteger(item.thumbWidth) && Number.isInteger(item.thumbHeight)
+      ? ` width="${item.thumbWidth}" height="${item.thumbHeight}"`
+      : '';
 
     return createCardElement(item, `
       <button class="preview-trigger" type="button" data-preview-modal data-full="${previewSrc}" data-full-fallback="${fallbackSrc}" data-full-2x="${item.full2x || previewSrc}" data-thumb="${thumbSrc}" data-title="${item.title || 'Preview'}" data-alt="${item.alt}" aria-label="Open ${item.title || 'image'} preview">
-        <img src="${thumbSrc}" alt="${item.alt}" loading="lazy" class="gallery-thumb" />
+        <img src="${thumbSrc}" alt="${item.alt}" loading="lazy" decoding="async" class="gallery-thumb"${sizeAttributes} />
       </button>
       <h3>${item.title}</h3>
       <p class="muted">${item.caption}</p>
