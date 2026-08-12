@@ -330,8 +330,18 @@ if (walk(fromRoot("dist"), (entry) => /(?:module-icons[/\\][^/\\]+|module-icon-[
 }
 
 const hotlineIndex = fs.readFileSync(fromRoot("dist/modules/hotline/index.html"), "utf8");
-if (!hotlineIndex.includes("hotline-operator-dashboard-1600.webp")) throw new Error("Hotline page is missing the generated WebP screenshot.");
-if (!hotlineIndex.includes("width=\"1917\"") || !hotlineIndex.includes("height=\"932\"")) throw new Error("Hotline screenshot dimensions are missing.");
+const hotlineEvidence = [
+  ["hotline-citizen-home-378.webp", 378, 668],
+  ["hotline-citizen-operators-available-377.webp", 377, 668],
+  ["hotline-operator-dashboard-current-1600.webp", 1917, 941],
+  ["hotline-operator-workbench-1600.webp", 1915, 938]
+];
+for (const [fileName, width, height] of hotlineEvidence) {
+  if (!hotlineIndex.includes(fileName)) throw new Error(`Hotline page is missing generated evidence image ${fileName}.`);
+  if (!hotlineIndex.includes(`width=\"${width}\"`) || !hotlineIndex.includes(`height=\"${height}\"`)) {
+    throw new Error(`Hotline evidence dimensions are missing for ${fileName}.`);
+  }
+}
 
 for (const item of productCatalog.modules) {
   const record = moduleRecords.get(item.slug);
@@ -357,8 +367,11 @@ for (const slug of ["support", "natalium"]) {
     throw new Error(`Module ${slug} must completely omit placeholder-only evidence.`);
   }
 }
-if ((hotlineIndex.match(/Validated product evidence/g) ?? []).length !== 1 || (hotlineIndex.match(/class="screenshot-card"/g) ?? []).length !== 1) {
-  throw new Error("Hotline / Vox must retain exactly one approved screenshot section and card.");
+if ((hotlineIndex.match(/Validated product evidence/g) ?? []).length !== 1 || (hotlineIndex.match(/class="screenshot-card"/g) ?? []).length !== hotlineEvidence.length) {
+  throw new Error(`Hotline / Vox must retain one approved evidence section with ${hotlineEvidence.length} screenshot cards.`);
+}
+if ((hotlineIndex.match(/data-screenshot-open/g) ?? []).length !== hotlineEvidence.length || !hotlineIndex.includes("data-screenshot-track") || !hotlineIndex.includes("data-screenshot-viewer") || !hotlineIndex.includes('data-screenshot-zoom="in"')) {
+  throw new Error("Hotline / Vox evidence must provide a horizontal screenshot rail and a fullscreen pan-and-zoom viewer.");
 }
 
 const homeIndex = fs.readFileSync(fromRoot("dist/index.html"), "utf8");

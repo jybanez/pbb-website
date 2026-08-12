@@ -111,14 +111,49 @@
 {% macro screenshotGallery(screenshots) %}
 {% set approvedEvidence = screenshots | approvedScreenshots(images) %}
 {% if approvedEvidence | length > 0 %}
-<div class="screenshot-gallery">
+<div class="screenshot-gallery-shell" data-screenshot-gallery>
+  <div class="screenshot-gallery-toolbar">
+    <span><strong>{{ approvedEvidence | length }}</strong> product views</span>
+    <div class="screenshot-gallery-controls" aria-label="Scroll product screenshots">
+      <button type="button" data-screenshot-scroll="previous" aria-label="Scroll screenshots left">←</button>
+      <button type="button" data-screenshot-scroll="next" aria-label="Scroll screenshots right">→</button>
+    </div>
+  </div>
+  <div class="screenshot-gallery" data-screenshot-track tabindex="0" aria-label="Product screenshots. Scroll horizontally to browse.">
   {% for screenshot in approvedEvidence %}
   {% set image = images[screenshot.imageKey] %}
-  <figure class="screenshot-card">
-    {{ responsiveImage(image, "screenshot-image", "lazy", "(min-width: 900px) 900px, 100vw") }}
+  {% set isPortrait = image.height > image.width %}
+  <figure class="screenshot-card" data-orientation="{% if isPortrait %}portrait{% else %}landscape{% endif %}">
+    <button class="screenshot-card-media" type="button" data-screenshot-open data-full="{{ image | imagePath(image.largestWidth) }}" data-width="{{ image.width }}" data-height="{{ image.height }}" data-title="{{ screenshot.title }}" data-caption="{{ screenshot.caption }}" data-alt="{{ image.alt }}" aria-label="Open {{ screenshot.title }} in fullscreen viewer">
+      {{ responsiveImage(image, "screenshot-image", "lazy", "{% if isPortrait %}(min-width: 900px) 280px, 78vw{% else %}(min-width: 900px) 760px, 88vw{% endif %}") }}
+      <span class="screenshot-card-action" aria-hidden="true">View fullscreen</span>
+    </button>
     <figcaption><strong>{{ screenshot.title }}</strong><span>{{ screenshot.caption }}</span></figcaption>
   </figure>
   {% endfor %}
+  </div>
+  <dialog class="screenshot-viewer" data-screenshot-viewer aria-labelledby="screenshot-viewer-title">
+    <div class="screenshot-viewer-shell">
+      <div class="screenshot-viewer-bar">
+        <span data-screenshot-counter></span>
+        <div class="screenshot-viewer-tools" aria-label="Screenshot zoom controls">
+          <button type="button" data-screenshot-zoom="out" aria-label="Zoom out">−</button>
+          <output data-screenshot-zoom-level aria-live="polite">100%</output>
+          <button type="button" data-screenshot-zoom="in" aria-label="Zoom in">+</button>
+          <button class="screenshot-viewer-fit" type="button" data-screenshot-zoom="reset" aria-label="Reset zoom and fit screenshot">Fit</button>
+        </div>
+        <button type="button" data-screenshot-close aria-label="Close fullscreen screenshot viewer">×</button>
+      </div>
+      <button class="screenshot-viewer-nav screenshot-viewer-previous" type="button" data-screenshot-viewer-nav="previous" aria-label="Previous screenshot">‹</button>
+      <figure class="screenshot-viewer-figure">
+        <div class="screenshot-viewer-stage" data-screenshot-viewer-stage>
+          <img data-screenshot-viewer-image src="" width="1600" height="900" alt="" />
+        </div>
+        <figcaption><strong id="screenshot-viewer-title" data-screenshot-viewer-title></strong><span data-screenshot-viewer-caption></span></figcaption>
+      </figure>
+      <button class="screenshot-viewer-nav screenshot-viewer-next" type="button" data-screenshot-viewer-nav="next" aria-label="Next screenshot">›</button>
+    </div>
+  </dialog>
 </div>
 {% endif %}
 {% endmacro %}
