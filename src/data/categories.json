@@ -1,0 +1,9 @@
+[
+  { "id": "emergency-operations", "label": "Emergency and operations", "order": 1 },
+  { "id": "health-welfare", "label": "Health and welfare", "order": 2 },
+  { "id": "community-communication", "label": "Community communication", "order": 3 },
+  { "id": "community-engagement", "label": "Community engagement", "order": 4 },
+  { "id": "learning-knowledge", "label": "Learning and knowledge", "order": 5 },
+  { "id": "utility-public-service", "label": "Utility and public service coordination", "order": 6 },
+  { "id": "local-node-infrastructure", "label": "Local-node infrastructure", "order": 7 }
+]

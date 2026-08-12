@@ -1,0 +1,16 @@
+---
+permalink: /partnerships/index.html
+layout: layouts/base.njk
+title: Explore a PBB partnership | Project Bantay Bayan
+description: Explore a responsible Project Bantay Bayan funding, implementation, technology, research, learning, training, or operational partnership with clear roles and boundaries.
+canonicalPath: /partnerships/
+structuredData: { "@context": "https://schema.org", "@type": "ContactPage", "name": "Explore a PBB partnership", "url": "https://pbb.ph/partnerships/" }
+breadcrumbItems:
+  - label: Home
+    url: /
+  - label: Partnership inquiries
+---
+{% from "components/ui.njk" import pageHero, engagementForm with context %}
+{{ pageHero("Partnerships · Shared capability · Responsible collaboration", "Explore a PBB partnership", "Funding, implementation, research, technology, learning, training, and operational collaboration require clear roles, governance, ownership, safeguards, contribution boundaries, and practical outcomes.", null, "partnershipsHero") }}
+<section class="section band" aria-labelledby="partnership-overview-title"><div class="container"><div class="section-heading"><div><p class="section-kicker">Purpose-led collaboration</p><h2 id="partnership-overview-title">Connect an accountable contribution to a practical outcome</h2></div><p>This journey is for organizations exploring how their resources, expertise, research, technology, delivery capacity, or operational reach might responsibly support community resilience.</p></div><div class="engagement-detail-grid"><article><h3>Who it is for</h3><p>Donors, NGOs, implementation organizations, technology and infrastructure contributors, academic or research institutions, training partners, and operational coordinators.</p></article><article><h3>What it covers</h3><p>Roles, decision rights, governance, ownership, safeguards, contribution limits, affected communities or sectors, practical outcomes, and how responsibilities would be sustained.</p></article><article><h3>Helpful context</h3><p>Share your organization, proposed contribution, communities or sectors involved, expected role, resources or expertise offered, and governance or timing considerations.</p></article></div></div></section>
+<section class="section briefing-section" aria-labelledby="partnership-form-title"><div class="container briefing-grid"><div><p class="section-kicker">Explore responsible alignment</p><h2 id="partnership-form-title">Describe the contribution and the role you propose</h2><p>Submitting opens an exploratory conversation. It does not accept funding, appoint a vendor or implementation partner, authorize data sharing or unrestricted integration, guarantee exclusivity, or establish commercial terms.</p><ul class="briefing-points"><li>Roles, ownership, safeguards, and measurable outcomes must be clear.</li><li>Technical or operational contributions are assessed against PBB architecture and field needs.</li><li>Any collaboration remains subject to governance, owner approval, and appropriate agreements.</li></ul></div>{{ engagementForm(engagementForms.partnership) }}</div></section>

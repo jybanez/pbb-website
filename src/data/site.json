@@ -1,0 +1,18 @@
+{
+  "name": "Project Bantay Bayan",
+  "shortName": "PBB",
+  "tagline": "Community resilience infrastructure",
+  "url": "https://pbb.ph",
+  "locale": "en_PH",
+  "formEndpoint": "https://formspree.io/f/xpqprldj",
+  "contactEmailBase64": "cGFydG5lcnNoaXBzQGJhbnRheWJheWFuLm9yZw==",
+  "socialImage": "/assets/pbb-preview-graphic.png",
+  "navigation": [
+    { "label": "Home", "url": "/" },
+    { "label": "Modules", "url": "/modules/" },
+    { "label": "Infrastructure", "url": "/infrastructure/" },
+    { "label": "Deployment", "url": "/deployment/" },
+    { "label": "Status", "url": "/status/" },
+    { "label": "Request briefing", "url": "/briefing/", "cta": true }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "modules": [
+    { "slug": "hotline", "name": "PBB Hotline", "productName": "Vox", "family": "Auxilus Mos", "category": "emergency-operations", "description": "Local emergency intake, incident handling, command reporting, and support coordination.", "status": "integrated", "detailAvailable": true, "iconImageKey": "moduleHotlineIcon" },
+    { "slug": "support", "name": "PBB Support System", "productName": "Imperium", "family": "Auxilus Mos", "category": "emergency-operations", "description": "Consolidates SITREPs and manages support-request lifecycles at designated support nodes.", "status": "integrated", "detailAvailable": true, "iconImageKey": "moduleSupportIcon" },
+    { "slug": "salus", "name": "PBB Salus", "productName": "Salus", "family": "Auxilus Mos", "category": "emergency-operations", "description": "Local evacuation-center registration, occupancy, and relief-receipt operations in active development.", "status": "in-development", "detailAvailable": true, "iconImageKey": "moduleSalusIcon" },
+    { "slug": "natalium", "name": "PBB Natalium", "productName": "Natalium", "family": "Citizen-facing services", "category": "health-welfare", "description": "Local patient registry and continuity-of-care workflows for community health services.", "status": "integrated", "detailAvailable": true, "iconImageKey": "moduleNataliumIcon" },
+    { "slug": "chat", "name": "PBB Chat", "productName": "Civitas", "family": "Citizen-facing services", "category": "community-communication", "description": "LAN-local rooms, direct messages, moderation, and emergency handoff for community communication.", "status": "integrated", "detailAvailable": true, "iconImageKey": "moduleChatIcon" },
+    { "slug": "games", "name": "PBB Games", "productName": "Tabulus", "family": "Citizen-facing services", "category": "community-engagement", "description": "Optional local engagement and preparedness-learning experiences with emergency-mode safeguards.", "status": "integrated", "detailAvailable": true, "iconImageKey": "moduleGamesIcon" },
+    { "slug": "library", "name": "PBB Library", "productName": "Libria", "family": "Citizen-facing services", "category": "learning-knowledge", "description": "Governed cloud releases and a local offline catalog for public knowledge resources.", "status": "integrated", "detailAvailable": true, "iconImageKey": "moduleLibraryIcon" },
+    { "slug": "learning", "name": "PBB Learning", "productName": "Lumaria", "family": "Citizen-facing services", "category": "learning-knowledge", "description": "A local learning gateway connecting providers, catalogs, and learning instances.", "status": "in-development", "detailAvailable": true, "iconImageKey": "moduleLearningIcon" },
+    { "slug": "utility", "name": "PBB Utility", "productName": "Vena", "family": "Auxilus Mos", "category": "utility-public-service", "description": "Inbound incident context and local mission coordination for designated utility operators.", "status": "integrated", "detailAvailable": true, "iconImageKey": "moduleUtilityIcon" }
+  ],
+  "infrastructure": [
+    { "slug": "account", "name": "PBB Account", "description": "Local canonical identity and OAuth-style SSO." },
+    { "slug": "relay", "name": "PBB Relay", "description": "Selective store-and-forward messaging between nodes." },
+    { "slug": "realtime", "name": "PBB Realtime", "description": "One shared local WebSocket gateway per node." },
+    { "slug": "mapserver", "name": "PBB MapServer", "description": "Prepared local map tiles and boundaries." },
+    { "slug": "maestro", "name": "PBB Maestro", "description": "Observer-only worker telemetry and health visibility." },
+    { "slug": "landing", "name": "PBB Landing", "description": "Local launcher and safe node metadata projection." },
+    { "slug": "kit-setup", "name": "PBB Kit Setup", "description": "Windows provisioning and service orchestration." }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0",
+  "type": "module",
+  "slug": "utility",
+  "name": "PBB Utility",
+  "productName": "Vena",
+  "productFamily": "Auxilus Mos",
+  "category": "utility-public-service",
+  "heroImageKey": "moduleUtilityHero",
+  "shortDescription": "Inbound Hotline incident context, utility assets and teams, local missions, and responder acknowledgement for operators.",
+  "longDescription": [
+    "PBB Utility / Vena is a Laravel utility-operations module. Relay delivers validated Hotline incident snapshots targeted to utility.vena; Vena retains the inbound envelope, quarantines invalid or stale data, normalizes the current incident, and places it beside utility assets, teams, maps, and local missions.",
+    "The confirmed V1 path is inbound-only. Operator mission work and web responder acknowledgement are local; outbound utility lifecycle updates, PBB Realtime integration, and an offline mobile responder helper are not confirmed."
+  ],
+  "primaryUsers": ["Utility operators", "Utility command staff", "Utility administrators", "Assigned responders"],
+  "deployment": { "classification": "special", "placements": ["utility-operations-node"] },
+  "readiness": {
+    "status": "integrated",
+    "qualifier": "production-hardening",
+    "note": "Inbound Relay intake, quarantine and stale handling, normalized incidents, assets, teams, maps, missions, and responder acceptance are implemented.",
+    "remainingWork": ["Define whether utility mission and lifecycle updates remain local or gain an outbound contract.", "Approve raw payload retention, audit, purge, and encrypted backup policy.", "Keep the planned mobile offline helper separate until its contracts are implemented."]
+  },
+  "problemSolved": "Utility teams need validated emergency context in their own local operating surface without exposing direct media paths or assuming a two-way lifecycle that has not yet been implemented.",
+  "workflowSteps": [
+    { "id": "receive", "title": "Receive a validated handoff", "description": "Relay posts a Hotline incident snapshot with the required type, target, version, identity, and metadata-only media references." },
+    { "id": "normalize", "title": "Quarantine or normalize", "description": "Vena retains the raw envelope, rejects invalid or stale inputs, and updates the normalized local incident when valid." },
+    { "id": "coordinate", "title": "Coordinate utility work", "description": "Operators review incident context beside assets and teams, then create and manage a local mission." },
+    { "id": "acknowledge", "title": "Acknowledge assignment", "description": "A responder can review and accept an assigned mission through the current web surface." }
+  ],
+  "offlineBehavior": {
+    "localCapabilities": ["Accepted incidents, assets, teams, missions, responder views, and activity history remain in the local Vena database.", "The operator and responder web surfaces can continue on the LAN after the incident has been delivered."],
+    "requiresLocalServices": ["Vena requires its Laravel application, MySQL database, and role-based local session.", "Prepared local map display depends on configured MapServer tile URLs and coverage."],
+    "syncsWhenConnected": ["Relay can deliver new or newer Hotline incident snapshots when a route to the utility node is available.", "No confirmed outbound status synchronization occurs after local mission handling."],
+    "connectivityRequired": ["Cross-node incident intake depends on Relay delivery to the configured Vena handler.", "Map cache misses may depend on upstream providers when local coverage was not prepared."],
+    "notSynchronized": ["No outbound utility mission, responder, or lifecycle update contract is confirmed.", "No native or PWA mobile offline queue and no Realtime responder tracking are confirmed."]
+  },
+  "screenshots": [{ "id": "screenshot-pending", "type": "placeholder", "title": "Validated Vena interface pending", "caption": "No current Vena screenshot has been approved for public use; the page describes the confirmed inbound workflow." }],
+  "faqs": [
+    { "id": "source", "question": "How does Vena receive emergency incidents?", "answer": "Relay securely sends approved Hotline incident updates to Vena for utility teams to handle." },
+    { "id": "invalid", "question": "What happens to invalid or stale messages?", "answer": "Vena sets aside messages that are incorrect, meant for another system, too old, or otherwise unsafe. This prevents them from replacing valid information." },
+    { "id": "outbound", "question": "Does Vena send mission status back to Hotline?", "answer": "Not in the confirmed V1 design. After Hotline hands an incident to Vena, mission work and status information remain local to Vena." },
+    { "id": "offline", "question": "Can utility operators continue without internet?", "answer": "Yes. After an incident reaches Vena, operators can continue using local information about assets, teams, missions, and responders while Vena is running on the local PBB network." },
+    { "id": "mobile", "question": "Is the responder view an offline mobile helper app?", "answer": "No. The current responder view is a web page served by the local node. A separate mobile workflow designed to work offline is still planned." },
+    { "id": "media", "question": "Does Vena receive direct incident media URLs?", "answer": "No. Vena receives only basic information describing related media, not direct file locations or web links. Messages containing those direct locations are set aside." }
+  ],
+  "relatedModules": ["hotline", "support", "salus"],
+  "relatedInfrastructure": ["relay", "mapserver", "account"],
+  "seo": { "title": "PBB Utility / Vena | Local utility coordination", "description": "Explore PBB Utility / Vena's inbound Relay incident validation, local utility assets and teams, missions, responder acknowledgement, maps, and V1 boundaries." }
+}

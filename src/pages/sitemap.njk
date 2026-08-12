@@ -1,0 +1,18 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{ site.url }}/</loc></url>
+  <url><loc>{{ site.url }}/modules/</loc></url>
+  {% for module in modules %}<url><loc>{{ site.url }}/modules/{{ module.slug }}/</loc></url>{% endfor %}
+  <url><loc>{{ site.url }}/infrastructure/</loc></url>
+  {% for component in components %}<url><loc>{{ site.url }}/infrastructure/{{ component.slug }}/</loc></url>{% endfor %}
+  <url><loc>{{ site.url }}/deployment/</loc></url>
+  <url><loc>{{ site.url }}/status/</loc></url>
+  <url><loc>{{ site.url }}/briefing/</loc></url>
+  <url><loc>{{ site.url }}/pilot/</loc></url>
+  <url><loc>{{ site.url }}/partnerships/</loc></url>
+  <url><loc>{{ site.url }}/gallery/</loc></url>
+</urlset>

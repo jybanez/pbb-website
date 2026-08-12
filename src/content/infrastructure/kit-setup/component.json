@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0", "type": "infrastructure-component", "slug": "kit-setup", "name": "PBB Kit Setup", "suite": "Wizaya Server Suite", "heroImageKey": "infrastructureKitSetupHero",
+  "shortDescription": "Windows-oriented provisioning and service orchestration for preparing a repeatable PBB local-node installation.",
+  "longDescription": ["PBB Kit Setup prepares the confirmed Windows local-node stack, including WAMP-oriented application prerequisites, local name services, service configuration, and required data locations.", "Provisioning still requires administrative access, deployment-specific secrets, verified artifacts, and recovery planning. FRP appears in planning material but is not presented as a confirmed implemented setup feature."],
+  "readiness": { "status": "integrated", "qualifier": "production-hardening", "note": "Windows-oriented preparation, local service setup, Technitium integration, and data-directory orchestration are implemented.", "remainingWork": ["Publish a signed, repeatable release and rollback procedure.", "Complete secrets, backup, and field-recovery runbooks.", "Treat FRP as planned until implementation evidence and security review are complete."] },
+  "nodeRole": "Turns approved software artifacts and deployment configuration into a repeatable managed local-node installation with known services and data locations.",
+  "supportedModules": ["hotline", "support", "natalium", "chat", "games", "utility"],
+  "localBehavior": ["Prepares application prerequisites, local services, configuration, and persistent data paths on the node.", "Supports Windows service lifecycle and local name-resolution setup for the confirmed stack."],
+  "connectivityBehavior": ["Artifact acquisition and updates require an approved delivery path or offline media process.", "FRP connectivity is planned material, not a confirmed public implementation claim."],
+  "deployment": { "classification": "baseline", "placements": ["barangay-node", "local-command-node"] },
+  "operationalConsiderations": ["Verify administrative privileges, hardware, storage, power, and recovery media before installation.", "Record artifact versions, checksums, secrets ownership, backup locations, and rollback steps."],
+  "securityBoundary": ["Run provisioning only from trusted signed artifacts under authorized administration.", "Keep deployment secrets out of public bundles and review every remote-access mechanism separately."],
+  "diagramsOrScreenshots": [{ "id": "kit-setup-evidence-pending", "type": "placeholder", "title": "Validated setup flow pending", "caption": "No public setup capture is approved; no installer state or deployment secret is fabricated." }],
+  "faqs": [
+    { "id": "platform", "question": "What operating environment does Kit Setup target?", "answer": "It currently targets Windows computers. It prepares the web server, database software, local service names, and storage locations needed by the node." },
+    { "id": "automatic", "question": "Is deployment completely automatic?", "answer": "No. An authorized person must still check the hardware, choose how the node will connect, protect passwords and keys, verify the installation files, make backups, and approve the completed setup." },
+    { "id": "frp", "question": "Does Kit Setup configure FRP today?", "answer": "No confirmed implementation does this today. FRP appears in planning documents, but it is not presented as a working Kit Setup feature." },
+    { "id": "updates", "question": "How should node software be updated?", "answer": "Use approved installation files, confirm their version and authenticity, make a protected backup, schedule the work, test the result, and keep a proven way to return to the previous version." },
+    { "id": "secrets", "question": "Where should deployment secrets be stored?", "answer": "Passwords, security keys, and similar private information should be kept in protected storage managed by the deployment owner. They should never be placed in public installation files or documentation." }
+  ],
+  "relatedComponents": ["landing", "maestro", "mapserver"], "relatedModules": ["hotline", "natalium", "library"],
+  "seo": { "title": "PBB Kit Setup | Windows local-node provisioning", "description": "Learn how PBB Kit Setup prepares the Windows local-node stack, including services, local naming, data paths, verified artifacts, and recovery boundaries." }
+}

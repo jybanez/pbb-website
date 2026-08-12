@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0", "type": "infrastructure-component", "slug": "mapserver", "name": "PBB MapServer", "suite": "Wizaya Server Suite", "heroImageKey": "infrastructureMapserverHero",
+  "shortDescription": "Prepared local map tiles and administrative boundaries for supported operational views during route disruption.",
+  "longDescription": ["PBB MapServer keeps prepared tiles and boundary data near the applications that use them. This lets supported operational views retain useful geographic context on the local network.", "Offline coverage is limited to material prepared for the deployment. A tile, style, boundary, or zoom level outside that set may require an upstream provider and must not be promised offline."],
+  "readiness": { "status": "integrated", "qualifier": "pilot-ready-foundation", "note": "Local serving of prepared tiles and boundaries is implemented for supported map views.", "remainingWork": ["Confirm coverage areas, zoom levels, and storage budgets for each deployment.", "Document refresh, attribution, and licensing procedures.", "Test every public map view against a fully disconnected node."] },
+  "nodeRole": "Provides locally prepared geographic context to operational modules without claiming that every possible map request can be satisfied offline.",
+  "supportedModules": ["hotline", "support", "utility"],
+  "localBehavior": ["Prepared tiles and boundaries remain available from the local node.", "Supported modules can use cached geographic context without a public route."],
+  "connectivityBehavior": ["Cache misses can require an upstream provider.", "Coverage refresh and newly requested areas require a governed preparation workflow."],
+  "deployment": { "classification": "baseline", "placements": ["barangay-node", "local-command-node", "support-node", "utility-operations-node"] },
+  "operationalConsiderations": ["Budget disk space for the approved area, styles, and zoom levels.", "Track source licensing, attribution, refresh date, and boundary provenance."],
+  "securityBoundary": ["Expose only intended services on the managed local network.", "Review map sources and configuration before enabling an upstream fallback."],
+  "diagramsOrScreenshots": [{ "id": "mapserver-evidence-pending", "type": "placeholder", "title": "Validated coverage view pending", "caption": "No deployment-specific coverage map is approved; no offline coverage extent is invented." }],
+  "faqs": [
+    { "id": "offline", "question": "Will every map view work without internet?", "answer": "No. Only map areas and levels of detail prepared in advance will work reliably offline. Viewing an area that was not prepared may require internet access." },
+    { "id": "coverage", "question": "How is the offline coverage area selected?", "answer": "The deployment owner chooses which places and levels of detail are needed, how much storage they may use, where the maps come from, and how often they are updated." },
+    { "id": "boundaries", "question": "Can it serve administrative boundaries locally?", "answer": "Yes, after the required boundary files have been checked and installed on the local node." },
+    { "id": "refresh", "question": "How are map resources updated?", "answer": "Operators prepare and install approved map updates while keeping records of the source, required credit, usage rights, and a backup copy." },
+    { "id": "fallback", "question": "Is upstream map fallback always enabled?", "answer": "No. Any online map source must be deliberately configured, including how it connects, what credentials it uses, what information it may send, and what happens if it is unavailable." }
+  ],
+  "relatedComponents": ["kit-setup", "maestro", "landing"], "relatedModules": ["hotline", "support", "utility"],
+  "seo": { "title": "PBB MapServer | Prepared local maps and boundaries", "description": "Learn how PBB MapServer serves prepared local tiles and boundaries, including offline coverage limits, cache misses, storage, licensing, and refresh duties." }
+}

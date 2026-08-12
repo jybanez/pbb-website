@@ -1,0 +1,223 @@
+{
+  "homepage": {
+    "inquiryType": "briefing",
+    "submitLabel": "Request briefing",
+    "fields": [
+      {
+        "name": "messageInput",
+        "id": "messageInput",
+        "label": "Message",
+        "summaryLabel": "Message",
+        "type": "textarea",
+        "required": true,
+        "placeholder": "Tell us about your organization, audience, topics, and questions.",
+        "maxlength": 3000
+      }
+    ]
+  },
+  "briefing": {
+    "inquiryType": "briefing",
+    "submitLabel": "Request briefing",
+    "fields": [
+      {
+        "name": "intendedAudience",
+        "id": "intendedAudience",
+        "label": "Intended audience",
+        "summaryLabel": "Intended audience",
+        "type": "text",
+        "required": true,
+        "placeholder": "Officials, operators, health teams, partners, or another group",
+        "maxlength": 300
+      },
+      {
+        "name": "briefingTopics",
+        "id": "briefingTopics",
+        "label": "Topics to cover",
+        "summaryLabel": "Topics to cover",
+        "type": "checkbox-group",
+        "required": true,
+        "options": [
+          "Platform overview",
+          "Modules and workflows",
+          "Local-node infrastructure",
+          "Deployment and readiness",
+          "Product demonstration",
+          "Other questions"
+        ]
+      },
+      {
+        "name": "sessionFormat",
+        "id": "sessionFormat",
+        "label": "Preferred session format",
+        "summaryLabel": "Preferred session format",
+        "type": "select",
+        "required": false,
+        "placeholder": "Select a preference (optional)",
+        "options": ["Online", "In person", "No preference"]
+      },
+      {
+        "name": "additionalNotes",
+        "id": "additionalNotes",
+        "label": "Questions or additional notes",
+        "summaryLabel": "Questions or additional notes",
+        "type": "textarea",
+        "required": false,
+        "placeholder": "Share organizational context or specific questions. Do not include sensitive or operational material.",
+        "maxlength": 3000
+      }
+    ]
+  },
+  "pilot": {
+    "inquiryType": "pilot",
+    "submitLabel": "Start pilot discussion",
+    "fields": [
+      {
+        "name": "locality",
+        "id": "locality",
+        "label": "Locality or service area",
+        "summaryLabel": "Locality or service area",
+        "type": "text",
+        "required": true,
+        "maxlength": 300
+      },
+      {
+        "name": "continuityNeed",
+        "id": "continuityNeed",
+        "label": "Community or institutional need",
+        "summaryLabel": "Community or institutional need",
+        "type": "textarea",
+        "required": true,
+        "placeholder": "Describe the continuity problem without including incident, patient, case, or other sensitive details.",
+        "maxlength": 3000
+      },
+      {
+        "name": "moduleInterests",
+        "id": "moduleInterests",
+        "label": "Modules or workflows of interest",
+        "summaryLabel": "Modules or workflows of interest",
+        "type": "text",
+        "required": false,
+        "placeholder": "For example: Hotline, Support, Natalium, Library, or Utility",
+        "maxlength": 500
+      },
+      {
+        "name": "targetTimeframe",
+        "id": "targetTimeframe",
+        "label": "Target timeframe",
+        "summaryLabel": "Target timeframe",
+        "type": "select",
+        "required": false,
+        "placeholder": "Select a timeframe (optional; not a scheduling commitment)",
+        "options": [
+          "Exploring options",
+          "Within 3 months",
+          "Within 3–6 months",
+          "Within 6–12 months",
+          "No fixed timeframe"
+        ]
+      },
+      {
+        "name": "fieldConstraints",
+        "id": "fieldConstraints",
+        "label": "Known field constraints",
+        "summaryLabel": "Known field constraints",
+        "type": "textarea",
+        "required": false,
+        "placeholder": "Power, connectivity, equipment, training, logistics, or operating ownership—without sensitive operational details.",
+        "maxlength": 3000
+      },
+      {
+        "name": "additionalNotes",
+        "id": "additionalNotes",
+        "label": "Additional notes",
+        "summaryLabel": "Additional notes",
+        "type": "textarea",
+        "required": false,
+        "placeholder": "Add other non-sensitive context that may help the discussion.",
+        "maxlength": 3000
+      }
+    ]
+  },
+  "partnership": {
+    "inquiryType": "partnership",
+    "submitLabel": "Send partnership inquiry",
+    "fields": [
+      {
+        "name": "partnershipType",
+        "id": "partnershipType",
+        "label": "Partnership type",
+        "summaryLabel": "Partnership type",
+        "type": "select",
+        "required": true,
+        "placeholder": "Select one",
+        "options": [
+          "Funding or donor collaboration",
+          "Implementation or field delivery",
+          "Technology or infrastructure",
+          "Research or evaluation",
+          "Training or knowledge",
+          "Operational coordination",
+          "Other"
+        ]
+      },
+      {
+        "name": "proposedContribution",
+        "id": "proposedContribution",
+        "label": "Proposed contribution",
+        "summaryLabel": "Proposed contribution",
+        "type": "textarea",
+        "required": true,
+        "placeholder": "Describe the proposed contribution responsibly. Submission does not imply acceptance.",
+        "maxlength": 3000
+      },
+      {
+        "name": "communitiesOrSectors",
+        "id": "communitiesOrSectors",
+        "label": "Communities or sectors involved",
+        "summaryLabel": "Communities or sectors involved",
+        "type": "text",
+        "required": false,
+        "layout": "half",
+        "maxlength": 500
+      },
+      {
+        "name": "expectedRole",
+        "id": "expectedRole",
+        "label": "Expected role",
+        "summaryLabel": "Expected role",
+        "type": "text",
+        "required": false,
+        "layout": "half",
+        "maxlength": 500
+      },
+      {
+        "name": "resourcesOrExpertise",
+        "id": "resourcesOrExpertise",
+        "label": "Resources or expertise offered",
+        "summaryLabel": "Resources or expertise offered",
+        "type": "textarea",
+        "required": false,
+        "maxlength": 3000
+      },
+      {
+        "name": "timingOrGovernance",
+        "id": "timingOrGovernance",
+        "label": "Timing or governance considerations",
+        "summaryLabel": "Timing or governance considerations",
+        "type": "textarea",
+        "required": false,
+        "maxlength": 3000
+      },
+      {
+        "name": "additionalNotes",
+        "id": "additionalNotes",
+        "label": "Additional notes",
+        "summaryLabel": "Additional notes",
+        "type": "textarea",
+        "required": false,
+        "placeholder": "Add other non-sensitive context that may help the discussion.",
+        "maxlength": 3000
+      }
+    ]
+  }
+}

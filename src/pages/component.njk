@@ -1,0 +1,18 @@
+---
+pagination:
+  data: components
+  size: 1
+  alias: component
+permalink: "/infrastructure/{{ component.slug }}/index.html"
+layout: layouts/component.njk
+eleventyComputed:
+  title: "{{ component.seo.title }}"
+  description: "{{ component.seo.description }}"
+  canonicalPath: "/infrastructure/{{ component.slug }}/"
+  structuredData:
+    "@context": "https://schema.org"
+    "@type": "WebPage"
+    name: "{{ component.seo.title }}"
+    description: "{{ component.seo.description }}"
+    url: "https://pbb.ph/infrastructure/{{ component.slug }}/"
+---

@@ -1,0 +1,30 @@
+{% from "components/ui.njk" import breadcrumbs with context %}
+{% if module %}
+  {% set headerBreadcrumbItems = [{ label: "Home", url: "/" }, { label: "Modules", url: "/modules/" }, { label: module.productName }] %}
+{% elif component %}
+  {% set headerBreadcrumbItems = [{ label: "Home", url: "/" }, { label: "Infrastructure", url: "/infrastructure/" }, { label: component.name }] %}
+{% elif breadcrumbItems %}
+  {% set headerBreadcrumbItems = breadcrumbItems %}
+{% endif %}
+<header class="site-header" data-site-header>
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Project Bantay Bayan home">
+      <img src="/assets/generated/pbb-logo-eye-66.webp" srcset="/assets/generated/pbb-logo-eye-132.webp 2x, /assets/generated/pbb-logo-eye-198.webp 3x" width="66" height="42" alt="" />
+      <span><strong>Project Bantay Bayan</strong><small>Community resilience infrastructure</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary">
+      {% for item in site.navigation %}<a href="{{ item.url }}"{% if item.cta %} class="button button-small"{% endif %}{% if page.url === item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>{% endfor %}
+    </nav>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-navigation" data-menu-button>
+      <span class="sr-only">Open navigation</span><span aria-hidden="true"></span>
+    </button>
+  </div>
+  <nav id="mobile-navigation" class="mobile-nav" aria-label="Mobile primary" hidden data-mobile-nav>
+    <div class="container">{% for item in site.navigation %}<a href="{{ item.url }}"{% if page.url === item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>{% endfor %}</div>
+  </nav>
+  {% if headerBreadcrumbItems %}
+  <div class="breadcrumb-bar">
+    <div class="container breadcrumb-wrap">{{ breadcrumbs(headerBreadcrumbItems) }}</div>
+  </div>
+  {% endif %}
+</header>

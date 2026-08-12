@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0", "type": "infrastructure-component", "slug": "relay", "name": "PBB Relay", "suite": "Wizaya Server Suite", "heroImageKey": "infrastructureRelayHero",
+  "shortDescription": "Selective store-and-forward delivery for approved messages and operational events between configured PBB nodes.",
+  "longDescription": ["PBB Relay accepts approved message envelopes, persists them locally, and retries delivery through configured routes. It supports selected inter-node workflows without requiring every application database to stay continuously connected.", "Relay is a message transport, not universal database replication. Each producer and consumer owns its message contract, authorization, idempotency, retention, and business-state handling."],
+  "readiness": { "status": "integrated", "qualifier": "production-hardening", "note": "Store-and-forward envelopes, retry handling, delivery state, and selected module integrations are implemented.", "remainingWork": ["Finalize topology-specific token ownership and rotation.", "Publish retention, retry, quarantine, and recovery runbooks.", "Load-test each approved route and message contract before field rollout."] },
+  "nodeRole": "Provides durable selective delivery between known endpoints so supported workflows can queue locally and resume when an approved route becomes reachable.",
+  "supportedModules": ["hotline", "support", "utility"],
+  "localBehavior": ["Accepted envelopes and delivery state remain in the local Relay store.", "Workers can retry pending routes without changing the producer application database."],
+  "connectivityBehavior": ["Delivery resumes only across explicitly configured and reachable routes.", "Relay does not merge arbitrary records or create a shared mutable database."],
+  "deployment": { "classification": "baseline", "placements": ["barangay-node", "local-command-node", "support-node"] },
+  "operationalConsiderations": ["Monitor queue age, quarantine, attempts, and destination health.", "Set retention and replay policy per message contract and deployment topology."],
+  "securityBoundary": ["Authenticate producers, destinations, and operational webhook consumers.", "Minimize envelope content and avoid treating transport acceptance as business acceptance."],
+  "diagramsOrScreenshots": [{ "id": "relay-evidence-pending", "type": "placeholder", "title": "Validated Relay topology pending", "caption": "A deployment-neutral public Relay topology has not been approved; no network route is invented." }],
+  "faqs": [
+    { "id": "replication", "question": "Does Relay synchronize every PBB database?", "answer": "No. Relay sends only selected, approved messages. It does not copy entire databases or automatically combine records from different nodes." },
+    { "id": "offline", "question": "What happens when the destination is unreachable?", "answer": "Relay can keep an accepted message on the local node and try again later, following the delivery and storage rules set for that deployment." },
+    { "id": "contracts", "question": "Who owns the meaning of a Relay message?", "answer": "The apps sending and receiving the message must agree on what it means, what information is allowed, who may use it, how duplicates are handled, and what action should follow." },
+    { "id": "routes", "question": "Can Relay send through any available internet route?", "answer": "No. Deployment owners must approve where messages may go, how Relay connects, which credentials it uses, and which kinds of messages it may send." },
+    { "id": "monitoring", "question": "What should operators monitor?", "answer": "Operators should watch how long messages are waiting, repeated delivery attempts, rejected messages, the health of receiving services, storage limits, and confirmation that messages were acted on." }
+  ],
+  "relatedComponents": ["maestro", "account", "realtime"], "relatedModules": ["hotline", "support", "utility"],
+  "seo": { "title": "PBB Relay | Selective store-and-forward messaging", "description": "Understand PBB Relay selective message delivery, local queuing, retry behavior, and the boundary that it is not universal database synchronization." }
+}

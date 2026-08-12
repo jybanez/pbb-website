@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0",
+  "type": "module",
+  "slug": "support",
+  "name": "PBB Support System",
+  "productName": "Imperium",
+  "productFamily": "Auxilus Mos",
+  "category": "emergency-operations",
+  "heroImageKey": "moduleSupportHero",
+  "shortDescription": "A designated support-node workbench for consolidating SITREPs and managing inter-node support requests.",
+  "longDescription": [
+    "PBB Support System / Imperium receives Relay-delivered situation reports and support requests at a designated support node. It stages the latest valid report from each source, prepares a consolidated current picture, and gives support operators a controlled request lifecycle.",
+    "Imperium also receives Relay source-heartbeat operational webhooks and can publish accepted snapshots through PBB Realtime. Its placement, users, credentials, retention rules, and receiving-agency authority remain deployment-specific."
+  ],
+  "primaryUsers": ["Support operators", "Receiving agencies", "Emergency coordinators", "Support-node administrators"],
+  "deployment": { "classification": "special", "placements": ["support-node", "local-command-node"] },
+  "readiness": {
+    "status": "integrated",
+    "qualifier": "production-hardening",
+    "note": "SITREP intake and consolidation, support-request handling, Relay delivery, source-heartbeat webhooks, Realtime publishing, and map context are implemented.",
+    "remainingWork": ["Confirm operational placement and receiving-agency authority.", "Harden role enforcement and remove development credentials.", "Publish token ownership, retention, and multi-node operating runbooks."]
+  },
+  "problemSolved": "Local emergency nodes need a structured way to request outside help and give receiving agencies a consolidated, current view without copying every editable incident record across the network.",
+  "workflowSteps": [
+    { "id": "receive", "title": "Receive selected reports", "description": "Relay delivers validated SITREPs, support requests, and operational source-heartbeat events to the designated node." },
+    { "id": "consolidate", "title": "Consolidate current context", "description": "Imperium stages the latest valid SITREP per source and builds a current support-level picture." },
+    { "id": "coordinate", "title": "Coordinate support", "description": "Operators review, accept, reject, assign, track, and fulfill support requests through a local lifecycle." },
+    { "id": "report-upstream", "title": "Send selected updates", "description": "Consolidated SITREPs and request lifecycle events enter Relay-backed delivery when the route is reachable." }
+  ],
+  "offlineBehavior": {
+    "localCapabilities": ["Staged SITREPs, consolidation, request review, operator actions, and local history remain available from the support database.", "Prepared map context can remain available from the local MapServer cache."],
+    "requiresLocalServices": ["The Laravel application, MySQL, queue worker, and scheduler support the confirmed workflows.", "Relay is required for new cross-node intake and outbound lifecycle delivery; MapServer and Realtime support their configured views."],
+    "syncsWhenConnected": ["Relay can deliver new source SITREPs and Hotline support requests.", "Imperium can submit consolidated SITREPs and supported lifecycle updates through Relay."],
+    "connectivityRequired": ["Cross-node delivery depends on a reachable Relay route and configured topology.", "Remote evidence access requires a separately configured and authorized Hotline media endpoint."],
+    "notSynchronized": ["Imperium does not create universal database replication between nodes.", "Editable Hotline incidents are not copied into a shared mutable incident database."]
+  },
+  "screenshots": [{ "id": "screenshot-pending", "type": "placeholder", "title": "Validated support interface pending", "caption": "No Imperium screenshot has been approved for this public page; no interface is fabricated." }],
+  "faqs": [
+    { "id": "placement", "question": "Where should Imperium be deployed?", "answer": "Imperium should run on an approved support or command node. The deployment owner decides whether that node belongs to a city, municipality, province, agency, or PBB headquarters." },
+    { "id": "incident-copy", "question": "Does it copy every Hotline incident?", "answer": "No. Imperium receives selected situation reports and support requests, not full editable copies of every Hotline incident." },
+    { "id": "offline", "question": "What remains available when upstream connectivity is lost?", "answer": "Reports already received, the combined situation view, local support requests, and local history remain available while the node services are running." },
+    { "id": "heartbeat", "question": "How are source heartbeats received?", "answer": "Relay sends a separate status update that tells Imperium whether a reporting source is still active. These health updates are kept separate from ordinary reports and requests." },
+    { "id": "maps", "question": "Will the support map work offline?", "answer": "Only map areas and boundaries prepared in advance will work reliably offline. Looking outside those prepared areas may require an online map source." },
+    { "id": "authorization", "question": "Is Imperium ready for unrestricted agency access?", "answer": "No. Before agencies share it, the deployment owner must strengthen and approve user roles, sign-in credentials, who may receive requests, how long records are kept, and the operating procedures." }
+  ],
+  "relatedModules": ["hotline", "salus", "utility"],
+  "relatedInfrastructure": ["relay", "realtime", "mapserver", "account"],
+  "seo": { "title": "PBB Support System / Imperium | Support coordination", "description": "Explore how PBB Support System / Imperium consolidates SITREPs, manages support requests, receives Relay heartbeats, and preserves local support operations." }
+}

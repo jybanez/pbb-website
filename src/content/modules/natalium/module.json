@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.0",
+  "type": "module",
+  "slug": "natalium",
+  "name": "PBB Natalium",
+  "productName": "Natalium",
+  "productFamily": "Citizen-facing services",
+  "category": "health-welfare",
+  "heroImageKey": "moduleNataliumHero",
+  "shortDescription": "A local health workflow module for patient registry, community health programs, continuity of care, referrals, and reporting.",
+  "longDescription": [
+    "PBB Natalium is a local-node health application for health-center and field workflows. It brings patient registry, program enrollment, appointments, queue and care tasks, encounters, maternal and child health, birth-defect surveillance, referrals, prescriptions, reports, and exports into one local service.",
+    "Natalium integrates with PBB Account for sign-in and app-admin user provisioning. Its health records and document paths are local; no Relay outbox or upstream health-data synchronization was confirmed in the reviewed implementation."
+  ],
+  "primaryUsers": ["Community health workers", "Practitioners", "Health-center administrators", "Patients and citizens", "Health program managers"],
+  "deployment": {
+    "classification": "special",
+    "placements": ["health-center-node", "barangay-node", "city-municipal-health-node", "field-health-node"]
+  },
+  "readiness": {
+    "status": "integrated",
+    "qualifier": "production-hardening",
+    "note": "Core registry, program, care, maternal and child health, surveillance, referral, prescription, reporting, export, and Account integration workflows are implemented.",
+    "remainingWork": [
+      "Approve privacy, retention, backup, and document-access policy before live health deployment.",
+      "Define local login procedures when Account is unavailable for a new sign-in.",
+      "Decide whether health records remain node-local or gain a future selective upstream contract."
+    ]
+  },
+  "problemSolved": "Community health teams need dependable access to patient context and care workflows even when external connectivity is unreliable. Natalium keeps these operational records and processes on a designated local node rather than depending on a continuous cloud connection.",
+  "workflowSteps": [
+    { "id": "sign-in", "title": "Enter through local identity", "description": "A staff member or citizen signs in through the node's PBB Account integration and receives an app-local session and capabilities." },
+    { "id": "register", "title": "Establish patient context", "description": "Authorized staff review a profile application, duplicate checks, identity requirements, and the local patient record." },
+    { "id": "care", "title": "Coordinate local care", "description": "Teams manage programs, appointments, queues, tasks, encounters, referrals, prescriptions, and supported maternal or child health workflows." },
+    { "id": "report", "title": "Review and export", "description": "Authorized management users review reports, snapshots, exports, audit information, and controlled operations tools." }
+  ],
+  "offlineBehavior": {
+    "localCapabilities": [
+      "Authenticated patient, program, care, maternal and child health, referral, prescription, reporting, and document workflows are backed by the local database and storage paths.",
+      "The module can serve users over the designated node LAN without relying on a remote health database."
+    ],
+    "requiresLocalServices": [
+      "PBB Account is used for new SSO sign-ins and app-admin provisioning.",
+      "Natalium requires its local Laravel application, MySQL database, and protected document or backup storage."
+    ],
+    "syncsWhenConnected": [
+      "Account app-admin synchronization can update Natalium's local linked user records when the local identity service is reachable.",
+      "Natalium can read configured Relay hub JSON for node context; this is not health-record synchronization."
+    ],
+    "connectivityRequired": [
+      "A new sign-in depends on the configured PBB Account service being reachable.",
+      "Any future transfer outside the node would require an approved and implemented integration that is not currently confirmed."
+    ],
+    "notSynchronized": [
+      "No Relay outbox, retry queue, conflict strategy, or upstream synchronization for health records was confirmed.",
+      "Realtime and MapServer integration were not confirmed for Natalium."
+    ]
+  },
+  "screenshots": [
+    {
+      "id": "screenshot-pending",
+      "type": "placeholder",
+      "title": "Validated interface image pending",
+      "caption": "No Natalium screenshot has been approved for this public page yet; the page intentionally shows no fabricated interface."
+    }
+  ],
+  "faqs": [
+    { "id": "internet-down", "question": "Can Natalium work without an internet connection?", "answer": "Yes. Natalium can use its database and files over the local PBB network. New sign-ins still require the local PBB Account service to be working." },
+    { "id": "health-sync", "question": "Are Natalium health records synchronized to the cloud?", "answer": "No cloud transfer of health records has been confirmed. Patient and care records should be treated as staying on the local node unless a limited and formally reviewed sharing process is added later." },
+    { "id": "records", "question": "What health workflows are implemented?", "answer": "The reviewed version includes patient registration, health programs, appointments, queues and staff tasks, consultations, maternal and child health, birth-defect monitoring, referrals, prescriptions, reports, exports, and operating tools." },
+    { "id": "account", "question": "Why does Natalium use PBB Account?", "answer": "PBB Account handles sign-in and helps administrators set up users. Natalium then manages what each signed-in user may do inside the health application." },
+    { "id": "privacy", "question": "Is Natalium ready for unrestricted live health deployment?", "answer": "Not yet. The foundation is strong, but the owner and pilot team must first approve privacy rules, how long records are kept, backups, document access, restoration, and day-to-day operating procedures." },
+    { "id": "documents", "question": "Where are documents and backups stored?", "answer": "Natalium can use chosen folders on the local node for documents and backups. These folders should not be publicly accessible, and approved rules must cover who can use them, how long files are kept, and how they are restored." }
+  ],
+  "relatedModules": ["hotline", "salus"],
+  "relatedInfrastructure": ["account", "landing", "kit-setup"],
+  "seo": {
+    "title": "PBB Natalium | Local health continuity workflows",
+    "description": "Explore PBB Natalium's local patient registry, health programs, care workflows, referrals, prescriptions, reporting, Account integration, and readiness caveats."
+  }
+}

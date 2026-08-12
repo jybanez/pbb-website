@@ -1,0 +1,23 @@
+---
+permalink: /infrastructure/index.html
+layout: layouts/base.njk
+title: PBB Infrastructure | Wizaya Server Suite local-node services
+description: Explore the shared Wizaya Server Suite services behind Project Bantay Bayan, including local identity, selective relay, realtime events, prepared maps, telemetry, landing, and setup.
+canonicalPath: /infrastructure/
+structuredData:
+  "@context": "https://schema.org"
+  "@type": "CollectionPage"
+  name: PBB Infrastructure
+  url: https://pbb.ph/infrastructure/
+breadcrumbItems:
+  - label: Home
+    url: /
+  - label: Infrastructure
+---
+{% from "components/ui.njk" import pageHero, infrastructureCard, ctaSection with context %}
+{{ pageHero("Powered by Wizaya · Shared local-node services", "PBB infrastructure", "Seven shared services make PBB modules operate as one local platform. They are deployment infrastructure, not separate citizen applications.", null, "infrastructureOverviewHero") }}
+<div class="container overview-sections">
+  <section class="detail-section split-copy" aria-labelledby="infrastructure-boundary"><div><p class="section-kicker">Architecture boundary</p><h2 id="infrastructure-boundary">Local continuity with explicit limits</h2></div><div><p>The suite keeps identity, selected messages, live events, prepared maps, health visibility, application discovery, and provisioning close to the node.</p><p>It does not imply full OIDC conformance, universal database replication, unlimited offline map coverage, durable in-browser queues, or an unrestricted remote-control plane.</p></div></section>
+  <section class="category-section" aria-labelledby="suite-components"><div class="category-heading"><span>07</span><h2 id="suite-components">Wizaya Server Suite components</h2></div><div class="card-grid infrastructure-grid">{% for item in productCatalog.infrastructure %}{{ infrastructureCard(item) }}{% endfor %}</div></section>
+  {{ ctaSection("Plan the local-node foundation", "A deployment discussion maps these shared services to approved hardware, topology, security, recovery, and operating ownership.") }}
+</div>

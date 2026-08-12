@@ -1,0 +1,16 @@
+---
+permalink: /pilot/index.html
+layout: layouts/base.njk
+title: Discuss a PBB pilot | Project Bantay Bayan
+description: Begin scoping a Project Bantay Bayan pilot around a locality, responsible organization, service ownership, safeguards, infrastructure, training, and field constraints.
+canonicalPath: /pilot/
+structuredData: { "@context": "https://schema.org", "@type": "ContactPage", "name": "Discuss a PBB pilot", "url": "https://pbb.ph/pilot/" }
+breadcrumbItems:
+  - label: Home
+    url: /
+  - label: Discuss a pilot
+---
+{% from "components/ui.njk" import pageHero, engagementForm with context %}
+{{ pageHero("Pilot planning · Local ownership · Field readiness", "Discuss a PBB pilot", "A pilot discussion explores a concrete community or institutional need, responsible service ownership, deployment boundaries, safeguards, infrastructure, training, and practical acceptance criteria.", null, "pilotHero") }}
+<section class="section band" aria-labelledby="pilot-overview-title"><div class="container"><div class="section-heading"><div><p class="section-kicker">Structured scoping</p><h2 id="pilot-overview-title">Start with the locality, owners, and continuity problem</h2></div><p>This journey is for organizations with a specific service area or institutional setting that may benefit from a governed PBB pilot.</p></div><div class="engagement-detail-grid"><article><h3>Who it is for</h3><p>A responsible LGU, barangay, health center, school, field organization, utility, or implementation team prepared to define local ownership and operating responsibilities.</p></article><article><h3>What it covers</h3><p>Community needs, intended services, data and governance boundaries, node infrastructure, power and connectivity realities, training, safeguards, field operations, and acceptance criteria.</p></article><article><h3>Helpful context</h3><p>Share the proposed locality or service area, responsible organization, continuity problem, modules or workflows of interest, timing, and known field constraints.</p></article></div></div></section>
+<section class="section briefing-section" aria-labelledby="pilot-form-title"><div class="container briefing-grid"><div><p class="section-kicker">Begin practical discovery</p><h2 id="pilot-form-title">Describe the proposed pilot context</h2><p>Submitting begins a scoping conversation. It does not approve a pilot, authorize production use, confirm pricing or hardware, guarantee a schedule, or replace security, privacy, governance, field acceptance, and owner approval.</p><ul class="briefing-points"><li>Service ownership and deployment boundaries must be identified.</li><li>Infrastructure, logistics, training, and safeguards are assessed for the actual setting.</li><li>Acceptance criteria are agreed before any live operational use.</li></ul></div>{{ engagementForm(engagementForms.pilot) }}</div></section>

@@ -1,0 +1,20 @@
+{
+  "classifications": [
+    { "id": "baseline", "label": "Baseline node service" },
+    { "id": "optional", "label": "Optional node service" },
+    { "id": "special", "label": "Specialized deployment" }
+  ],
+  "placements": [
+    { "id": "barangay-node", "label": "Barangay node" },
+    { "id": "local-command-node", "label": "Local command node" },
+    { "id": "health-center-node", "label": "Health-center node" },
+    { "id": "city-municipal-health-node", "label": "City or municipal health node" },
+    { "id": "field-health-node", "label": "Field health node" },
+    { "id": "daily-apps-node", "label": "Daily-apps node" },
+    { "id": "learning-node", "label": "School or learning node" },
+    { "id": "library-node", "label": "Library or knowledge node" },
+    { "id": "utility-operations-node", "label": "Utility operations node" },
+    { "id": "support-node", "label": "Designated support node" },
+    { "id": "evacuation-node", "label": "Evacuation operations node" }
+  ]
+}
