@@ -10,7 +10,30 @@
   "deployment": { "classification": "baseline", "placements": ["barangay-node", "local-command-node", "daily-apps-node"] },
   "operationalConsiderations": ["Back up identity data and signing material under a documented recovery procedure.", "Coordinate client identifiers, redirect routes, and role mappings for each application."],
   "securityBoundary": ["Keep administrative access and secrets inside the managed node boundary.", "OAuth-style support must not be presented as certified full OIDC support."],
-  "diagramsOrScreenshots": [{ "id": "account-evidence-pending", "type": "placeholder", "title": "Validated Account diagram pending", "caption": "No public Account interface or topology image has been approved; no implementation view is fabricated." }],
+  "diagramsOrScreenshots": [
+    {
+      "id": "account-accounts",
+      "type": "image",
+      "imageKey": "account-accounts",
+      "src": "assets/gallery/screenshots/PBB Account - Accounts.png",
+      "title": "Local accounts and application access",
+      "caption": "Administrators can review node-local account roles and status, then manage app-owned roles and access for each identity. Personal details are redacted for publication.",
+      "alt": "PBB Account administration view showing local account roles, status, and per-application access with personal details redacted",
+      "width": 1795,
+      "height": 876
+    },
+    {
+      "id": "account-clients",
+      "type": "image",
+      "imageKey": "account-clients",
+      "src": "assets/gallery/screenshots/PBB Account - Clients.png",
+      "title": "Trusted local SSO clients",
+      "caption": "The trusted-clients view shows participating applications, redirect and app-admin readiness, approved scopes, recent use, and controlled credential-rotation actions.",
+      "alt": "PBB Account trusted-clients view showing local SSO applications, readiness, scopes, and credential rotation controls with the profile photograph redacted",
+      "width": 1793,
+      "height": 877
+    }
+  ],
   "faqs": [
     { "id": "oidc", "question": "Is PBB Account a complete OpenID Connect provider?", "answer": "No. PBB Account provides a shared local identity and sign-in service for participating PBB apps, but it is not presented as a complete OpenID Connect service." },
     { "id": "offline", "question": "Can users sign in without internet access?", "answer": "Yes, as long as PBB Account, its stored data, and the app are working on the local PBB network." },

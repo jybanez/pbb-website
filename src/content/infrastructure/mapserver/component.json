@@ -10,7 +10,41 @@
   "deployment": { "classification": "baseline", "placements": ["barangay-node", "local-command-node", "support-node", "utility-operations-node"] },
   "operationalConsiderations": ["Budget disk space for the approved area, styles, and zoom levels.", "Track source licensing, attribution, refresh date, and boundary provenance."],
   "securityBoundary": ["Expose only intended services on the managed local network.", "Review map sources and configuration before enabling an upstream fallback."],
-  "diagramsOrScreenshots": [{ "id": "mapserver-evidence-pending", "type": "placeholder", "title": "Validated coverage view pending", "caption": "No deployment-specific coverage map is approved; no offline coverage extent is invented." }],
+  "diagramsOrScreenshots": [
+    {
+      "id": "mapserver-dashboard",
+      "type": "image",
+      "imageKey": "mapserver-dashboard",
+      "src": "assets/gallery/screenshots/PBB MapServer - Dashboard.png",
+      "title": "Map service status and cache readiness",
+      "caption": "The service dashboard reports current health, cache readiness, configured upstream resource types, and cache entry counts. Internal paths and hardening-state values are redacted.",
+      "alt": "PBB MapServer service dashboard showing operational health, cache readiness, upstream types, and cache counts with internal settings redacted",
+      "width": 1218,
+      "height": 1291
+    },
+    {
+      "id": "mapserver-diagnostics",
+      "type": "image",
+      "imageKey": "mapserver-diagnostics",
+      "src": "assets/gallery/screenshots/PBB MapServer - Diagnostics.png",
+      "title": "Endpoint diagnostics",
+      "caption": "Operators can select service, raster, vector, terrain, glyph, and point-of-interest endpoints for bounded diagnostic checks with an explicit per-endpoint timeout.",
+      "alt": "PBB MapServer diagnostics dialog for selecting and testing service and tile endpoints",
+      "width": 592,
+      "height": 466
+    },
+    {
+      "id": "mapserver-endpoints",
+      "type": "image",
+      "imageKey": "mapserver-endpoints",
+      "src": "assets/gallery/screenshots/PBB MapServer - Endpoints.png",
+      "title": "Available map endpoints",
+      "caption": "The endpoint reference documents each path, response type, cache behavior, operational purpose, and actions for copying or testing a request.",
+      "alt": "PBB MapServer endpoint reference showing methods, paths, MIME types, cache behavior, descriptions, and test actions",
+      "width": 1229,
+      "height": 791
+    }
+  ],
   "faqs": [
     { "id": "offline", "question": "Will every map view work without internet?", "answer": "No. Only map areas and levels of detail prepared in advance will work reliably offline. Viewing an area that was not prepared may require internet access." },
     { "id": "coverage", "question": "How is the offline coverage area selected?", "answer": "The deployment owner chooses which places and levels of detail are needed, how much storage they may use, where the maps come from, and how often they are updated." },

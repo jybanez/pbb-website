@@ -10,7 +10,41 @@
   "deployment": { "classification": "baseline", "placements": ["barangay-node", "local-command-node", "daily-apps-node"] },
   "operationalConsiderations": ["Keep launcher availability aligned with actual application health and policy.", "Define useful disconnected, degraded, and maintenance messages."],
   "securityBoundary": ["Project only approved non-sensitive node metadata.", "Keep administrative routes and internal configuration out of the public launcher contract."],
-  "diagramsOrScreenshots": [{ "id": "landing-evidence-pending", "type": "placeholder", "title": "Validated local launcher pending", "caption": "No current Landing capture is approved for publication; no application availability is fabricated." }],
+  "diagramsOrScreenshots": [
+    {
+      "id": "landing-desktop",
+      "type": "image",
+      "imageKey": "landing-desktop",
+      "src": "assets/gallery/screenshots/PBB Landing - Desktop.png",
+      "title": "Local application launcher on desktop",
+      "caption": "The desktop launcher identifies the local node and presents available PBB applications with a compact service-state indicator for each entry.",
+      "alt": "PBB Landing desktop launcher showing local node identity, available applications, and service availability with the profile photograph redacted",
+      "width": 1430,
+      "height": 1100
+    },
+    {
+      "id": "landing-landscape",
+      "type": "image",
+      "imageKey": "landing-landscape",
+      "src": "assets/gallery/screenshots/PBB Landing - Landscape.png",
+      "title": "Responsive landscape launcher",
+      "caption": "The local launcher adapts its application grid for a landscape mobile or tablet viewport while preserving node identity and availability cues.",
+      "alt": "PBB Landing responsive landscape launcher showing local applications and availability with the profile photograph redacted",
+      "width": 1668,
+      "height": 943
+    },
+    {
+      "id": "landing-portrait",
+      "type": "image",
+      "imageKey": "landing-portrait",
+      "src": "assets/gallery/screenshots/PBB Landing - Portrait.png",
+      "title": "Responsive portrait launcher",
+      "caption": "The portrait layout reorganizes the same local application choices into a clear two-column launcher for narrow screens.",
+      "alt": "PBB Landing responsive portrait launcher showing local applications and availability with the profile photograph redacted",
+      "width": 937,
+      "height": 1678
+    }
+  ],
   "faqs": [
     { "id": "website", "question": "Is PBB Landing this public website?", "answer": "No. PBB Landing is the start page people use on a deployed local node. This public website explains the wider PBB platform." },
     { "id": "offline", "question": "Can the launcher work without internet access?", "answer": "Yes, as long as the local node network, launcher service, and linked apps are working." },

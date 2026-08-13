@@ -364,7 +364,7 @@ for (const item of productCatalog.infrastructure) {
     label: `Infrastructure component ${item.slug}`
   });
 }
-for (const slug of ["support", "natalium"]) {
+for (const slug of ["natalium"]) {
   const html = fs.readFileSync(fromRoot(`dist/modules/${slug}/index.html`), "utf8");
   if (html.includes("Validated product evidence") || html.includes("screenshot-placeholder") || html.includes('aria-labelledby="screenshots"')) {
     throw new Error(`Module ${slug} must completely omit placeholder-only evidence.`);

@@ -34,7 +34,41 @@
     "connectivityRequired": ["Cross-node delivery depends on a reachable Relay route and configured topology.", "Remote evidence access requires a separately configured and authorized Hotline media endpoint."],
     "notSynchronized": ["Imperium does not create universal database replication between nodes.", "Editable Hotline incidents are not copied into a shared mutable incident database."]
   },
-  "screenshots": [{ "id": "screenshot-pending", "type": "placeholder", "title": "Validated support interface pending", "caption": "No Imperium screenshot has been approved for this public page; no interface is fabricated." }],
+  "screenshots": [
+    {
+      "id": "support-dashboard",
+      "type": "image",
+      "imageKey": "support-dashboard",
+      "src": "assets/gallery/screenshots/PBB Support - Dashboard.png",
+      "title": "Consolidated support dashboard",
+      "caption": "The support-node dashboard brings together an executive situation assessment, response gaps, mapped incident context, and the current status of reporting sources.",
+      "alt": "PBB Support System dashboard with an executive situation assessment, map, source status, and response gaps",
+      "width": 1915,
+      "height": 937
+    },
+    {
+      "id": "support-source-drilldown",
+      "type": "image",
+      "imageKey": "support-source-drilldown",
+      "src": "assets/gallery/screenshots/PBB Support - Source Drilldown.png",
+      "title": "Reporting-source drilldown",
+      "caption": "Selecting a source focuses its boundary and incident context while exposing its alert level, heartbeat condition, support requests, incident reports, and media tabs.",
+      "alt": "PBB Support System source drilldown showing a barangay boundary, incident markers, heartbeat status, and support requests",
+      "width": 1917,
+      "height": 941
+    },
+    {
+      "id": "support-requests",
+      "type": "image",
+      "imageKey": "support-requests",
+      "src": "assets/gallery/screenshots/PBB Support - Requests.png",
+      "title": "Support-request lifecycle workbench",
+      "caption": "Operators can search requests, inspect urgency and assistance details, accept or reject new requests, and follow progress through assignment, travel, and completion states.",
+      "alt": "PBB Support System request workbench showing lifecycle states, request details, and accept or reject controls with diagnostics redacted",
+      "width": 1793,
+      "height": 877
+    }
+  ],
   "faqs": [
     { "id": "placement", "question": "Where should Imperium be deployed?", "answer": "Imperium should run on an approved support or command node. The deployment owner decides whether that node belongs to a city, municipality, province, agency, or PBB headquarters." },
     { "id": "incident-copy", "question": "Does it copy every Hotline incident?", "answer": "No. Imperium receives selected situation reports and support requests, not full editable copies of every Hotline incident." },
