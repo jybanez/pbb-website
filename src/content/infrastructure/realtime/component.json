@@ -10,7 +10,17 @@
   "deployment": { "classification": "baseline", "placements": ["barangay-node", "local-command-node", "daily-apps-node"] },
   "operationalConsiderations": ["Supervise the process and verify application reconnect behavior after restart.", "Measure concurrent connections and event volume on representative pilot hardware."],
   "securityBoundary": ["Authorize room joins and event publication at the application boundary.", "Do not place authoritative durable records only in process memory."],
-  "diagramsOrScreenshots": [{ "id": "realtime-evidence-pending", "type": "placeholder", "title": "Validated Realtime diagram pending", "caption": "No public gateway topology has been approved; no room or presence view is fabricated." }],
+  "diagramsOrScreenshots": [{
+    "id": "realtime-dashboard",
+    "type": "image",
+    "imageKey": "realtime-dashboard",
+    "src": "assets/gallery/screenshots/PBB Realtime - Dashboard.png",
+    "title": "Realtime operator dashboard",
+    "caption": "The private operator surface summarizes registered clients, project scopes, connected sessions, audit activity, quick actions, and recent application projects.",
+    "alt": "PBB Realtime operator dashboard with client, scope, session, audit, and project summaries",
+    "width": 1791,
+    "height": 878
+  }],
   "faqs": [
     { "id": "shared", "question": "Why use one shared gateway per node?", "answer": "One shared service avoids running separate copies for every app and gives local apps one managed way to send live updates." },
     { "id": "durability", "question": "Are room events a durable system of record?", "answer": "No. Live room and online-status updates are temporary. Each app must save any important records in its own permanent storage." },

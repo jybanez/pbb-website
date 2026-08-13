@@ -10,7 +10,74 @@
   "deployment": { "classification": "baseline", "placements": ["barangay-node", "local-command-node", "support-node"] },
   "operationalConsiderations": ["Monitor queue age, quarantine, attempts, and destination health.", "Set retention and replay policy per message contract and deployment topology."],
   "securityBoundary": ["Authenticate producers, destinations, and operational webhook consumers.", "Minimize envelope content and avoid treating transport acceptance as business acceptance."],
-  "diagramsOrScreenshots": [{ "id": "relay-evidence-pending", "type": "placeholder", "title": "Validated Relay topology pending", "caption": "A deployment-neutral public Relay topology has not been approved; no network route is invented." }],
+  "diagramsOrScreenshots": [
+    {
+      "id": "relay-dashboard",
+      "type": "image",
+      "imageKey": "relay-dashboard",
+      "src": "assets/gallery/screenshots/PBB Relay - Dashboard.png",
+      "title": "Relay operations dashboard",
+      "caption": "The dashboard summarizes the local hub, queue and delivery counts, connected hub links, recent deliveries, and inbound messages requiring operational attention.",
+      "alt": "PBB Relay dashboard showing hub status, queue metrics, links, recent deliveries, and received messages",
+      "width": 1917,
+      "height": 937
+    },
+    {
+      "id": "relay-deliveries",
+      "type": "image",
+      "imageKey": "relay-deliveries",
+      "src": "assets/gallery/screenshots/PBB Relay - Deliveries.png",
+      "title": "Delivery attempts and outcomes",
+      "caption": "Operators can inspect each next-hop delivery attempt, including its source and destination hubs, message type, status, retry state, and latest error.",
+      "alt": "PBB Relay deliveries view showing routes, message types, delivery states, retries, and errors",
+      "width": 1912,
+      "height": 936
+    },
+    {
+      "id": "relay-inbox",
+      "type": "image",
+      "imageKey": "relay-inbox",
+      "src": "assets/gallery/screenshots/PBB Relay - Inbox.png",
+      "title": "Inbound message processing",
+      "caption": "The inbox records messages received from local or peer hubs and exposes processing results such as processed and duplicate receipts.",
+      "alt": "PBB Relay inbox showing received messages and processing outcomes",
+      "width": 1916,
+      "height": 939
+    },
+    {
+      "id": "relay-outbox",
+      "type": "image",
+      "imageKey": "relay-outbox",
+      "src": "assets/gallery/screenshots/PBB Relay - Outbox.png",
+      "title": "Outbound routing and delivery state",
+      "caption": "The outbox shows locally created messages, owning source systems, approved destinations, computed next hops, delivery attempts, and current transport state.",
+      "alt": "PBB Relay outbox showing outbound messages, target systems, next hops, attempts, and delivery states",
+      "width": 1915,
+      "height": 940
+    },
+    {
+      "id": "relay-clients",
+      "type": "image",
+      "imageKey": "relay-clients",
+      "src": "assets/gallery/screenshots/PBB Relay - Clients.png",
+      "title": "Local client registrations",
+      "caption": "The clients view exposes registered local applications, masked API credentials, activation state, configured handlers, and recent use without displaying full secrets.",
+      "alt": "PBB Relay clients view showing local application registrations, masked API keys, status, and handlers",
+      "width": 1914,
+      "height": 937
+    },
+    {
+      "id": "relay-api-documentation",
+      "type": "image",
+      "imageKey": "relay-api-documentation",
+      "src": "assets/gallery/screenshots/PBB Relay - API Documentation.png",
+      "title": "Relay integration API",
+      "caption": "The OpenAPI interface documents authenticated local-client and hub-to-hub endpoints used to integrate approved producers, consumers, and Relay peers.",
+      "alt": "PBB Relay OpenAPI documentation showing local and hub integration endpoints",
+      "width": 1914,
+      "height": 938
+    }
+  ],
   "faqs": [
     { "id": "replication", "question": "Does Relay synchronize every PBB database?", "answer": "No. Relay sends only selected, approved messages. It does not copy entire databases or automatically combine records from different nodes." },
     { "id": "offline", "question": "What happens when the destination is unreachable?", "answer": "Relay can keep an accepted message on the local node and try again later, following the delivery and storage rules set for that deployment." },

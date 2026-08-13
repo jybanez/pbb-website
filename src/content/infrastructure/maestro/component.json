@@ -10,7 +10,17 @@
   "deployment": { "classification": "baseline", "placements": ["barangay-node", "local-command-node", "support-node"] },
   "operationalConsiderations": ["Assign an owner and response procedure to every actionable signal.", "Keep the monitored service inventory aligned with the actual node configuration."],
   "securityBoundary": ["Maintain observer-only permissions in the publicized foundation.", "Do not expose health endpoints or operational details to an untrusted network."],
-  "diagramsOrScreenshots": [{ "id": "maestro-evidence-pending", "type": "placeholder", "title": "Validated health view pending", "caption": "No public Maestro dashboard capture is approved; no telemetry state is fabricated." }],
+  "diagramsOrScreenshots": [{
+    "id": "maestro-dashboard",
+    "type": "image",
+    "imageKey": "maestro-dashboard",
+    "src": "assets/gallery/screenshots/PBB Maestro - Dashboard.png",
+    "title": "Node worker monitoring overview",
+    "caption": "The observer dashboard consolidates application, worker, queue, and event counts while highlighting stale workers, queue coverage, and recent worker activity.",
+    "alt": "PBB Maestro monitoring dashboard showing applications, workers, queues, stale workers, and recent events",
+    "width": 1795,
+    "height": 876
+  }],
   "faqs": [
     { "id": "control", "question": "Can Maestro remotely control every service?", "answer": "No. Maestro watches the health of local services and workers. It is not a general tool for remotely controlling them." },
     { "id": "offline", "question": "Does local monitoring require internet access?", "answer": "No, as long as Maestro and the services it checks are running on the managed local network." },
