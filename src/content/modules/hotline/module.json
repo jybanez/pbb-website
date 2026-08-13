@@ -100,6 +100,39 @@
       "alt": "PBB Hotline operator workbench showing incident details, dispatch, call sessions, and caller chat",
       "width": 1915,
       "height": 938
+    },
+    {
+      "id": "command-dashboard",
+      "type": "image",
+      "imageKey": "hotline-command-dashboard",
+      "src": "assets/gallery/screenshots/PBB Hotline - Command Dashboard.png",
+      "title": "Command operations dashboard",
+      "caption": "The command view combines the operational map, alert state, current SITREP, incident context, and response assignments.",
+      "alt": "PBB Hotline command dashboard showing the operational map, current SITREP, incidents, and response assignments",
+      "width": 1915,
+      "height": 939
+    },
+    {
+      "id": "command-sitrep-viewer",
+      "type": "image",
+      "imageKey": "hotline-command-sitrep",
+      "src": "assets/gallery/screenshots/PBB Hotline - Command SITREP Viewer.png",
+      "title": "Command SITREP preview",
+      "caption": "Command users can review a structured Daily SITREP and its publication status before publishing, printing, or downloading it.",
+      "alt": "PBB Hotline command SITREP preview with publish, print, and download controls",
+      "width": 1057,
+      "height": 722
+    },
+    {
+      "id": "command-support-request",
+      "type": "image",
+      "imageKey": "hotline-command-support-request",
+      "src": "assets/gallery/screenshots/PBB Hotline - Command Support Request.png",
+      "title": "Upstream support request",
+      "caption": "The command workflow records urgency, requested quantity, escalation justification, linked incidents, and notes for upstream support.",
+      "alt": "PBB Hotline command form for requesting upstream equipment and support",
+      "width": 797,
+      "height": 657
     }
   ],
   "faqs": [

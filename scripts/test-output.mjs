@@ -334,7 +334,10 @@ const hotlineEvidence = [
   ["hotline-citizen-home-378.webp", 378, 668],
   ["hotline-citizen-operators-available-377.webp", 377, 668],
   ["hotline-operator-dashboard-current-1600.webp", 1917, 941],
-  ["hotline-operator-workbench-1600.webp", 1915, 938]
+  ["hotline-operator-workbench-1600.webp", 1915, 938],
+  ["hotline-command-dashboard-1600.webp", 1915, 939],
+  ["hotline-command-sitrep-viewer-1057.webp", 1057, 722],
+  ["hotline-command-support-request-797.webp", 797, 657]
 ];
 for (const [fileName, width, height] of hotlineEvidence) {
   if (!hotlineIndex.includes(fileName)) throw new Error(`Hotline page is missing generated evidence image ${fileName}.`);
