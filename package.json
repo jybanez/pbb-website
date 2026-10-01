@@ -8,6 +8,7 @@
     "images": "node scripts/images.mjs",
     "validate": "node scripts/validate-content.mjs",
     "build:site": "eleventy",
+    "build:preview": "node scripts/build-preview.mjs",
     "build": "npm run clean && npm run images && npm run validate && npm run build:site && npm run check:links",
     "dev": "npm run images && eleventy --serve",
     "check:links": "node scripts/check-output.mjs",

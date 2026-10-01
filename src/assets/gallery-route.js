@@ -1,7 +1,8 @@
+const gallerySiteBase = document.documentElement.dataset.siteBase || "/";
 if (typeof galleryItems !== "undefined" && Array.isArray(galleryItems)) {
   const rootAsset = (value) => {
     if (!value || /^(?:https?:|data:|\/)/i.test(value)) return value;
-    return `/${value.replace(/^\.\//, "")}`;
+    return `${gallerySiteBase}${value.replace(/^\.\//, "")}`;
   };
   galleryItems.forEach((item) => {
     if (item.fullWebp) item.fullFallback = item.fullWebp;
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const applyViewerDimensions = () => {
     document.querySelectorAll('[role="dialog"] img:not([width])').forEach((image) => {
-      const key = new URL(image.currentSrc || image.src, window.location.href).pathname.replace(/^\//, "");
+      const key = new URL(image.currentSrc || image.src, window.location.href).pathname.slice(gallerySiteBase.length);
       const dimensions = window.PBBGalleryDimensions?.[key];
       if (!dimensions) return;
       image.width = dimensions.fullWidth;

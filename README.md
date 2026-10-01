@@ -19,6 +19,27 @@ Project-owner approval of launch claims and post-deployment verification on the 
 
 ## Requirements
 
+### GitHub project preview
+
+`npm test` validates the normal domain-root build. `npm run build:preview`
+builds for `/pbb-website/` and checks the prefixed output. Set
+`SITE_PATH_PREFIX` to another slash-delimited local path when needed;
+`npm run build` defaults to `/`.
+
+The Pages workflow tests the root build, then publishes the preview build's
+`dist/` through GitHub Actions. Pages settings must use **GitHub Actions**
+with no custom domain for this preview. No CNAME is copied into the artifact.
+Preview pages carry `noindex,follow`; production canonicals, structured data
+and intentional absolute `https://pbb.ph` links remain unchanged. Local
+navigation, responsive images, gallery media and compatibility redirects use
+the configured prefix. The external inquiry endpoint is unchanged; this build
+does not validate delivery or authorize real submissions.
+
+To return to a domain-root deployment, review the domain configuration and
+replace the preview workflow build step with the root build after explicit
+release approval. Do not point production DNS at an artifact built for the
+project subdirectory. Retain the previous deployment for rollback.
+
 - Node.js 22
 - npm 10 or newer
 

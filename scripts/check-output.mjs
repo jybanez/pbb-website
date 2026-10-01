@@ -4,6 +4,7 @@ import { parseDocument } from "htmlparser2";
 import { fromRoot, relative, walk } from "./lib.mjs";
 
 const dist = fromRoot("dist");
+const pathPrefix = process.env.SITE_PATH_PREFIX || "/";
 const htmlFiles = walk(dist, (file) => file.endsWith(".html"));
 const errors = [];
 const siteUrl = "https://pbb.ph";
@@ -19,7 +20,8 @@ const elements = (node, output = []) => {
 
 const resolveTarget = (value, currentFile) => {
   const [pathname, fragment = ""] = value.split("#", 2);
-  const clean = pathname.split("?", 1)[0];
+  let clean = pathname.split("?", 1)[0];
+  if (pathPrefix !== "/" && clean.startsWith(pathPrefix)) clean = "/" + clean.slice(pathPrefix.length);
   if (/^(?:https?:|mailto:|tel:|data:|javascript:)/i.test(clean)) return null;
   const currentDirectory = path.dirname(currentFile);
   let target = clean.startsWith("/")
@@ -92,7 +94,7 @@ for (const file of htmlFiles) {
   }
   if (legacyTarget) {
     const refresh = nodes.find((node) => node.name === "meta" && node.attribs?.["http-equiv"]?.toLowerCase() === "refresh");
-    if (!refresh?.attribs?.content?.includes(`url=${legacyTarget}`)) errors.push(`${relative(file)} is missing a safe refresh fallback to ${legacyTarget}.`);
+    if (!refresh?.attribs?.content?.includes(`url=${pathPrefix.slice(0, -1)}${legacyTarget}`)) errors.push(`${relative(file)} is missing a safe refresh fallback to ${legacyTarget}.`);
   }
   if (route === "/404.html" && !nodes.some((node) => node.name === "meta" && node.attribs?.name === "robots" && /noindex/i.test(node.attribs?.content ?? ""))) {
     errors.push("dist/404.html must be marked noindex.");

@@ -761,7 +761,8 @@ if (!pageHeroMacroSource.includes('{% if heroImage %} page-hero-with-image page-
   throw new Error("The shared page-hero macro no longer keeps image classes and media conditional, which would break its gradient-only fallback path.");
 }
 
-for (const staticFile of ["CNAME", "robots.txt", ".well-known/pbb.json"]) {
+if (fs.existsSync(fromRoot("dist", "CNAME"))) throw new Error("Deployment artifact must not reattach a custom domain.");
+for (const staticFile of ["robots.txt", ".well-known/pbb.json"]) {
   if (!fs.existsSync(fromRoot("dist", staticFile))) throw new Error(`Required static output is missing: ${staticFile}`);
 }
 

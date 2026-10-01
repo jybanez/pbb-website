@@ -2,11 +2,16 @@ import fs from "node:fs";
 import path from "node:path";
 import { normalizeInquiryType } from "./scripts/engagement-rules.mjs";
 import { approvedScreenshots } from "./scripts/content-rules.mjs";
+import { normalizePrefix, previewHtml } from "./scripts/preview-paths.mjs";
 
 const readJson = (relativePath) =>
   JSON.parse(fs.readFileSync(path.resolve(relativePath), "utf8"));
 
 export default function (eleventyConfig) {
+  const pathPrefix = normalizePrefix(process.env.SITE_PATH_PREFIX || "/");
+  eleventyConfig.addTransform("preview-paths", function (content) {
+    return this.page.outputPath?.endsWith(".html") ? previewHtml(content, pathPrefix) : content;
+  });
   eleventyConfig.setQuietMode(true);
 
   // Single-word files under src/data are loaded by Eleventy's data cascade.
@@ -58,13 +63,14 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "vendor": "vendor" });
   eleventyConfig.addPassthroughCopy("gallery-data.js");
   eleventyConfig.addPassthroughCopy("pbb-gallery.js");
-  eleventyConfig.addPassthroughCopy("CNAME");
+  // Domain association belongs in Pages settings; never reattach it via an artifact.
   eleventyConfig.addPassthroughCopy("robots.txt");
   if (fs.existsSync(".well-known")) {
     eleventyConfig.addPassthroughCopy(".well-known");
   }
 
   return {
+    pathPrefix,
     dir: {
       input: "src",
       output: "dist",
